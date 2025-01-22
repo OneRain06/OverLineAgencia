@@ -1,1 +1,2761 @@
-<h3>Paquetes Intermedios</h3>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Overline</title>
+<style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body.modal-open {
+    overflow: hidden; /* Desactiva el scroll del body */
+}
+	body {
+  font-family: "Poppins Black";
+  background-color: rgba(204,222,250,0.90);
+  background-image: url("file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/fondo.gif");/* Reemplaza con la URL de tu imagen */
+  background-size: cover; /* Hace que la imagen cubra toda la ventana */
+  background-position: center; /* Centra la imagen */
+  background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  min-height: 100vh; /* Asegura que el body tenga al menos la altura de la ventana */
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --card-height: 300px;
+  --card-width: calc(var(--card-height) / 1.5);
+  font-size: 12px;
+  --color-text: #017096;
+  --color-bg: #ddd;
+  --color-link: #000;
+  --color-link-hover: #000;
+  --page-padding: 1rem;
+  --angle: -15deg;
+  --trans-content: -30vh;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: 'Poppins Medium';
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*--------------------------------------------------Estilo para la sección con la clase title-general-------------------------------------------------------*/
+.title-general {
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    text-align: center; /* Asegura que el texto dentro de h1 esté centrado */
+    overflow-x: hidden; /* Elimina el scroll lateral del body */
+}
+	.title-general h1 {
+		font-size: 4rem;
+  font-family: "Poppins Black";
+  font-style: normal;
+  font-weight: 400;
+  margin: 6rem 0 10vh;
+  line-height: 0.9;
+	}
+/*--------------------------------------------------Estilos del botón flotante de WhatsApp-------------------------------------------------------*/
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  animation: palpitacion 1.5s infinite; /* Animación de palpitación */
+}
+
+.whatsapp-btn img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Efecto de zoom al pasar el mouse */
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Animación de palpitación */
+@keyframes palpitacion {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+/*--------------------------------------------------estilos inicio-------------------------------------------------------*/
+.noscroll {
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-link);
+  outline: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--color-link-hover);
+  outline: none;
+}
+
+a:focus {
+  outline: none;
+  background: lightgrey;
+}
+
+a:focus:not(:focus-visible) {
+  background: transparent;
+}
+
+a:focus-visible {
+  outline: 2px solid red;
+  background: transparent;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #017096;
+}
+
+.intro::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.intro--open {
+  height: 80vh;
+}
+
+.grid {
+  gap: 1rem;
+  flex: none;
+  position: relative;
+  width: 200vw;
+  height: 200vh;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: 100%;
+  transform: rotate(var(--angle));
+  transform-origin: center center;
+}
+
+.row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(7, 1fr);
+  will-change: transform, filter;
+}
+
+.row__item {
+  position: relative;
+}
+
+.row__item-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.row__item-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.row__item-img--large {
+  width: 100vw;
+  height: 100vh;
+  top: 50%;
+  left: 50%;
+  margin: -50vh 0 0 -50vw;
+  background-position: 50% 70%;
+  will-change: transform, filter;
+}
+
+.enter {
+  color: rgba(01, 112, 150, 0.8);
+  position: absolute;
+  text-transform: uppercase;
+  padding: 1.75rem 4rem;
+  font-weight: 600;
+  z-index: 100;
+  font-family: 'Poppins Black';
+  font-size: 1.5rem;
+  background-color: rgb(204, 222, 250, 0.9);
+	border-radius: 100px;
+  background-size: 250px, 100%;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.enter::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 1px solid rgba(1, 112, 150, 0.8);
+  border-radius: 3rem;
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+.enter:focus::before,
+.enter:hover::before {
+  background-color: rgba(4, 139, 187, 0.2);
+}
+
+.fullview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.fullview .row__item-inner {
+  border-radius: 0px;
+}
+
+.content {
+  padding: var(--page-padding);
+  position: relative;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  border-radius: 10px 10px 0 0;
+  height: calc(100% + (-1) * var(--trans-content));
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-size: 250px, 100%;
+	background: linear-gradient(#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa,#ccdefa, rgb(204, 222, 250, 0) );
+}
+
+.content > * {
+  position: relative;
+}
+
+.content__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.content__header h2 {
+  font-size: 2rem;
+  font-family: "Poppins Black";
+  font-style: normal;
+  font-weight: 400;
+  margin: 6rem 0 10vh;
+  line-height: 0.9;
+}.content__header h1 {
+  font-size: 2rem;
+  font-family: "Poppins Black";
+  font-style: normal;
+  font-weight: 100;
+  margin: 6rem 0 10vh;
+  line-height: 0.9;
+}
+
+.content__text {
+  text-wrap: balance;
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+  padding: 0 5vw;
+}
+
+.content__text p {
+  max-width: 700px;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 0;
+  margin-left: auto;
+}
+
+.content__text p.highlight {
+  max-width: 1000px;
+  font-size: 2rem;
+  font-family: 'Poppins Medium';
+  font-weight: 300;
+}
+
+.content__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20vh;
+  transform: translateY(calc(-1 * var(--trans-content)));
+}
+
+@media screen and (min-width: 53em) {
+  body {
+    --page-padding: 2rem 3rem;
+  }
+  .content__header h2 {
+    font-size: clamp(2rem, 20vh, 16rem);
+  }
+  .content__text p.highlight {
+    font-size: clamp(2rem, 7vh, 4rem);
+  }
+}
+
+/*--------------------------------------------------seccion pack-------------------------------------------------------*/
+/* Estilo general de las tarjetas */
+.cards-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 300px; /* La anchura máxima sigue siendo 300px */
+  height: 300px; /* Ahora la altura es igual a la anchura */
+  background-color: #ccc;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  border-radius: 15px; /* Redondeo de esquinas */
+  border: 3px solid transparent; /* Borde inicial */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border: 3px solid #048bbb; /* Borde azul al pasar el mouse */
+}
+
+.card-image {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #ccdefa;
+}
+
+.card h3 {
+  font-size: 1.5em;
+}
+
+/* Animación de palpitar */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Azul parpadeante */
+
+
+@keyframes flicker {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.2; }
+  100% { opacity: 0.5; }
+}
+
+/* Estilo para los popups */
+.popup {
+	  overflow-y: auto;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+	
+height: 100%;
+background: rgba(255, 255, 255, .1);
+box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+border-radius: 50px;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-right: 2px solid rgba(255, 255, 255, . 2);
+border-bottom: 2px solid rgba(255, 255, 255, .2);
+backdrop-filter: blur(10px);
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+  overflow-y: auto;
+  border-radius: 15px; /* Redondeo de esquinas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-height: 80vh; /* Limita la altura para que sea más fácil hacer scroll */
+}
+
+/* Estilo de las tarjetas dentro del popup */
+.popup .popup-card {
+  background-color: #FFFFFF;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #048bbb; /* Borde azul */
+  width: calc(30% - 20px); /* Dos tarjetas por fila */
+  margin-right: 10px;
+  margin-left: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center; /* Centra el contenido horizontalmente */
+  text-align: center; /* Asegura que el texto dentro de la tarjeta esté centrado */
+  transition: transform 0.3s ease; /* Efecto de zoom */
+}
+
+/* Asegura que las tarjetas no excedan el espacio disponible */
+.popup .popup-card:nth-child(2n) {
+  margin-right: 0; /* Eliminar margen derecho en el final de cada fila */
+}
+
+/* Contenedor de las tarjetas dentro del popup */
+.popup .package-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Zoom al pasar el mouse sobre las tarjetas */
+.popup .popup-card:hover {
+  transform: scale(1.1); /* Mini zoom al pasar el ratón */
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 1000px) {
+  .popup .popup-card {
+    width: 100%; /* Una tarjeta por fila */
+    margin-right: 0; /* Eliminar margen derecho */
+    margin-left: 0;  /* Eliminar margen izquierdo */
+  }
+
+  .popup .package-cards {
+     display: grid; /* Cambia de block a grid */
+    grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas de tamaño igual */
+    gap: 6px;; /* Ajusta el espacio entre las tarjetas */
+  }
+
+  .popup-content {
+    max-height: none; /* Permitir que el contenido del popup se expanda si es necesario */
+  }
+}
+
+.popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2em;
+  cursor: pointer;
+  color: #ccdefa; /* Color azul de la X de cierre */
+}
+
+/* Estilo general para las tarjetas de la lista */
+.popup .popup-card h4 {
+  font-size: 1.2em;
+}
+
+.popup .popup-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.popup .popup-card ul li {
+  margin-bottom: 5px;
+}
+
+.popup .popup-card p {
+  font-weight: bold;
+  background-color: #ccdefa;
+  border-radius: 15px;
+  padding: 5px; /* Aumenta el tamaño del fondo alrededor del texto */
+  margin: 10px;  /* Agrega un margen alrededor del párrafo si lo deseas */
+  font-size: 16px; /* Ajusta el tamaño de la fuente si lo necesitas */
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+  .popup-content {
+    width: 90%;
+  }
+}
+/*--------------------------------------------------seccion servicios-------------------------------------------------------*/
+ .container-serv {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .buttons-panel-serv {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* Estilo del botón deslizante */
+    .toggle-btn-serv {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background-color: #ccdefa;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-btn-serv input {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .toggle-btn-serv .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: white;
+      transition: transform 0.3s ease;
+    }
+
+    /* Estilo cuando el botón está activado */
+    .toggle-btn-serv.active {
+      background-color: #017096;
+    }
+
+    .toggle-btn-serv.active .slider {
+      transform: translateX(30px);
+    }
+
+    /* Estilos para la parte de los videos */
+    .video-panel-serv {
+      max-width: 500px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .video-content-serv {
+      display: none;
+      text-align: center;
+      width: 70%; /* Cambié a 70% en lugar de 100% */
+      opacity: 0;
+      transform: translateY(-50px) scale(0.5);
+      animation: jumpIn-serv 0.6s forwards;
+    }
+
+    /* Animación de brinco */
+    @keyframes jumpIn-serv {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(10px) scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container-serv {
+        align-items: center;
+      }
+
+      .buttons-panel-serv {
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      .video-panel-serv {
+        max-width: 100%;
+      }
+    }
+	.servic{
+		padding: 0% 20%;
+		}
+	@media (max-width: 768px){
+	.servic{
+		padding: 0% 5%;
+		}
+		}
+	
+	.servi{
+		padding: 0% 20%;
+		width: 100%;
+height: 100%;
+background: rgba(255, 255, 255, .1);
+box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+border-radius: 50px;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-right: 2px solid rgba(255, 255, 255, . 2);
+border-bottom: 2px solid rgba(255, 255, 255, .2);
+backdrop-filter: blur(10px);
+      }
+/*--------------------------------------------------seccion mas servicios-------------------------------------------------------*/
+	.mas-servicios-btn {
+    background-color: #017096;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 30px auto;
+    display: block;
+}
+
+.mas-servicios-btn:hover {
+    background-color: #048bbb;
+}
+
+.mas-servicios-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    z-index: 1000; /* Asegúrate de que el popup esté encima de otros elementos */
+}
+
+.mas-servicios-content {
+height: 100%;
+background: rgba(255, 255, 255, .1);
+box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+border-radius: 50px;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-right: 2px solid rgba(255, 255, 255, . 2);
+border-bottom: 2px solid rgba(255, 255, 255, .2);
+backdrop-filter: blur(10px);
+    padding: 30px;
+    width: 60%; /* Ancho del contenido del popup */
+    max-width: 900px; /* Ancho máximo para evitar que se expanda demasiado en pantallas grandes */
+    max-height: 80%; /* Evitar que el contenido sea demasiado grande en pantallas pequeñas */
+    overflow-y: auto; /* Habilita el desplazamiento si el contenido es largo */
+     text-align: left;
+    position: relative;
+}
+
+.mas-servicios-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.mas-servicios-item {
+    margin-bottom: 30px;
+}
+
+.mas-servicios-item h3 {
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+.mas-servicios-item h6 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+.mas-servicios-item p {
+	font-family: "Poppins light";
+    color: white;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.mas-servicios {
+    margin-bottom: 15px;
+}
+
+.mas-servicios-whatsapp-btn {
+    background-color: #048bbb;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+}
+
+.mas-servicios-whatsapp-btn:hover {
+    background-color: #017096;
+}
+
+@media (max-width: 600px) {
+    .mas-servicios-content {
+        width: 90%;
+    }
+    .mas-servicios-whatsapp-btn {
+        width: 100%;
+    }
+}
+
+/*--------------------------------------------------seccion proyectos-------------------------------------------------------*/
+.card-proyect {
+  width: var(--card-width);
+  height: var(--card-height );
+  position: relative;
+  display: grid;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 36px;
+  perspective: 2500px;
+  margin: 0 50px;
+}
+
+.cover-image-proyect {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wrapper-proyect {
+  transition: all 0.5s;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.card-proyect:hover .wrapper-proyect {
+  transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper-proyect::before,
+.wrapper-proyect::after {
+  content: "";
+  opacity: 0;
+  width: 100%;
+  height: 80px;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+.wrapper-proyect::before {
+  top: 0;
+  height: 100%;
+  background-image: linear-gradient(
+    to top,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+.wrapper-proyect::after {
+  bottom: 0;
+  opacity: 1;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+
+.card-proyect:hover .wrapper-proyect::before,
+.wrapper-proyect::after {
+  opacity: 1;
+}
+
+.card-proyect:hover .wrapper-proyect::after {
+  height: 120px;
+}
+.title-proyect {
+  width: 100%;
+  transition: transform 0.5s;
+}
+.card-proyect:hover .title-proyect {
+  transform: translate3d(0%, -50px, 100px);
+}
+
+.character-proyect {
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: -1;
+}
+
+.card-proyect:hover .character-proyect {
+  opacity: 1;
+  transform: translate3d(0%, -30%, 100px);
+}
+	.tarjetas00{
+		padding: 10%;
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Columnas automáticas */
+    gap: 20px; /* Espacio entre los elementos */
+  }
+		@media(max-width: 1000px) {
+	.tarjetas00{
+		padding: 2%;
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Columnas automáticas */
+    gap: 5px; /* Espacio entre los elementos */
+  }
+  }
+		  /* Estilo para el popup */
+    .proyect-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 600px;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    .proyect-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    /* Estilo para el botón de cerrar */
+    .proyect-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+.scrollable-section {
+    width: 80%;  /* O el tamaño que desees */
+    overflow-x: auto;  /* Esto permite el scroll lateral */
+    white-space: nowrap;  /* Esto evita el salto de línea del contenido */padding: 0% 20%;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, .1);
+	box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+	border-radius: 50px;
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	border-right: 2px solid rgba(255, 255, 255, . 2);
+	border-bottom: 2px solid rgba(255, 255, 255, .2);
+	backdrop-filter: blur(10px);
+      }
+}
+
+/* El contenido que excede el tamaño de la sección */
+.scrollable-section .content-222 {
+    width: 100%;  /* Ancho mayor que la sección para causar el scroll */
+    background-color: #b0c4de;  /* Color de fondo para diferenciar el contenido */
+    padding: 0px;
+}/* Personalización de la barra de scroll */
+.scrollable-section::-webkit-scrollbar {
+    height: 12px; /* Altura de la barra de scroll horizontal */
+}
+
+/* Estilo de la parte deslizante (thumb) de la barra de scroll */
+.scrollable-section::-webkit-scrollbar-thumb {
+    background-color: #04bbfb; /* Color de la parte deslizante */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 3px solid #f0f0f0; /* Espacio entre la parte deslizante y el track */
+}
+
+/* Estilo del track (fondo de la barra) */
+.scrollable-section::-webkit-scrollbar-track {
+    background-color: #ccdefa; /* Fondo de la barra de scroll */
+    border-radius: 10px; /* Bordes redondeados */
+    margin: 4px 0; /* Márgenes para separar la barra de los bordes */
+}
+
+/* Efecto al pasar el ratón sobre la barra */
+.scrollable-section::-webkit-scrollbar-thumb:hover {
+    background-color: #048bbb; /* Cambio de color cuando se pasa el ratón */
+}
+
+	
+/*--------------------------------------------------clientes-------------------------------------------------------*/
+.cell {
+            width: 90%;
+            max-width: auto;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+            mask-image: linear-gradient(
+                to right,
+                rgba(61, 0, 0, 0),
+                rgba(61, 0, 0, 1) 20%,
+                rgba(61, 0, 0, 1) 80%,
+                rgba(61, 0, 0, 0)
+            );
+        }
+        
+        .cell img {
+            width: 100px; /* Ajusta el tamaño de la imagen */
+            height: 100%; /* Asegura que la imagen ocupe toda la altura del contenedor */
+            object-fit: cover; /* Asegura que la imagen no se deforme y se recorte si es necesario */
+            position: absolute;
+            left: max(calc(100px * 6), 100%);
+            border-radius: 10px;
+            animation: autoSlide 30s linear infinite;
+            animation-delay: calc((30s / 6) * (6 - var(--i)) * -1);
+        }
+
+        @keyframes autoSlide {
+            to {
+                left: -200px;
+            }
+        }
+/*--------------------------------------------------preguntas-------------------------------------------------------*/
+	.pregunta-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .pregunta-faq-container {
+      max-width: 900px;
+      width: 100%;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .pregunta-titulo {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .pregunta-item {
+      border-bottom: 1px solid #e5e5e5;
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .pregunta-item:last-child {
+      border-bottom: none;
+    }
+
+    .pregunta-item h3 {
+      font-size: 20px;
+      color: #04bbfb;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+      padding-left: 10px;
+    }
+
+    .pregunta-item:hover {
+      background-color: #f0f8ff;
+      transform: translateX(10px);
+    }
+
+    .pregunta-item:hover h3 {
+      color: #017096;
+      padding-left: 15px;
+    }
+
+    .pregunta-item .pregunta-respuesta {
+      padding-top: 10px;
+      display: none;
+      font-size: 16px;
+      color: #555;
+      opacity: 0;
+      max-height: 0;
+      transition: opacity 0.4s ease-out, max-height 0.4s ease-out;
+      overflow: hidden;
+    }
+
+    .pregunta-item.open .pregunta-respuesta {
+      display: block;
+      opacity: 1;
+      max-height: 500px;
+      padding-top: 15px;
+    }
+
+    .pregunta-item.open h3 {
+      color: #048bbb;
+      padding-left: 15px;
+    }
+
+    .pregunta-item .pregunta-toggle-icon {
+      font-size: 22px;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .pregunta-item.open .pregunta-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .pregunta-item .pregunta-toggle-icon::before {
+      content: '▼';
+      color: #048bbb;
+    }
+
+    .pregunta-item.open .pregunta-toggle-icon::before {
+      content: '▲';
+      color: #017096;
+    }
+
+    /* Animación de rebote en el icono */
+    .pregunta-item.open .pregunta-toggle-icon {
+      animation: bounce 0.5s ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: scale(1);
+      }
+      40% {
+        transform: scale(1.2);
+      }
+      60% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Sombra y efecto hover en el contenedor */
+    .pregunta-faq-container:hover {
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+/*--------------------------------------------------contacto-------------------------------------------------------*/
+	 .contacto-section {
+      padding: 50px 0;
+      background: linear-gradient(rgb(204, 222, 250, 0), rgb(204, 222, 250, 0), #ccdefa);
+      text-align: center;
+    }
+
+    .contacto-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .contacto-section-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #017096;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .contacto-section-description {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 40px;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .contacto-info {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .contacto-item {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      padding: 20px;
+      background-color: #e4eefc;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contacto-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .contacto-item h3 {
+      font-size: 1.6rem;
+      color: #048bbb;
+      margin-bottom: 15px;
+    }
+
+    .contacto-item p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .contacto-item a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #048bbb;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .contacto-item a:hover {
+      background-color: #017096;
+      transform: scale(1.05);
+    }
+
+    .contacto-item i {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #017096;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsividad */
+    @media (max-width: 768px) {
+      .contacto-container {
+        padding: 15px;
+      }
+
+      .contacto-section-title {
+        font-size: 2rem;
+      }
+
+      .contacto-section-description {
+        font-size: 1rem;
+      }
+
+      .contacto-info {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+/*--------------------------------------------------footer-------------------------------------------------------*/
+	footer {
+    background-color: #017096; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 20px 0; /* Espaciado superior e inferior */
+}
+
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap; /* Permite que los elementos se acomoden en una nueva línea si es necesario */
+}
+
+.footer-logo img {
+    max-width: 150px; /* Limita el tamaño del logo */
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px; /* Espacio entre los íconos */
+    flex-wrap: wrap; /* Permite que los íconos se acomoden en una nueva línea si es necesario */
+    justify-content: flex-end; /* Alinea los íconos a la derecha */
+}
+
+.footer-link img {
+    width: 30px; /* Tamaño de los íconos */
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-link img:hover {
+    transform: scale(1.1); /* Efecto de hover en los íconos */
+}
+
+.footer-link {
+    text-decoration: none;
+}
+
+footer a {
+    color: white; /* Los enlaces son blancos */
+}
+
+footer a:hover {
+    color: #00bfae; /* Color al pasar el mouse (verde claro) */
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* Los elementos se apilan verticalmente en pantallas pequeñas */
+        text-align: center; /* Centra el texto y los elementos */
+    }
+
+    .footer-logo img {
+        max-width: 120px; /* Ajusta el tamaño del logo en pantallas más pequeñas */
+    }
+
+    .footer-links {
+        justify-content: center; /* Centra los íconos */
+        gap: 15px; /* Reduce el espacio entre los íconos */
+    }
+
+    .footer-link img {
+        width: 25px; /* Reduce el tamaño de los íconos */
+        height: 25px;
+    }
+}
+
+/* Estilos para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+    .footer-logo img {
+        max-width: 100px; /* Ajusta aún más el tamaño del logo */
+    }
+
+    .footer-links {
+        gap: 10px; /* Reduce más el espacio entre los íconos */
+    }
+
+    .footer-link img {
+        width: 20px; /* Acomoda los íconos más pequeños */
+        height: 20px;
+    }
+}
+
+</style>	
+</head>
+	<body class="noscroll"><a href="https://wa.me/573018282771?text=Quiero%20m%C3%A1s%20informaci%C3%B3n" class="whatsapp-btn" target="_blank" title="Chatea con nosotros en WhatsApp">
+    <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/icono%20wsp.png" alt="WhatsApp">
+  </a>
+  <main>
+    <section class="intro" id="inicio">
+      <div class="grid">
+        <div class="row">
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base-2.png)"></div>
+            </div> <!---------- aqui va el banner ---------->
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+          <div class="row__item">
+            <div class="row__item-inner">
+              <div class="row__item-img" style="background-image:url(file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/imagenes%20banner/base.png)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fullview"></div>
+      <div class="enter"><span>Atrevete</span></div>
+    </section>
+    <section class="content">
+		 <div class="content__header">
+        <h2>¿QUE ES OVERLINE?</h2>
+               </div>
+	   <div class="content__text"><h1> Bienvenidos a Overline, una agencia creativa con sede en Bogotá, dedicada a transformar ideas en experiencias visuales únicas. Nos especializamos en ofrecer soluciones integrales en diseño, video, animación, producción audiovisual, social media, mercadeo y publicidad, combinando creatividad, tecnología y estrategia para ayudar a tu marca a destacar en un mundo cada vez más competitivo.<br>
+En Overline, entendemos que cada proyecto es una oportunidad para contar una historia auténtica y memorable. Nuestro enfoque personalizado nos permite trabajar de cerca contigo para crear contenidos impactantes que conecten con tu audiencia y generen resultados reales.<br>
+Desde la concepción hasta la ejecución, estamos comprometidos con la excelencia y la innovación en cada etapa del proceso. Creemos en el poder de la creatividad para transformar marcas y alcanzar objetivos, y nos enorgullece ser tu socio estratégico en este camino.<br>
+Overline es más que una agencia, somos tu aliado creativo, listo para llevar tu marca al siguiente nivel. ¡Conversemos y empecemos a crear juntos!</h1></div></section>
+    <br>
+	<section id="servicios" class="servic">
+		   <div class="servi">
+		<div class="title-general"><h1>Nuestros Servicios</h1></div><br>
+		<div class="container-serv">
+    <!-- Panel de botones -->
+    <div class="buttons-panel-serv">
+      <label class="toggle-btn-serv active" data-target="video1-serv">
+        <span class="slider"></span>
+      </label>
+      <label class="toggle-btn-serv" data-target="video2-serv">
+        <span class="slider"></span>
+      </label>
+      <label class="toggle-btn-serv" data-target="video3-serv">
+        <span class="slider"></span>
+      </label>
+      <label class="toggle-btn-serv" data-target="video4-serv">
+        <span class="slider"></span>
+      </label>
+      <label class="toggle-btn-serv" data-target="video5-serv">
+        <span class="slider"></span>
+      </label>
+      <label class="toggle-btn-serv" data-target="video6-serv">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Área para mostrar el video y título -->
+    <div class="video-panel-serv">
+      <div id="video1-serv" class="video-content-serv" style="display: block;">
+        <h2>Identidad de Marca y Diseño Gráfico</h2>
+        <video controls>
+          <source src="VID_20250116_082948_099.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div id="video2-serv" class="video-content-serv">
+        <h2>Fotografía Profesional</h2>
+        <video controls>
+          <source src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/necio%20reel%201.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div id="video3-serv" class="video-content-serv">
+        <h2>Producción de Video</h2>
+        <video controls>
+          <source src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/necio%20reel%201.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div id="video4-serv" class="video-content-serv">
+        <h2>Estrategias de Redes Sociales</h2>
+        <video controls>
+          <source src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/necio%20reel%201.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div id="video5-serv" class="video-content-serv">
+        <h2>Publicidad y Campañas Digitales</h2>
+        <video controls>
+          <source src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/necio%20reel%201.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div id="video6-serv" class="video-content-serv">
+        <h2>Asesoría Creativa y Servicios Independientes</h2>
+        <video controls>
+          <source src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/necio%20reel%201.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+    </div>
+  </div><br><br>
+
+
+  </div><br>
+
+		  
+	  </section>
+	<section id="pack">
+		<div class="title-general"><h1>Paquetes</h1></div><br>
+<br>
+
+		<div class="container-pack">
+			
+<div class="cards-container">
+  <div class="card" data-popup="popup-inicial">
+    <div class="card-image" style="background-image: url('file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/equipo/basic.png');"></div>
+    <div class="card-content">
+      <h3>Paquetes Iniciales</h3>
+    </div>
+  </div>
+
+  <div class="card" data-popup="popup-intermedio">
+    <div class="card-image" style="background-image: url('file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/equipo/standar.png');"></div>
+    <div class="card-content">
+      <h3>Paquetes Intermedios</h3>
+    </div>
+  </div>
+
+  <div class="card" data-popup="popup-avanzado">
+    <div class="card-image" style="background-image: url('file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/equipo/pro.png');"></div>
+    <div class="card-content">
+      <h3>Paquetes Avanzados</h3>
+    </div>
+  </div>
+</div>
+
+<!-- Popups -->
+<div class="popup" id="popup-inicial">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span><br>
+
+    <div class="package-cards">
+      <!-- Aquí van las tarjetas de los paquetes iniciales -->
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Starter+Branding+Package&type=phone_number&app_absent=0">
+        <h4>Starter Branding Package</h4>
+        <ul>
+          <li>-Logo básico (2 propuestas)</li>
+          <li>-Paleta de colores</li>
+          <li>-Tipografía recomendada</li>
+          <li>-Entrega en formatos digitales básicos</li>
+        </ul>
+        <p>$400,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Fotografía+Básica&type=phone_number&app_absent=0">
+        <h4>Fotografía Básica</h4>
+        <ul>
+          <li>-Sesión de 2 horas (en la ubicación del cliente o espacio acordado)</li>
+          <li>-Hasta 10 fotos editadas</li>
+          <li>-Edición básica en Lightroom</li>
+        </ul>
+        <p>$500,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Social Media Starter&type=phone_number&app_absent=0">
+        <h4>Social Media Starter</h4>
+        <ul>
+          <li>-10 piezas gráficas para redes sociales</li>
+          <li>-Asesoría básica en estrategia de publicación</li>
+          <li>-Configuración inicial de perfiles</li>
+        </ul>
+        <p>$600,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Video Mini-Spot&type=phone_number&app_absent=0">
+        <h4>Video Mini-Spot</h4>
+        <ul>
+          <li>-Video promocional de 30 segundos</li>
+          <li>-Grabación con equipo portátil en la ubicación del cliente</li>
+          <li>-Edición básica y entrega en calidad HD</li>
+        </ul>
+        <p>$700,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Mini Campaña Publicitaria&type=phone_number&app_absent=0">
+        <h4>Mini Campaña Publicitaria</h4>
+        <ul>
+          <li>-5 piezas gráficas (para redes sociales o impresos)</li>
+          <li>-Asesoría en texto publicitario</li>
+          <li>-Plan básico de pautas digitales (sin incluir presupuesto de ads)</li>
+        </ul>
+        <p>$800,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Diseño para Presentaciones Corporativas&type=phone_number&app_absent=0">
+        <h4>Diseño para Presentaciones Corporativas</h4>
+        <ul>
+          <li>-Diseño de una presentación profesional de hasta 10 diapositivas</li>
+          <li>-Personalización con identidad de marca</li>
+          <li>-Entrega en PowerPoint y PDF</li>
+        </ul>
+        <p>$850,000 COP</p>
+      </div>
+      <!-- Agregar más tarjetas aquí -->
+    </div>
+  </div>
+</div>
+<div class="popup" id="popup-intermedio">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span><br>
+
+    <div class="package-cards">
+      <!-- Aquí van las tarjetas de los paquetes iniciales -->
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Branding Pro&type=phone_number&app_absent=0">
+        <h4>Branding Pro</h4>
+        <ul>
+          <li>-Diseño de logo profesional (3 propuestas, 2 rondas de revisiones)</li>
+          <li>-Manual básico de marca (uso del logo, colores, tipografía)</li>
+          <li>-Plantillas para presentaciones</li>
+        </ul>
+        <p>$1,500,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Social Media Growth&type=phone_number&app_absent=0">
+        <h4>Social Media Growth</h4>
+        <ul>
+          <li>-20 piezas gráficas mensuales</li>
+          <li>-Calendario de publicaciones</li>
+          <li>-Reporte mensual de rendimiento</li>
+          <li>-Asesoría estratégica continua</li>
+        </ul>
+        <p>$1,800,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Fotografía Comercial&type=phone_number&app_absent=0">
+        <h4>Fotografía Comercial</h4>
+        <ul>
+          <li>-Sesión de 4 horas (en la ubicación del cliente o espacio acordado)</li>
+          <li>-Hasta 20 fotos editadas</li>
+          <li>-Edición avanzada en Photoshop</li>
+        </ul>
+        <p>$1,800,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Video Corporativo&type=phone_number&app_absent=0">
+        <h4>Video Corporativo</h4>
+        <ul>
+          <li>-Video de 1-2 minutos (corporativo o promocional)</li>
+          <li>-Grabación en la ubicación del cliente</li>
+          <li>-Edición avanzada (transiciones, color grading, música libre de derechos)</li>
+        </ul>
+        <p>$2,000,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Campaña Publicitaria Completa&type=phone_number&app_absent=0">
+        <h4>Campaña Publicitaria Completa</h4>
+        <ul>
+          <li>-Diseño de 10 piezas gráficas para campaña</li>
+          <li>-Video de 30 segundos para pauta</li>
+          <li>-Gestión de pautas digitales (sin incluir presupuesto de ads)</li>
+          <li>-Análisis y optimización de campaña</li>
+        </ul>
+        <p>$2,500,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Rediseño de Marca&type=phone_number&app_absent=0">
+        <h4>Rediseño de Marca</h4>
+        <ul>
+          <li>-Revisión completa de identidad visual existente</li>
+          <li>-Ajustes o rediseño de logo</li>
+          <li>-Manual de marca actualizado</li>
+          <li>-Aplicaciones gráficas en papelería y redes</li>
+        </ul>
+        <p>$2,800,000 COP</p>
+      </div>
+      <!-- Agregar más tarjetas aquí -->
+    </div>
+  </div>
+</div>
+<div class="popup" id="popup-avanzado">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span><br>
+
+    <div class="package-cards">
+      <!-- Aquí van las tarjetas de los paquetes iniciales -->
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Branding Premium&type=phone_number&app_absent=0">
+        <h4>Branding Premium</h4>
+        <ul>
+          <li>-Logo profesional (5 propuestas, revisiones ilimitadas)</li>
+          <li>-Manual completo de marca (identidad visual, tono de comunicación, aplicaciones)</li>
+          <li>-Diseño de papelería corporativa (tarjetas, membretes, sobres)</li>
+        </ul>
+        <p>$4,000,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Social Media Management Plus&type=phone_number&app_absent=0">
+        <h4>Social Media Management Plus</h4>
+        <ul>
+          <li>-40 piezas gráficas mensuales</li>
+          <li>-Creación de contenido multimedia (foto y video)</li>
+          <li>-Gestión completa de redes sociales (respuesta a mensajes y comentarios)</li>
+          <li>-Reporte detallado de KPIs</li>
+        </ul>
+        <p>$4,500,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Fotografía y Video Premium&type=phone_number&app_absent=0">
+        <h4>Fotografía y Video Premium</h4>
+        <ul>
+          <li>-Sesión de foto y video de un día completo (en la ubicación del cliente o espacio acordado)</li>
+          <li>-Hasta 30 fotos editadas y 3 clips de video promocional</li>
+          <li>-Edición avanzada para fotografía y video</li>
+        </ul>
+        <p>$5,000,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Producción Audiovisual Avanzada&type=phone_number&app_absent=0">
+        <h4>Producción Audiovisual Avanzada</h4>
+        <ul>
+          <li>-Video corporativo de 3-5 minutos</li>
+          <li>-Grabación en múltiples locaciones acordadas por el cliente</li>
+          <li>-Edición cinematográfica con efectos avanzados</li>
+        </ul>
+        <p>$6,000,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Campaña Publicitaria 360°&type=phone_number&app_absent=0">
+        <h4>Campaña Publicitaria 360°</h4>
+        <ul>
+          <li>-Estrategia integral (digital y tradicional)</li>
+          <li>-Creación de contenido gráfico, video y textos publicitarios</li>
+          <li>-Gestión de pauta online y offline (sin incluir presupuesto de ads)</li>
+          <li>-Reporte y análisis detallado de resultados</li>
+        </ul>
+        <p>$7,500,000 COP</p>
+      </div>
+      <div class="popup-card" data-wsp="https://api.whatsapp.com/send/?phone=573018282771&text=me+interesa+el+paquete+Estrategia Integral de Marca&type=phone_number&app_absent=0">
+        <h4>Estrategia Integral de Marca</h4>
+        <ul>
+          <li>-Consultoría y diagnóstico de marca</li>
+          <li>-Creación de identidad verbal y visual</li>
+          <li>-Estrategia de comunicación a 12 meses</li>
+          <li>-Implementación inicial (redes, campañas y presentaciones)</li>
+        </ul>
+        <p>$10,000,000 COP</p>
+      </div>
+      <!-- Agregar más tarjetas aquí -->
+    </div>
+  </div>
+</div><br>
+<br><br>
+    </section>
+	<section id="mas servicios">
+		  <!-- Botón para abrir el popup -->
+    <button class="mas-servicios-btn" onclick="openModal()">Ver lista de servicios</button>
+
+    <!-- Modal con la lista de servicios -->
+    <div id="mas-servicios-popup" class="mas-servicios-popup">
+        <div class="mas-servicios-content">
+            <span class="mas-servicios-close-btn" onclick="closeModal()">&times;</span>
+
+            <!-- Branding y Diseño Gráfico -->
+            <div class="mas-servicios-item">
+				<h6>Lista de Servicios Independientes</h6>
+                <h3>Branding y Diseño Gráfico</h3>
+                <div class="mas-servicios">
+    <p><strong>Diseño de logo básico (2 propuestas, 1 revisión)</strong> - $300,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Diseño de logo básico', '300000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Diseño de logo profesional (3 propuestas, 2 revisiones)</strong> - $600,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Diseño de logo profesional', '600000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Paleta de colores y tipografía recomendada</strong> - $200,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Paleta de colores y tipografía recomendada', '200000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Manual básico de marca</strong> - $700,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Manual básico de marca', '700000')">Contactar por WhatsApp</button>
+</div>
+            </div>
+
+            <!-- Diseño de piezas gráficas para redes sociales -->
+            <div class="mas-servicios-item">
+                <h3>Diseño de Piezas Gráficas para Redes Sociales</h3>
+                <div class="mas-servicios">
+    <p><strong>1 pieza gráfica</strong> - $80,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('1 pieza gráfica', '80000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>10 piezas gráficas</strong> - $700,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('10 piezas gráficas', '700000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Diseño de presentación profesional (hasta 10 diapositivas)</strong> - $600,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Diseño de presentación profesional', '600000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Diseño de papelería corporativa (tarjeta de presentación, membrete y sobre)</strong> - $450,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Diseño de papelería corporativa', '450000')">Contactar por WhatsApp</button>
+</div>
+            </div>
+
+            <!-- Fotografía -->
+            <div class="mas-servicios-item">
+                <h3>Fotografía</h3>
+                <div class="mas-servicios">
+    <p><strong>Sesión fotográfica básica (2 horas) - Hasta 5 fotos editadas</strong> - $350,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Sesión fotográfica básica (5 fotos)', '350000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Sesión fotográfica básica (10 fotos editadas)</strong> - $500,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Sesión fotográfica básica (10 fotos)', '500000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Edición de fotografías básicas (retoque básico por foto)</strong> - $50,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Edición de fotografías básicas', '50000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Fotografía de producto (en fondo blanco, por foto)</strong> - $100,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Fotografía de producto', '100000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Paquete de 10 fotos de producto</strong> - $800,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Paquete de 10 fotos de producto', '800000')">Contactar por WhatsApp</button>
+</div>
+            </div>
+
+            <!-- Producción de Video -->
+            <div class="mas-servicios-item">
+                <h3>Producción de Video</h3>
+                
+<div class="mas-servicios">
+    <p><strong>Grabación de un video promocional corto (30 segundos)</strong> - $500,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Grabación de video promocional corto', '500000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Edición de video promocional básico</strong> - $350,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Edición de video promocional básico', '350000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Grabación de un video corporativo (1-2 minutos)</strong> - $1,000,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Grabación de video corporativo', '1000000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Edición avanzada de video corporativo</strong> - $800,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Edición avanzada de video corporativo', '800000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Transiciones y color grading (por video)</strong> - $150,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Transiciones y color grading', '150000')">Contactar por WhatsApp</button>
+</div>
+            </div>
+
+            <!-- Publicidad y Estrategias Digitales -->
+            <div class="mas-servicios-item">
+                <h3>Publicidad y Estrategias Digitales</h3>
+                <div class="mas-servicios">
+    <p><strong>Estrategia básica para redes sociales</strong> - $300,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Estrategia básica para redes sociales', '300000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Creación de calendario de contenido para redes (1 mes)</strong> - $400,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Creación de calendario de contenido', '400000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Texto publicitario (copywriting) para anuncios o redes</strong> - $150,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Texto publicitario (copywriting)', '150000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Paquete de 5 textos publicitarios</strong> - $600,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Paquete de 5 textos publicitarios', '600000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Configuración inicial de perfiles de redes sociales</strong> - $300,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Configuración inicial de perfiles', '300000')">Contactar por WhatsApp</button>
+</div>
+
+<div class="mas-servicios">
+    <p><strong>Asesoría estratégica en marketing digital (1 hora)</strong> - $200,000 COP</p>
+    <button class="mas-servicios-whatsapp-btn" onclick="openWhatsApp('Asesoría estratégica en marketing digital', '200000')">Contactar por WhatsApp</button>
+</div>
+            </div>
+        </div>
+    </div>
+
+	  </section>
+	<div class="title-general">
+		<h1>Proyectos</h1></div>
+	<section class="scrollable-section">
+<div class="tarjetas00" class="content-222"> 
+	<a href="#" class="proyect-popup-link" data-popup="proyect-popup1">
+  <div class="card-proyect">
+    <div class="wrapper-proyect">
+      <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/banner-m,ob.png" class="cover-image-proyect" />
+    </div>
+    <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20en%20blanco.png" class="title-proyect" />
+    <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/Recurso%201.png" class="character-proyect" />
+  </div>
+</a>
+	<a href="#" class="proyect-popup-link" data-popup="proyect-popup2">
+  <div class="card-proyect">
+    <div class="wrapper-proyect">
+      <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/banner-m,ob.png" class="cover-image-proyect" />
+    </div>
+    <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20en%20blanco.png" class="title-proyect" />
+    <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/Recurso%201.png" class="character-proyect" />
+  </div>
+</a>
+	<a href="#" class="proyect-popup-link" data-popup="proyect-popup3">
+  <div class="card-proyect">
+    <div class="wrapper-proyect">
+      <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/banner-m,ob.png" class="cover-image-proyect" />
+    </div>
+    <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20en%20blanco.png" class="title-proyect" />
+    <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/Recurso%201.png" class="character-proyect" />
+  </div>
+</a>
+	<a href="#" class="proyect-popup-link" data-popup="proyect-popup1">
+  <div class="card-proyect">
+    <div class="wrapper-proyect">
+      <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/banner-m,ob.png" class="cover-image-proyect" />
+    </div>
+    <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20en%20blanco.png" class="title-proyect" />
+    <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/Recurso%201.png" class="character-proyect" />
+  </div>
+</a>
+	<a href="#" class="proyect-popup-link" data-popup="proyect-popup2">
+  <div class="card-proyect">
+    <div class="wrapper-proyect">
+      <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/banner-m,ob.png" class="cover-image-proyect" />
+    </div>
+    <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20en%20blanco.png" class="title-proyect" />
+    <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/Recurso%201.png" class="character-proyect" />
+  </div>
+</a>
+	<a href="#" class="proyect-popup-link" data-popup="proyect-popup3">
+  <div class="card-proyect">
+    <div class="wrapper-proyect">
+      <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/banner-m,ob.png" class="cover-image-proyect" />
+    </div>
+    <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20en%20blanco.png" class="title-proyect" />
+    <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/Recurso%201.png" class="character-proyect" />
+  </div>
+</a>
+</div>
+	</section>
+	<!-- Popups -->
+<div class="proyect-overlay" id="proyect-overlay"></div>
+
+<div class="proyect-popup" id="proyect-popup1">
+  <span class="proyect-close-btn" onclick="closeProyectPopup()">X</span>
+  <h2>Popup 1</h2>
+  <p>Contenido de la ventana emergente 1.</p>
+</div>
+
+<div class="proyect-popup" id="proyect-popup2">
+  <span class="proyect-close-btn" onclick="closeProyectPopup()">X</span>
+  <h2>Popup 2</h2>
+  <p>Contenido de la ventana emergente 2.</p>
+</div>
+
+<div class="proyect-popup" id="proyect-popup3">
+  <span class="proyect-close-btn" onclick="closeProyectPopup()">X</span>
+  <h2>Popup 3</h2>
+  <p>Contenido de la ventana emergente 3.</p>
+</div>
+		<br>
+<br><br>
+
+	<section id="clientes" >	
+			<div class="cell">
+		<img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:1;" alt="Imagen 1">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:2;" alt="Imagen 2">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:3;" alt="Imagen 3">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:4;" alt="Imagen 4">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:5;" alt="Imagen 5">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:6;" alt="Imagen 6">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:7;" alt="Imagen 7">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:8;" alt="Imagen 8">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:9;" alt="Imagen 9">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:10;" alt="Imagen 10">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:11;" alt="Imagen 11">
+        <img src="file:///C:/Users/Andres/Documents/OverLine/logo%20pa%20wsp.png" style="--i:12;" alt="Imagen 12">
+</div>
+		</section>
+	  <section id="preguntas">
+		   <div class="pregunta-container">
+    <div class="pregunta-faq-container">
+      <h1 class="pregunta-titulo">Preguntas Frecuentes (FAQ)</h1>
+      <div class="pregunta-item">
+        <h3>
+          ¿Qué servicios ofrece la agencia?
+          <span class="pregunta-toggle-icon"></span>
+        </h3>
+        <div class="pregunta-respuesta">
+          Ofrecemos una gama completa de servicios de diseño gráfico, publicidad, mercadeo digital, fotografía y video. Trabajamos para crear soluciones creativas que resalten tu marca.
+        </div>
+      </div>
+      <div class="pregunta-item">
+        <h3>
+          ¿Cómo puedo contratar los servicios de la agencia?
+          <span class="pregunta-toggle-icon"></span>
+        </h3>
+        <div class="pregunta-respuesta">
+          Puedes contactarnos a través del formulario en nuestra página web o por correo electrónico. Estaremos encantados de conocer tus necesidades y ofrecerte una propuesta personalizada.
+        </div>
+      </div>
+      <div class="pregunta-item">
+        <h3>
+          ¿Tienen experiencia en campañas de marketing digital?
+          <span class="pregunta-toggle-icon"></span>
+        </h3>
+        <div class="pregunta-respuesta">
+          Sí, contamos con amplia experiencia en campañas de marketing digital. Creamos estrategias personalizadas que incluyen SEO, publicidad en redes sociales y campañas de Google Ads, entre otros.
+        </div>
+      </div>
+      <div class="pregunta-item">
+        <h3>
+          ¿Qué tipo de proyectos fotográficos realizan?
+          <span class="pregunta-toggle-icon"></span>
+        </h3>
+        <div class="pregunta-respuesta">
+          Realizamos sesiones fotográficas para productos, moda, eventos, fotografía corporativa y más. Nuestro equipo cuenta con equipos de última tecnología para garantizar imágenes de alta calidad.
+        </div>
+      </div>
+      <div class="pregunta-item">
+        <h3>
+          ¿Cuánto tiempo tarda la entrega de un proyecto?
+          <span class="pregunta-toggle-icon"></span>
+        </h3>
+        <div class="pregunta-respuesta">
+          El tiempo de entrega varía según el tipo de proyecto. Los proyectos de diseño suelen tardar entre 7 y 14 días hábiles, mientras que los proyectos de fotografía o video pueden tardar un poco más dependiendo de la complejidad.
+        </div>
+      </div>
+      <!-- Nueva pregunta agregada -->
+      <div class="pregunta-item">
+        <h3>
+          ¿Cuál es el costo de los servicios?
+          <span class="pregunta-toggle-icon"></span>
+        </h3>
+        <div class="pregunta-respuesta">
+          El costo depende del tipo de servicio que necesites. Te invitamos a contactarnos para brindarte una cotización personalizada basada en tus necesidades y presupuesto.
+        </div>
+      </div>
+    </div>
+  </div>
+	  </section>	
+		 <section id="contacto" class="contacto-section">
+    <div class="contacto-container">
+      <h2 class="contacto-section-title">Contáctanos</h2>
+      <p class="contacto-section-description">Puedes encontrarnos y ponerte en contacto a través de los siguientes medios:</p>
+
+      <div class="contacto-info">
+        <!-- Instagram -->
+        <div class="contacto-item">
+          <i class="fab fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>Síguenos en Instagram para estar al tanto de nuestras novedades.</p>
+          <a href="https://www.instagram.com" target="_blank">Visitar Instagram</a>
+        </div>
+
+        <!-- Facebook -->
+        <div class="contacto-item">
+          <i class="fab fa-facebook"></i>
+          <h3>Facebook</h3>
+          <p>Conéctate con nosotros en Facebook.</p>
+          <a href="https://www.facebook.com" target="_blank">Visitar Facebook</a>
+        </div>
+
+        <!-- TikTok -->
+        <div class="contacto-item">
+          <i class="fab fa-tiktok"></i>
+          <h3>TikTok</h3>
+          <p>Mira nuestros videos divertidos y contenidos exclusivos.</p>
+          <a href="https://www.tiktok.com" target="_blank">Visitar TikTok</a>
+        </div>
+
+        <!-- Correo -->
+        <div class="contacto-item">
+          <i class="fas fa-envelope"></i>
+          <h3>Correo Electrónico</h3>
+          <p>Escríbenos a nuestro correo y estaremos encantados de ayudarte.</p>
+          <a href="mailto:contacto@ejemplo.com">Enviar Correo</a>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="contacto-item">
+          <i class="fab fa-whatsapp"></i>
+          <h3>WhatsApp</h3>
+          <p>Chatea con nosotros directamente por WhatsApp.</p>
+          <a href="https://wa.me/1234567890" target="_blank">Chatea Ahora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+	<footer>
+    <div class="footer-container">
+        <!-- Logo -->
+        <a href="#inicio">
+		<div class="footer-logo">
+            <img src="file:///C:/Users/Andres/Documents/OverLine/pagina%20web/Nueva%20carpeta/logo%20en%20blanco.png" alt="Logo" />
+        </div>
+ </a>
+        <!-- Enlaces de redes sociales y contacto -->
+        <div class="footer-links">
+            <a href="https://api.whatsapp.com/send/?phone=573018282771&text=Quiero+m%C3%A1s+informaci%C3%B3n&type=phone_number&app_absent=0" class="footer-link" target="_blank" title="WhatsApp">
+                <img src="whatsapp-icon.png" alt="WhatsApp" />
+            </a>
+            <a href="https://facebook.com/tu-pagina" class="footer-link" target="_blank" title="Facebook">
+                <img src="facebook-icon.png" alt="Facebook" />
+            </a>
+            <a href="https://instagram.com/tu-perfil" class="footer-link" target="_blank" title="Instagram">
+                <img src="instagram-icon.png" alt="Instagram" />
+            </a>
+            <a href="tel:+123456789" class="footer-link" title="Llamar">
+                <img src="phone-icon.png" alt="Llamada" />
+            </a>
+            <a href="mailto:correo@dominio.com" class="footer-link" title="Correo">
+                <img src="email-icon.png" alt="Correo" />
+            </a>
+        </div>
+    </div>
+</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/Flip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  <script>
+		  gsap.registerPlugin(Flip);
+
+const body = document.body;
+const content = document.querySelector(".content");
+const enterButton = document.querySelector(".enter");
+const fullview = document.querySelector(".fullview");
+const grid = document.querySelector(".grid");
+const gridRows = grid.querySelectorAll(".row");
+
+// Cache window size and update on resize
+let winsize = { width: window.innerWidth, height: window.innerHeight };
+window.addEventListener("resize", () => {
+  winsize = { width: window.innerWidth, height: window.innerHeight };
+});
+
+let mousepos = { x: winsize.width / 2, y: winsize.height / 2 };
+
+// Configuration for enabling/disabling animations
+const config = {
+  translateX: true,
+  skewX: false,
+  contrast: true,
+  scale: false,
+  brightness: true
+};
+
+// Total number of rows
+const numRows = gridRows.length;
+// Calculate the middle row assuming an odd number of rows
+const middleRowIndex = Math.floor(numRows / 2);
+
+const middleRow = gridRows[middleRowIndex];
+const middleRowItems = middleRow.querySelectorAll(".row__item");
+const numRowItems = middleRowItems.length;
+const middleRowItemIndex = Math.floor(numRowItems / 2); // Index of the middle item in the middle row
+// Select the .row__item-inner element inside the middle .row__item element of the middle row
+// This element will be used for the animation that transitions the image to fullscreen when the button is clicked
+const middleRowItemInner = middleRowItems[middleRowItemIndex].querySelector(
+  ".row__item-inner"
+);
+// And the inner image
+const middleRowItemInnerImage = middleRowItemInner.querySelector(
+  ".row__item-img"
+);
+// Setting the final size of the middle image for the reveal effect
+middleRowItemInnerImage.classList.add("row__item-img--large");
+
+// amt represents the interpolation amount for each row's movement.
+// A higher amt value means faster interpolation and less lag behind the mouse movement.
+const baseAmt = 0.1; // The amt for the middle row, which will have the fastest response.
+const minAmt = 0.05; // Minimum amt value to ensure rows have a noticeable movement lag.
+const maxAmt = 0.1; // Maximum amt value to ensure rows have a noticeable movement lag.
+
+// Initialize rendered styles for each row with dynamically calculated amt values
+let renderedStyles = Array.from({ length: numRows }, (v, index) => {
+  const distanceFromMiddle = Math.abs(index - middleRowIndex);
+  // Calculate amt dynamically based on the distance from the middle row
+  const amt = Math.max(baseAmt - distanceFromMiddle * 0.03, minAmt);
+  // Inverted amt for scale: outermost rows are faster
+  const scaleAmt = Math.min(baseAmt + distanceFromMiddle * 0.03, maxAmt);
+  let style = { amt, scaleAmt };
+
+  if (config.translateX) {
+    style.translateX = { previous: 0, current: 0 };
+  }
+  if (config.skewX) {
+    style.skewX = { previous: 0, current: 0 };
+  }
+  if (config.contrast) {
+    style.contrast = { previous: 100, current: 100 };
+  }
+  if (config.scale) {
+    style.scale = { previous: 1, current: 1 };
+  }
+  if (config.brightness) {
+    style.brightness = { previous: 100, current: 100 };
+  }
+
+  return style;
+});
+
+// Tracks if the render loop is running
+let requestId;
+
+// Function to get the mouse position
+const getMousePos = (ev) => {
+  let posx = 0;
+  let posy = 0;
+  if (!ev) ev = window.event;
+  if (ev.pageX || ev.pageY) {
+    posx = ev.pageX;
+    posy = ev.pageY;
+  } else if (ev.clientX || ev.clientY) {
+    posx =
+      ev.clientX +
+      document.body.scrollLeft +
+      document.documentElement.scrollLeft;
+    posy =
+      ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+  }
+  return { x: posx, y: posy };
+};
+
+// Update mouse position
+const updateMousePosition = (ev) => {
+  const pos = getMousePos(ev);
+  mousepos.x = pos.x;
+  mousepos.y = pos.y;
+};
+
+// Linear interpolation function
+const lerp = (a, b, n) => (1 - n) * a + n * b;
+
+// Map mouse position to translation range
+const calculateMappedX = () => {
+  return (((mousepos.x / winsize.width) * 2 - 1) * 40 * winsize.width) / 100;
+};
+
+// Map mouse position to skew range (-3 to 3)
+const calculateMappedSkew = () => {
+  return ((mousepos.x / winsize.width) * 2 - 1) * 3;
+};
+
+// Map mouse position to contrast range (100 at center to 125 at edges)
+const calculateMappedContrast = () => {
+  const centerContrast = 100;
+  const edgeContrast = 330;
+  const t = Math.abs((mousepos.x / winsize.width) * 2 - 1);
+  const factor = Math.pow(t, 2); // Quadratic factor for non-linear mapping
+  return centerContrast - factor * (centerContrast - edgeContrast);
+};
+
+// Map mouse position to scale range (1 at center to 0.95 at edges)
+const calculateMappedScale = () => {
+  const centerScale = 1;
+  const edgeScale = 0.95;
+  return (
+    centerScale -
+    Math.abs((mousepos.x / winsize.width) * 2 - 1) * (centerScale - edgeScale)
+  );
+};
+
+// Map mouse position to brightness range (100 at center to 15 at edges)
+const calculateMappedBrightness = () => {
+  const centerBrightness = 100;
+  const edgeBrightness = 15;
+  const t = Math.abs((mousepos.x / winsize.width) * 2 - 1);
+  const factor = Math.pow(t, 2); // Quadratic factor for non-linear mapping
+  return centerBrightness - factor * (centerBrightness - edgeBrightness);
+};
+
+// Function to get the value of a CSS variable
+const getCSSVariableValue = (element, variableName) => {
+  return getComputedStyle(element).getPropertyValue(variableName).trim();
+};
+
+// Render the current frame
+const render = () => {
+  const mappedValues = {
+    translateX: calculateMappedX(),
+    skewX: calculateMappedSkew(),
+    contrast: calculateMappedContrast(),
+    scale: calculateMappedScale(),
+    brightness: calculateMappedBrightness()
+  };
+
+  // Calculate and set the translation for each row
+  gridRows.forEach((row, index) => {
+    const style = renderedStyles[index];
+
+    // Update current positions and interpolate values
+    for (let prop in config) {
+      if (config[prop]) {
+        style[prop].current = mappedValues[prop];
+        const amt = prop === "scale" ? style.scaleAmt : style.amt;
+        style[prop].previous = lerp(
+          style[prop].previous,
+          style[prop].current,
+          amt
+        );
+      }
+    }
+
+    // Apply the interpolated values
+    let gsapSettings = {};
+    if (config.translateX) gsapSettings.x = style.translateX.previous;
+    if (config.skewX) gsapSettings.skewX = style.skewX.previous;
+    if (config.scale) gsapSettings.scale = style.scale.previous;
+    if (config.contrast)
+      gsapSettings.filter = `contrast(${style.contrast.previous}%)`;
+    if (config.brightness)
+      gsapSettings.filter = `${
+        gsapSettings.filter ? gsapSettings.filter + " " : ""
+      }brightness(${style.brightness.previous}%)`;
+
+    gsap.set(row, gsapSettings);
+  });
+
+  // Continue the render loop
+  requestId = requestAnimationFrame(render);
+};
+
+// Start the render loop
+const startRendering = () => {
+  if (!requestId) {
+    render();
+  }
+};
+
+// Stop the render loop
+const stopRendering = () => {
+  if (requestId) {
+    cancelAnimationFrame(requestId);
+    requestId = undefined;
+  }
+};
+
+const enterFullview = () => {
+  // Logic to animate the middle image to full view using gsap Flip
+  const flipstate = Flip.getState(middleRowItemInner);
+  fullview.appendChild(middleRowItemInner);
+
+  // Get the CSS variable value for the translation
+  const transContent = getCSSVariableValue(content, "--trans-content");
+
+  // Create a GSAP timeline for the Flip animation
+  const tl = gsap.timeline();
+
+  // Add the Flip animation to the timeline
+  tl.add(
+    Flip.from(flipstate, {
+      duration: 0.9,
+      ease: "power4",
+      absolute: true,
+      onComplete: stopRendering
+    })
+  )
+    // Fade out grid
+    .to(
+      grid,
+      {
+        duration: 0.9,
+        ease: "power4",
+        opacity: 0.01
+      },
+      0
+    )
+    // Scale up the inner image
+    .to(
+      middleRowItemInnerImage,
+      {
+        scale: 1.2,
+        duration: 3,
+        ease: "sine"
+      },
+      "<-=0.45"
+    )
+    // Move the content up
+    .to(content, {
+      y: transContent, // Use the CSS variable value
+      duration: 0.9,
+      ease: "power4"
+    });
+
+  // Hide the button
+  enterButton.classList.add("hidden");
+  // Scrolling allowed
+  body.classList.remove("noscroll");
+};
+
+// Initialization function
+const init = () => {
+  startRendering();
+
+  // Initialize click event for the "Explore" button
+  enterButton.addEventListener("click", enterFullview);
+  // Add touchstart event for mobile devices
+  enterButton.addEventListener("touchstart", enterFullview);
+};
+
+// Mouse movement event listener to update mouse position
+window.addEventListener("mousemove", updateMousePosition);
+// Touch move event listener for touch devices
+window.addEventListener("touchmove", (ev) => {
+  const touch = ev.touches[0];
+  updateMousePosition(touch);
+});
+
+const initSmoothScrolling = () => {
+  // Initialize Lenis for smooth scroll effects. Lerp value controls the smoothness.
+  const lenis = new Lenis({ lerp: 0.15 });
+
+  // Ensure GSAP animations are in sync with Lenis' scroll frame updates.
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); // Convert GSAP's time to milliseconds for Lenis.
+  });
+
+  // Turn off GSAP's default lag smoothing to avoid conflicts with Lenis.
+  gsap.ticker.lagSmoothing(0);
+};
+
+// Activate the smooth scrolling feature.
+initSmoothScrolling();
+
+// Call the initialization function
+init();
+// -------------------------------------------seccion nosotros------------------------------------------- //
+// Función para alternar entre imagen comprimida y expandida
+document.querySelectorAll('.image-container-equip').forEach(container => {
+    container.addEventListener('click', () => {
+        // Verificar si el contenedor ya está abierto
+        const isOpen = container.classList.contains('open');
+
+        // Cerrar todas las imágenes
+        document.querySelectorAll('.image-container-equip').forEach(c => c.classList.remove('open'));
+
+        // Si no estaba abierto, abrir el contenedor clickeado
+        if (!isOpen) {
+            container.classList.add('open');
+        }
+    });
+});
+
+		// -------------------------------------------Abrir popup al hacer clic en la tarjeta-------------------------------------------//
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', () => {
+    const popupId = card.getAttribute('data-popup');
+    document.getElementById(popupId).style.display = 'flex';
+  });
+});
+
+// Cerrar popup al hacer clic en la X o fuera del contenido
+document.querySelectorAll('.close-btn').forEach(closeBtn => {
+  closeBtn.addEventListener('click', () => {
+    closePopup();
+  });
+});
+
+document.querySelectorAll('.popup').forEach(popup => {
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      closePopup();
+    }
+  });
+});
+
+// Función para cerrar el popup
+function closePopup() {
+  document.querySelectorAll('.popup').forEach(popup => {
+    popup.style.display = 'none';
+  });
+}
+
+// Redireccionar a WhatsApp al hacer clic en la tarjeta dentro del popup
+document.querySelectorAll('.popup-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const wspLink = card.getAttribute('data-wsp');
+    window.open(wspLink, '_blank');
+  });
+});
+
+// Cerrar el popup al presionar la tecla Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closePopup();
+  }
+});
+//---------------------------------------------------------------seccion servicios<br>------------------------------------------------------------//
+// Seleccionar todos los botones y las secciones de video
+    const buttonsServ = document.querySelectorAll('.toggle-btn-serv');
+    const videosServ = document.querySelectorAll('.video-content-serv');
+
+    // Función que oculta todos los videos
+    function hideAllVideos() {
+      videosServ.forEach(video => {
+        video.style.display = 'none';
+        video.style.opacity = 0; // Asegurarse de que el video se oculte con opacidad
+      });
+    }
+
+    // Función que activa el video correspondiente
+    function showVideo(targetId) {
+      hideAllVideos();
+      const videoToShow = document.getElementById(targetId);
+      if (videoToShow) {
+        videoToShow.style.display = 'block';
+        videoToShow.style.opacity = 0;
+        // Esperamos un poco para iniciar la animación de brinco
+        setTimeout(() => {
+          videoToShow.style.animation = 'jumpIn-serv 0.6s forwards';
+        }, 100);
+      }
+    }
+
+    // Agregar evento a los botones
+    buttonsServ.forEach(button => {
+      button.addEventListener('click', () => {
+        // Obtener el id del video que debe mostrarse
+        const targetId = button.getAttribute('data-target');
+        
+        // Mostrar el video correspondiente
+        showVideo(targetId);
+        
+        // Desactivar todos los botones
+        buttonsServ.forEach(btn => btn.classList.remove('active'));
+        
+        // Activar el botón clickeado
+        button.classList.add('active');
+      });
+    });
+
+    // Inicializar mostrando el primer video
+    showVideo('video1-serv');
+//-----------------------------------------------------------------tarjetas-------------------------------------------------------//
+	  
+// Función para abrir un popup específico
+  function openProyectPopup(popupId) {
+    // Ocultar todos los popups
+    const popups = document.querySelectorAll('.proyect-popup');
+    popups.forEach(popup => {
+      popup.style.display = 'none';
+    });
+
+    // Mostrar el popup solicitado
+    const popup = document.getElementById(popupId);
+    if (popup) {
+      popup.style.display = 'block';
+      document.getElementById('proyect-overlay').style.display = 'block'; // Mostrar el overlay
+    }
+  }
+
+  // Función para cerrar el popup
+  function closeProyectPopup() {
+    const popups = document.querySelectorAll('.proyect-popup');
+    popups.forEach(popup => {
+      popup.style.display = 'none';
+    });
+    document.getElementById('proyect-overlay').style.display = 'none'; // Ocultar el overlay
+  }
+
+  // Agregar eventos a los enlaces para abrir popups
+  document.querySelectorAll('.proyect-popup-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevenir que el enlace abra una nueva página
+      const popupId = link.getAttribute('data-popup');
+      openProyectPopup(popupId);
+    });
+  });
+
+  // Cerrar el popup al presionar "Esc"
+  window.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+      closeProyectPopup();
+    }
+  });
+
+  // Cerrar el popup si se hace clic fuera del popup (en el overlay)
+  document.getElementById('proyect-overlay').addEventListener('click', function() {
+    closeProyectPopup();
+  });
+	  
+//-----------------------------------------------------------------mas servicios-------------------------------------------------------//
+	  // Abre el popup
+function openModal() {
+    document.getElementById('mas-servicios-popup').style.display = 'flex';
+}
+
+// Cierra el popup
+function closeModal() {
+    document.getElementById('mas-servicios-popup').style.display = 'none';
+}
+
+// Abre WhatsApp con el mensaje del nombre del servicio y el precio
+function openWhatsApp(serviceName, price) {
+    const phoneNumber = "3018282771";  // Número de WhatsApp
+    const message = `Hola, estoy interesado en el servicio "${serviceName}" con un valor de $${price} COP.`;
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, '_blank');
+}
+
+// Cerrar el popup al hacer clic fuera de él
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('mas-servicios-popup');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Cerrar el popup con la tecla ESC
+window.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});
+//-----------------------------------------------------------------preguntas-------------------------------------------------------//
+	  // Script para manejar la interactividad del acordeón
+    const preguntaItems = document.querySelectorAll('.pregunta-item');
+
+    preguntaItems.forEach(item => {
+      item.querySelector('h3').addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    });
+//-----------------------------------------------------------------aaaaaa-------------------------------------------------------//
+		  </script>
+</body>
+</html>
