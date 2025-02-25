@@ -309,7 +309,7 @@ body {
         }
 		.card-content {
   position: absolute;
-  bottom: 20px;
+  bottom: -12px;
   left: 20px;
   color: #ccdefa;
 }
@@ -452,6 +452,18 @@ backdrop-filter: blur(10px);
             }
             .modal-content {
                 max-width: 600px;
+            }
+        }
+        @media (max-width: 768px) {
+            .card-group {
+                flex-direction: row;
+            }
+            .main-card {
+                width: 150px;
+                height: 70px;
+            }
+            .modal-content {
+                max-width: 300px;
             }
         }
 		
