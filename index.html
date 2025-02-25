@@ -141,107 +141,149 @@ body {
 	
 		/*clientes*/
 		.clientes-container {
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-            overflow: hidden;
-            position: relative;
-        }
-        .clientes-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            width: max-content;
-        }
-        .tarjeta {
-            width: 300px;
-            height: 400px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-            margin: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-        .tarjeta:hover {
-            transform: scale(1.1);
-        }
-        .tarjeta img.fondo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .tarjeta img.logo {
-            width: 400px;
-            height: 500px;
-            height: auto;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            position: relative;
-            z-index: 2;
-        }
-        .tarjeta:hover img.logo {
-            opacity: 1;
-        }
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-			background: rgba(255, 255, 255, .1);
-			box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-			border-radius: 20px;
-			border: 2px solid rgba(255, 255, 255, 0.5);
-			border-right: 2px solid rgba(255, 255, 255, . 2);
-			border-bottom: 2px solid rgba(255, 255, 255, .2);
-			backdrop-filter: blur(10px);
-            transform: translate(-50%, -50%) scale(0);
-            padding: 20px;
-            width: 80%;
-            max-width: 400px;
-            text-align: center;
-            z-index: 1000;
-            transition: transform 0.3s ease-in-out;			
-            overflow-y: auto;
-        }
-        .popup.mostrar {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        .popup .cerrar {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-		.popup h2{
-		color: #017096;
-		}
-		.popup p{
-		color: #FFFFFF;
-		text-shadow: 0 0px 6px rgba(0, 0, 0, 0.9);
-		}
-        .indicadores {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .indicador {
-            width: 15px;
-            height: 15px;
-            margin: 5px;
-            background: gray;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .indicador.activo {
-            background: #017096;
-        }
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Envolver tarjetas sin permitir el desplazamiento horizontal en PC */
+.clientes-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: max-content;
+}
+
+/* Tarjetas de clientes */
+.tarjeta {
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta:hover {
+    transform: scale(1.1);
+}
+
+/* Imágenes de fondo en las tarjetas */
+.tarjeta img.fondo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Logos en las tarjetas */
+.tarjeta img.logo {
+    width: 400px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.tarjeta:hover img.logo {
+    opacity: 1;
+}
+
+/* Indicadores del carrusel */
+.indicadores {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.indicador {
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+    background: gray;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.indicador.activo {
+    background: #017096;
+}
+
+/* Popups */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    transform: translate(-50%, -50%) scale(0);
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    max-height: 80vh; /* Asegura que el popup no exceda la pantalla */
+}
+
+.popup.mostrar {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Estilo de los títulos y descripciones dentro del popup */
+.popup h2 {
+    color: #017096;
+}
+
+.popup p {
+    color: #FFFFFF;
+    text-shadow: 0 0px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Barra de scroll para PC en la sección clientes */
+@media (min-width: 768px) {
+    .clientes-container {
+        overflow-x: auto; /* Permite el scroll en PC */
+        scrollbar-width: thin;
+        scrollbar-color: #017096 #f0f8ff;
+    }
+
+    /* Personalización de la barra de scroll en navegadores WebKit */
+    .clientes-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .clientes-container::-webkit-scrollbar-track {
+        background: #f0f8ff;
+    }
+
+    .clientes-container::-webkit-scrollbar-thumb {
+        background: #017096;
+        border-radius: 4px;
+    }
+}
        /*servicios*/
 		.servicios-container-ol {
             width: 90%;
@@ -595,7 +637,8 @@ body {
 
 		
         <section id="clientes" class="seccion">
-          <div class="clientes-container">
+          <div class="clientes-container" id="clientesContainer">
+			  
         <div class="clientes-wrapper" id="clientesWrapper">
             <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente1.jpg" alt="Cliente 1">
@@ -626,7 +669,6 @@ body {
                 <img class="logo" src="logo7.png" alt="Cliente 7">
             </div>
         </div>
-        <div class="indicadores" id="indicadores"></div>
     </div>
     
     <div id="popup" class="popup">
@@ -926,39 +968,67 @@ setInterval(cambiarBanner, 5000);
 		 
 		
 		//clientes
-		  function actualizarIndicadores() {
-            let indicadores = document.getElementById("indicadores");
-            indicadores.innerHTML = "";
-            let tarjetas = document.querySelectorAll(".tarjeta");
-            tarjetas.forEach((_, index) => {
-                let indicador = document.createElement("div");
-                indicador.classList.add("indicador");
-                if (index === 0) indicador.classList.add("activo");
-                indicador.onclick = () => moverCarrusel(index);
-                indicadores.appendChild(indicador);
-            });
-        }
+		  let startX;
+let currentTranslate = 0;
+const wrapper = document.getElementById("clientesWrapper");
 
-        function moverCarrusel(index) {
-            let wrapper = document.getElementById("clientesWrapper");
-            let tarjetaWidth = document.querySelector(".tarjeta").offsetWidth + 20;
-            wrapper.style.transform = `translateX(${-index * tarjetaWidth}px)`;
-            document.querySelectorAll(".indicador").forEach((el, i) => {
-                el.classList.toggle("activo", i === index);
-            });
-        }
+// Funcionalidad de deslizamiento táctil
+wrapper.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
 
-        document.addEventListener("DOMContentLoaded", actualizarIndicadores);
-        
-        function mostrarPopup(titulo, descripcion) {
-            document.getElementById("popup-titulo").innerHTML = titulo;
-            document.getElementById("popup-descripcion").innerHTML = descripcion;
-            document.getElementById("popup").classList.add("mostrar");
-        }
-        
-        function cerrarPopup() {
-            document.getElementById("popup").classList.remove("mostrar");
-        }
+wrapper.addEventListener("touchmove", (e) => {
+    let moveX = e.touches[0].clientX - startX;
+    wrapper.style.transform = `translateX(${currentTranslate + moveX}px)`;
+});
+
+wrapper.addEventListener("touchend", (e) => {
+    let moveX = e.changedTouches[0].clientX - startX;
+    let tarjetaWidth = document.querySelector(".tarjeta").offsetWidth + 20;
+    if (moveX < -50) {
+        currentTranslate -= tarjetaWidth;
+    } else if (moveX > 50) {
+        currentTranslate += tarjetaWidth;
+    }
+    wrapper.style.transform = `translateX(${currentTranslate}px)`;
+});
+
+// Funcionalidad de popups
+function mostrarPopup(titulo, descripcion) {
+    document.getElementById("popup-titulo").innerHTML = titulo;
+    document.getElementById("popup-descripcion").innerHTML = descripcion;
+    document.getElementById("popup").classList.add("mostrar");
+}
+
+function cerrarPopup() {
+    document.getElementById("popup").classList.remove("mostrar");
+}
+
+// Funcionalidad de indicadores
+function actualizarIndicadores() {
+    let indicadores = document.getElementById("indicadores");
+    indicadores.innerHTML = "";
+    let tarjetas = document.querySelectorAll(".tarjeta");
+    tarjetas.forEach((_, index) => {
+        let indicador = document.createElement("div");
+        indicador.classList.add("indicador");
+        if (index === 0) indicador.classList.add("activo");
+        indicador.onclick = () => moverCarrusel(index);
+        indicadores.appendChild(indicador);
+    });
+}
+
+function moverCarrusel(index) {
+    let tarjetaWidth = document.querySelector(".tarjeta").offsetWidth + 20;
+    currentTranslate = -index * tarjetaWidth;
+    wrapper.style.transform = `translateX(${currentTranslate}px)`;
+    document.querySelectorAll(".indicador").forEach((el, i) => {
+        el.classList.toggle("activo", i === index);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", actualizarIndicadores);
+
 		
 		//servicios
 		function actualizarIndicadoresOL() {
