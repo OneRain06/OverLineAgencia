@@ -385,39 +385,64 @@ body {
         }
 		/*paquetes*/
 		 .card-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
+            display: grid;
+            gap: 20px;
         }
-		.card-content {
-  position: absolute;
-  bottom: -12px;
-  left: 20px;
-  color: #ccdefa;
-}
         .main-card {
-  width: 100%;
-  max-width: 200px; /* La anchura máxima sigue siendo 300px */
-  height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 10px;
             cursor: pointer;
-			border: 3px solid transparent; /* Borde inicial */
-			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            animation: zoomEffect 2s infinite alternate;
+            animation: zoomEffect 3s infinite;
         }
         .main-card img {
             width: 100%;
             height: 100%;
             border-radius: 10px;
-        }  
-        @keyframes zoomEffect{
+        }
+        @keyframes zoomEffect {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+        @media (min-width: 1024px) {
+            .card-group {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .main-card {
+                aspect-ratio: 9/16;
+            }
+            .main-card:nth-child(1) img { content: url('basic.png'); }
+            .main-card:nth-child(2) img { content: url('standar.png'); }
+            .main-card:nth-child(3) img { content: url('pro.png'); }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .card-group {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto auto;
+            }
+            .main-card:nth-child(1), .main-card:nth-child(2) {
+                aspect-ratio: 1/1;
+            }
+            .main-card:nth-child(3) {
+                aspect-ratio: 16/9;
+                grid-column: span 2;
+            }
+            .main-card:nth-child(1) img { content: url('basicc.png'); }
+            .main-card:nth-child(2) img { content: url('standarc.png'); }
+            .main-card:nth-child(3) img { content: url('proh.png'); }
+        }
+        @media (max-width: 767px) {
+            .card-group {
+                grid-template-columns: 1fr;
+            }
+            .main-card {
+                aspect-ratio: 16/7;
+            }
+            .main-card:nth-child(1) img { content: url('basuch.png'); }
+            .main-card:nth-child(2) img { content: url('standarh.png'); }
+            .main-card:nth-child(3) img { content: url('prosh.png'); }
         }
         .modal-overlay {
             display: none;
@@ -525,30 +550,12 @@ body {
             border-radius: 15px;
             font-size: 16px;
         }
-        @media (min-width: 768px) {
-            .card-group {
-                flex-direction: row;
-            }
-            .main-card {
-                width: 150px;
-                height: 150px;
-            }
-            .modal-content {
-                max-width: 600px;
-            }
-        }
-        @media (max-width: 768px) {
-            .card-group {
-                flex-direction: flex;
-            }
-            .main-card {
-                width: 150px;
-                height: 70px;
-            }
-            .modal-content {
-                max-width: 600px;
-            }
-        }
+		.card-content {
+  position: absolute;
+  bottom: -12px;
+  left: 20px;
+  color: #ccdefa;
+}
 		
 		/*redes*/
 		.redes {
@@ -764,8 +771,6 @@ Y DISEÑO GRÁFICO</h2>
         </section>
           
         <section id="paquetes" class="seccion">
-			
-			<div class="titulo-seccion">Nuestros Paquetes</div>
           <div class="page-section active">
             <div class="card-group">
                 <div class="main-card" onclick="openModal('modal1')"><img src="basic.png" alt="Package 1">
