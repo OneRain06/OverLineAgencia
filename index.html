@@ -189,18 +189,21 @@ body {
             position: fixed;
             top: 50%;
             left: 50%;
-			border-radius: 10px;
-			border: 2px solid #017096; /* Borde azul */
+			background: rgba(255, 255, 255, .1);
+			box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+			border-radius: 20px;
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			border-right: 2px solid rgba(255, 255, 255, . 2);
+			border-bottom: 2px solid rgba(255, 255, 255, .2);
+			backdrop-filter: blur(10px);
             transform: translate(-50%, -50%) scale(0);
-            background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             width: 80%;
             max-width: 400px;
-            text-align: left;
+            text-align: center;
             z-index: 1000;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out;			
+            overflow-y: auto;
         }
         .popup.mostrar {
             transform: translate(-50%, -50%) scale(1);
@@ -212,6 +215,13 @@ body {
             cursor: pointer;
             font-weight: bold;
         }
+		.popup h2{
+		color: #017096;
+		}
+		.popup p{
+		color: #FFFFFF;
+		text-shadow: 0 0px 6px rgba(0, 0, 0, 0.9);
+		}
         .indicadores {
             display: flex;
             justify-content: center;
@@ -583,31 +593,31 @@ body {
         <section id="clientes" class="seccion">
           <div class="clientes-container">
         <div class="clientes-wrapper" id="clientesWrapper">
-            <div class="tarjeta" onclick="mostrarPopup('Cliente 1', 'Descripción del trabajo realizado con Cliente 1.')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente1.jpg" alt="Cliente 1">
                 <img class="logo" src="logo1.png" alt="Cliente 1">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('Cliente 2', 'Descripción del trabajo realizado con Cliente 2.')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente2.jpg" alt="Cliente 2">
                 <img class="logo" src="logo2.png" alt="Cliente 2">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('Cliente 3', 'Descripción del trabajo realizado con Cliente 3.')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente3.jpg" alt="Cliente 3">
                 <img class="logo" src="logo3.png" alt="Cliente 3">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('Cliente 4', 'Descripción del trabajo realizado con Cliente 4.')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente4.jpg" alt="Cliente 4">
                 <img class="logo" src="logo4.png" alt="Cliente 4">
             </div>
-			<div class="tarjeta" onclick="mostrarPopup('Cliente 5', 'Descripción del trabajo realizado con Cliente 2.')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente5.jpg" alt="Cliente 5">
                 <img class="logo" src="logo5.png" alt="Cliente 5">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('Cliente 6', 'Descripción del trabajo realizado con Cliente 3.')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente6.jpg" alt="Cliente 6">
                 <img class="logo" src="logo6.png" alt="Cliente 6">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('Cliente 7', 'Descripción del trabajo realizado con Cliente 4.')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente7.jpg" alt="Cliente 7">
                 <img class="logo" src="logo7.png" alt="Cliente 7">
             </div>
@@ -617,8 +627,8 @@ body {
     
     <div id="popup" class="popup">
         <span class="cerrar" onclick="cerrarPopup()">✖</span>
-        <h2 id="popup-titulo"></h2>
-        <p id="popup-descripcion"></p>
+        <div id="popup-titulo"></div>
+        <div id="popup-descripcion"></div>
     </div>
         </section>
 		
@@ -937,8 +947,8 @@ setInterval(cambiarBanner, 5000);
         document.addEventListener("DOMContentLoaded", actualizarIndicadores);
         
         function mostrarPopup(titulo, descripcion) {
-            document.getElementById("popup-titulo").innerText = titulo;
-            document.getElementById("popup-descripcion").innerText = descripcion;
+            document.getElementById("popup-titulo").innerHTML = titulo;
+            document.getElementById("popup-descripcion").innerHTML = descripcion;
             document.getElementById("popup").classList.add("mostrar");
         }
         
