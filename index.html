@@ -320,21 +320,21 @@ body {
             text-align: center;
         }
         .video-player video {
-            width: 100%;
-            max-width: 400px;
+            width: 90%;
+            max-width: 350px;
             aspect-ratio: 9 / 16;
             object-fit: contain;
             border-radius: 10px;
         }
         @media (min-width: 768px) {
             .video-player video {
-                max-width: 450px;
+                max-width: 400px;
                 aspect-ratio: 9 / 16;
             }
         }
         @media (min-width: 1024px) {
             .video-player video {
-                max-width: 500px;
+                max-width: 450px;
                 aspect-ratio: 9 / 16;
             }
         }
@@ -715,27 +715,27 @@ body {
 		    <div class="videos-container">
             <div class="video-controls">
                 <label class="switch">
-                    <input type="radio" name="video" checked onclick="cambiarVideo('VID_20250116_082948_099.mp4', 'Descripción del Video 1')">
+                    <input type="radio" name="video" checked onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
                     <span class="slider"></span>
                 </label>
                 <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4', 'Descripción del Video 2')">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
                     <span class="slider"></span>
                 </label>
                 <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4', 'Descripción del Video 3')">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
                     <span class="slider"></span>
                 </label>
                 <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4', 'Descripción del Video 3')">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
                     <span class="slider"></span>
                 </label>
                 <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4', 'Descripción del Video 3')">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
                     <span class="slider"></span>
                 </label>
                 <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4', 'Descripción del Video 3')">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -744,7 +744,6 @@ body {
                     <source src="VID_20250116_082948_099.mp4" type="video/mp4">
                     Tu navegador no soporta la etiqueta de video.
                 </video>
-                <p class="video-description" id="videoDescription">Descripción del Video 1</p>
             </div>
         </div>
         </section>
