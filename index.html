@@ -16,6 +16,30 @@ body {
   background-position: center; 
   background-attachment: fixed; 
         }
+		.titulo-seccion {
+    position: absolute;
+    top: 05%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #017096; 
+    z-index: 10;
+    text-align: center;
+    animation: latido 1.5s infinite ease-in-out;
+}
+		@keyframes latido {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
         .menu-flotante {
             position: fixed;
             bottom: 10px;
@@ -86,7 +110,7 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: -100;
+    top: 0;
     left: 100vw;
     transition: left 0.5s ease-in-out;
 }
@@ -187,8 +211,8 @@ body {
 
 /* Logos en las tarjetas */
 .tarjeta img.logo {
-    width: 400px;
-    height: auto;
+    width: 300px;
+    height: 400px;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     position: relative;
@@ -637,6 +661,7 @@ body {
 
 		
         <section id="clientes" class="seccion">
+			<div class="titulo-seccion">Nuestros Clientes</div>
           <div class="clientes-container" id="clientesContainer">
 			  
         <div class="clientes-wrapper" id="clientesWrapper">
@@ -679,6 +704,8 @@ body {
         </section>
 		
        <section id="servicios" class="seccion">
+		   
+			<div class="titulo-seccion">Nuestros Servicios</div>
 		   <div class="tarjeta0">
 		   <div class="servicios-container-ol">
         <div class="servicios-wrapper-ol" id="serviciosWrapperOL">
@@ -737,6 +764,8 @@ Y DISEÑO GRÁFICO</h2>
         </section>
           
         <section id="paquetes" class="seccion">
+			
+			<div class="titulo-seccion">Nuestros Paquetes</div>
           <div class="page-section active">
             <div class="card-group">
                 <div class="main-card" onclick="openModal('modal1')"><img src="basic.png" alt="Package 1">
