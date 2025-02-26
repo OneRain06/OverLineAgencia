@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link rel="icon" href="data:logo-overline.png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQC..." type="image/png">
     <meta charset="UTF-8">
+	<link rel="icon" href="logo-overline.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overline</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
@@ -17,30 +17,6 @@ body {
   background-position: center; 
   background-attachment: fixed; 
         }
-		.titulo-seccion {
-    position: absolute;
-    top: 05%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 10px 20px;
-    font-size: 25px;
-    font-weight: bold;
-    color: #017096; 
-    z-index: 10;
-    text-align: center;
-    animation: latido 1.5s infinite ease-in-out;
-}
-		@keyframes latido {
-    0% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.1); }
-    100% { transform: translateX(-50%) scale(1); }
-}
-
         .menu-flotante {
             position: fixed;
             bottom: 10px;
@@ -249,7 +225,7 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.7);
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     border: 2px solid rgba(255, 255, 255, 0.5);
@@ -283,8 +259,8 @@ body {
 }
 
 .popup p {
-    color: #FFFFFF;
-    text-shadow: 0 0px 6px rgba(0, 0, 0, 0.9);
+	font-family: "Poppins Black";
+    color: #000000;
 }
 
 /* Barra de scroll para PC en la sección clientes */
@@ -456,6 +432,7 @@ body {
             background: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
+			 z-index: 100;
         }
         .modal-content {
 			background: rgba(255, 255, 255, .1);
@@ -659,16 +636,40 @@ body {
         .tarjeta0 h2{
   color: #017096;
         }
+		.titulo-seccion {
+    position: absolute;
+    top: 05%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #017096; 
+    z-index: 10;
+    text-align: center;
+    animation: latido 1.5s infinite ease-in-out;
+}
+		@keyframes latido {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
     </style>
 </head>
 <body>
    
     <nav class="menu-flotante">
-        <a onclick="cambiarSeccion('inicio')" data-title="Inicio"><img src="home-static.png" data-hover="home.gif" alt="Inicio" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="home-static.png"></a>
-        <a onclick="cambiarSeccion('clientes')" data-title="clientes"><img src="client-static.png" data-hover="client.gif" alt="clientes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="client-static.png"></a>
-        <a onclick="cambiarSeccion('servicios')" data-title="servicios"><img src="servi-static.png" data-hover="servi.gif" alt="servicios" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="servi-static.png"></a>
-        <a onclick="cambiarSeccion('paquetes')" data-title="paquetes"><img src="pack-static.png" data-hover="pack.gif" alt="paquetes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="pack-static.png"></a>
-        <a onclick="cambiarSeccion('contacto')" data-title="contacto"><img src="contact-static.png" data-hover="contact.gif" alt="contacto" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="contact-static.png"></a>
+        <a onclick="cambiarSeccion('inicio')" data-title="Inicio"><img src="home.gif" data-hover="home.gif" alt="Inicio" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="home.gif"></a>
+        <a onclick="cambiarSeccion('clientes')" data-title="clientes"><img src="client.gif" data-hover="client.gif" alt="clientes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="client.gif"></a>
+        <a onclick="cambiarSeccion('servicios')" data-title="servicios"><img src="servi.gif" data-hover="servi.gif" alt="servicios" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="servi.gif"></a>
+        <a onclick="cambiarSeccion('paquetes')" data-title="paquetes"><img src="pack.gif" data-hover="pack.gif" alt="paquetes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="pack.gif"></a>
+        <a onclick="cambiarSeccion('contacto')" data-title="contacto"><img src="contact.gif" data-hover="contact.gif" alt="contacto" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="contact.gif"></a>
     </nav>
     
     <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/3018282771'"><img src="icono wsp.png" alt="WhatsApp"></div>
@@ -765,19 +766,21 @@ body {
         </section>
           
         <section id="paquetes" class="seccion">
+			
+			<div class="titulo-seccion">Nuestros Paquetes</div>
           <div class="page-section active">
             <div class="card-group">
                 <div class="main-card" onclick="openModal('modal1')"><img src="basic.png" alt="Package 1">
 				<div class="card-content">
-      <h3>Paquetes Iniciales</h3>
+      <h3>Iniciales</h3>
     </div></div>
                 <div class="main-card" onclick="openModal('modal2')"><img src="standar.png" alt="Package 2">
     <div class="card-content">
-      <h3>Paquetes Intermedios</h3>
+      <h3>Intermedios</h3>
     </div></div>
                 <div class="main-card" onclick="openModal('modal3')"><img src="pro.png" alt="Package 3">
     <div class="card-content">
-      <h3>Paquetes Avanzados</h3>
+      <h3>Avanzados</h3>
     </div></div>
             </div>
             <button class="open-modal-button" onclick="openModal('modal4')">Ver paquetes</button>
@@ -1074,14 +1077,17 @@ document.addEventListener("DOMContentLoaded", actualizarIndicadores);
             document.getElementById(id).style.display = 'flex';
         }
         function closeModal(event) {
-            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-button')) {
+            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-button')){
                 event.target.closest('.modal-overlay').style.display = 'none';
             }
         }
         function switchSection(sectionId) {
-            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-        }
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+}
+
         function sendWhatsApp(packageName) {
             window.open(`https://wa.me/573018282771/?text=Quiero%20más%20información%20del%20paquete%20${packageName}`, '_blank');
         }
