@@ -1,1 +1,1104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+	<link rel="icon" href="logo-overline.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+  background-color: rgba(204,222,250,0.90);
+  background-image: url("fondo.gif");
+  background-size: cover; 
+  background-position: center; 
+  background-attachment: fixed; 
+        }
+        .menu-flotante {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #017096;
+            padding: 10px;
+            border-radius: 25px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+        .menu-flotante a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+		.menu-flotante a img {
+            width: 30px;
+            height: auto;
+        }
+        .menu-flotante a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+       .whatsapp-btn {
+            position: fixed;
+            right: -40px;
+            bottom: 100px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: right 0.3s ease-in-out, transform 0.3s;
+            animation: zoomEffect 2s infinite alternate;
+        }
+        @keyframes zoomEffect{
+            0% { transform: scale(1); }}
+		
+        .whatsapp-btn img {
+            width: 80px;
+            height: auto;
+        }
+        .whatsapp-btn:hover {
+            right: 20px;
+            transform: scale(1.2);
+        }
+        .contenedor {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        /* Estilos generales */
+.seccion {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    transition: left 0.5s ease-in-out;
+}
 
+.seccion.activa {
+    left: 0;
+}
+
+/* Estilos del carrusel */
+.carrusel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos de cada slide */
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Slide activo */
+.slide.activo {
+    opacity: 1;
+}
+
+/* Imágenes por defecto (PC) */
+.slide:nth-child(1) { background-image: url('banner-pc-01.jpg'); }
+.slide:nth-child(2) { background-image: url('banner-pc-02.jpg'); }
+.slide:nth-child(3) { background-image: url('banner-pc-03.jpg'); }
+
+/* Imágenes para Tablet */
+@media (max-width: 1023px) {
+    .slide:nth-child(1) { background-image: url('banner-tablet-01.jpg'); }
+    .slide:nth-child(2) { background-image: url('banner-tablet-02.jpg'); }
+    .slide:nth-child(3) { background-image: url('banner-tablet-03.jpg'); }
+}
+
+/* Imágenes para Móvil */
+@media (max-width: 767px) {
+    .slide:nth-child(1) { background-image: url('banner-movil-01.jpg'); }
+    .slide:nth-child(2) { background-image: url('banner-movil-02.jpg'); }
+    .slide:nth-child(3) { background-image: url('banner-movil-03.jpg'); }
+}
+
+	
+		/*clientes*/
+		.clientes-container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Envolver tarjetas sin permitir el desplazamiento horizontal en PC */
+.clientes-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: max-content;
+}
+
+/* Tarjetas de clientes */
+.tarjeta {
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta:hover {
+    transform: scale(1.1);
+}
+
+/* Imágenes de fondo en las tarjetas */
+.tarjeta img.fondo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Logos en las tarjetas */
+.tarjeta img.logo {
+    width: 300px;
+    height: 400px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.tarjeta:hover img.logo {
+    opacity: 1;
+}
+
+/* Indicadores del carrusel */
+.indicadores {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.indicador {
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+    background: gray;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.indicador.activo {
+    background: #017096;
+}
+
+/* Popups */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    transform: translate(-50%, -50%) scale(0);
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    max-height: 80vh; /* Asegura que el popup no exceda la pantalla */
+}
+
+.popup.mostrar {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Estilo de los títulos y descripciones dentro del popup */
+.popup h2 {
+    color: #017096;
+}
+
+.popup p {
+    color: #000000;
+}
+
+/* Barra de scroll para PC en la sección clientes */
+@media (min-width: 768px) {
+    .clientes-container {
+        overflow-x: auto; /* Permite el scroll en PC */
+        scrollbar-width: thin;
+        scrollbar-color: #017096 #f0f8ff;
+    }
+
+    /* Personalización de la barra de scroll en navegadores WebKit */
+    .clientes-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .clientes-container::-webkit-scrollbar-track {
+        background: #f0f8ff;
+    }
+
+    .clientes-container::-webkit-scrollbar-thumb {
+        background: #017096;
+        border-radius: 4px;
+    }
+}
+       /*servicios--------------------------------------------------------------------------------*/
+		 .videos-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-direction: row;
+        }
+        .video-player {
+            text-align: center;
+        }
+        .video-player video {
+            width: 90%;
+            max-width: 350px;
+            aspect-ratio: 9 / 16;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        @media (min-width: 768px) {
+            .video-player video {
+                max-width: 400px;
+                aspect-ratio: 9 / 16;
+            }
+        }
+        @media (min-width: 1024px) {
+            .video-player video {
+                max-width: 450px;
+                aspect-ratio: 9 / 16;
+            }
+        }
+        .video-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 25px;
+            transition: 0.4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+        input:checked + .slider {
+            background-color: #017096;
+        }
+        input:checked + .slider:before {
+            transform: translateX(25px);
+        }
+		/*paquetes---------------------------------------------------------------*/
+		 .card-group {
+            display: grid;
+            gap: 20px;
+        }
+        .main-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            cursor: pointer;
+            animation: zoomEffect 3s infinite;
+        }
+        .main-card img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @media (min-width: 1024px) {
+            .card-group {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .main-card {
+                aspect-ratio: 9/16;
+            }
+            .main-card:nth-child(1) img { content: url('basic.png'); }
+            .main-card:nth-child(2) img { content: url('standar.png'); }
+            .main-card:nth-child(3) img { content: url('pro.png'); }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .card-group {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto auto;
+            }
+            .main-card:nth-child(1), .main-card:nth-child(2) {
+                aspect-ratio: 1/1;
+            }
+            .main-card:nth-child(3) {
+                aspect-ratio: 16/9;
+                grid-column: span 2;
+            }
+            .main-card:nth-child(1) img { content: url('basicc.png'); }
+            .main-card:nth-child(2) img { content: url('standarc.png'); }
+            .main-card:nth-child(3) img { content: url('proh.png'); }
+        }
+        @media (max-width: 767px) {
+            .card-group {
+                grid-template-columns: 1fr;
+            }
+            .main-card {
+            width: 90%;
+            height: 90%;
+                aspect-ratio: 16/7;
+            }
+            .main-card:nth-child(1) img { content: url('basuch.png'); }
+            .main-card:nth-child(2) img { content: url('standarh.png'); }
+            .main-card:nth-child(3) img { content: url('prosh.png'); }
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+			 z-index: 100;
+        }
+        .modal-content {
+			background: rgba(255, 255, 255, .1);
+			box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+			border-radius: 50px;
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			border-right: 2px solid rgba(255, 255, 255, . 2);
+			border-bottom: 2px solid rgba(255, 255, 255, .2);
+			backdrop-filter: blur(10px);
+			padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 90%; 
+			border-radius: 15px; /* Redondeo de esquinas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .modal-card {
+			 background-color: #FFFFFF;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #017096; /* Borde azul */
+            width: 85%;
+            margin: 5px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .modal-card:hover {
+            transform: scale(1.05);
+        }
+        .modal-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .modal-card1 {
+			 background-color: #FFFFFF;
+  margin-bottom: 0px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid #017096; /* Borde azul */
+            width: 85%;
+            margin: 5px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .modal-card1:hover {
+            transform: scale(1.05);
+        }
+        .modal-card2 {
+			 background-color: #017096;
+  margin-bottom: 0px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid #FFFFFF; /* Borde azul */
+            width: 85%;
+            margin: 5px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .modal-card2:hover {
+            transform: scale(1.05);
+        }
+        .modal-card2 h4 {
+			color: #FFFFFF;
+        }
+        .open-modal-button {
+            margin-top: 20px;
+            padding: 02% 20%;
+            background: #017096;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+		.buttons {
+            margin-top: 20px;
+            padding: 02% 20%;
+            background: #017096;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+		.card-content {
+  position: absolute;
+  bottom: -12px;
+  left: 20px;
+  color: #ccdefa;
+}
+		
+		/*redes--------------------------------------------------------------------*/
+		.redes {
+		    display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .redes a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 12px;
+            border-radius: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #017096;
+            position: relative;
+            animation: palpitar 1.5s infinite;
+            transition: transform 0.2s;
+        }
+        .redes a:hover {
+            transform: scale(1.2);
+        }
+        .redes a img {
+            width: 25px;
+            height: auto;
+            transition: transform 0.2s;
+        }
+		@media (min-width: 768px) {
+        .redes a img {
+            width: 35px;
+            height: auto;
+            transition: transform 0.2s;
+            }
+        }
+        @media (min-width: 1024px) {
+        .redes a img {
+            width: 60px;
+            height: auto;
+            transition: transform 0.2s;
+            }
+        }
+        .redes a:hover img {
+            transform: scale(1.3);
+        }
+        .redes a:hover::after {
+            content: attr(data-user);
+            position: absolute;
+            bottom: -35px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        @keyframes palpitar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .contact-form textarea {
+            width: 90%;
+            padding: 12px;
+            border: 2px solid #017096;
+            border-radius: 10px;
+            resize: none;
+            font-size: 16px;
+        }
+        .contact-form button {
+            margin-top: 15px;
+            background: #017096;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background: #002850;
+        }
+        .tarjeta0 {
+			background: rgba(255, 255, 255, .1);
+			box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+			border-radius: 20px;
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			border-right: 2px solid rgba(255, 255, 255, . 2);
+			border-bottom: 2px solid rgba(255, 255, 255, .2);
+			backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 80%;
+			text-color:#ccdefa;
+        }
+        .tarjeta0 h2{
+  color: #017096;
+        }
+		.titulo-seccion {
+    position: absolute;
+    top: 05%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #017096; 
+    z-index: 10;
+    text-align: center;
+    animation: latido 1.5s infinite ease-in-out;
+}
+		@keyframes latido {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+    </style>
+</head>
+<body>
+   
+    <nav class="menu-flotante">
+        <a onclick="cambiarSeccion('inicio')" data-title="Inicio"><img src="home.gif" data-hover="home.gif" alt="Inicio" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="home.gif"></a>
+        <a onclick="cambiarSeccion('clientes')" data-title="clientes"><img src="client.gif" data-hover="client.gif" alt="clientes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="client.gif"></a>
+        <a onclick="cambiarSeccion('servicios')" data-title="servicios"><img src="servi.gif" data-hover="servi.gif" alt="servicios" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="servi.gif"></a>
+        <a onclick="cambiarSeccion('paquetes')" data-title="paquetes"><img src="pack.gif" data-hover="pack.gif" alt="paquetes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="pack.gif"></a>
+        <a onclick="cambiarSeccion('contacto')" data-title="contacto"><img src="contact.gif" data-hover="contact.gif" alt="contacto" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="contact.gif"></a>
+    </nav>
+    
+    <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/3018282771'"><img src="icono wsp.png" alt="WhatsApp"></div>
+    
+    <div class="contenedor">
+        <section id="inicio" class="seccion activa">
+    <div class="carrusel">
+        <div class="slide activo"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+    </div>
+</section>
+
+		
+        <section id="clientes" class="seccion">
+			<div class="titulo-seccion">Nuestros Clientes</div>
+          <div class="clientes-container" id="clientesContainer">
+			  
+        <div class="clientes-wrapper" id="clientesWrapper">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p> <img src=\'necio reel 1.gif\'><img src=\'necio reel 2.gif\'><img src=\'Comp 1.gif\'><img src=\'Pocima_01.png\'><img src=\'grito_01.png\'><img src=\'carreta_01.png\'><img src=\'colombia-uruguay.png\'><img src=\'ecuador.png\'><img src=\'completo.png\'>')">
+                <img class="fondo" src="cliente1.jpg" alt="Cliente 1">
+                <img class="logo" src="logo1.png" alt="Cliente 1">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-odc.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+                <img class="fondo" src="cliente5.jpg" alt="Cliente 5">
+                <img class="logo" src="logo5.png" alt="Cliente 5">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-sieramont.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+                <img class="fondo" src="cliente6.jpg" alt="Cliente 6">
+                <img class="logo" src="logo6.png" alt="Cliente 6">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-gustavo.png\'>', '<p>Con el psiquieatra de la infancia y adolecencia el dr. Gustavo Lara, se creo la marca desde 0 haciendo logo, paleta de colores, estilo para redes y todo el brandingo como tal, iniciando a trabajar su social media con contenido para redes.</p> <img src=\'t1.png\'>')">
+                <img class="fondo" src="cliente3.jpg" alt="Cliente 3">
+                <img class="logo" src="logo3.png" alt="Cliente 3">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-rebel.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+                <img class="fondo" src="cliente7.jpg" alt="Cliente 7">
+                <img class="logo" src="logo7.png" alt="Cliente 7">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-bye.png\'>', '<p>Con B&E bandas y esdtructuras se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca.</p> <img src=\'bbb.png\'><img src=\'t1.png\'><img src=\'t2.png\'>')">
+                <img class="fondo" src="cliente2.jpg" alt="Cliente 2">
+                <img class="logo" src="logo2.png" alt="Cliente 2">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-overline.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+                <img class="fondo" src="cliente4.jpg" alt="Cliente 4">
+                <img class="logo" src="logo4.png" alt="Cliente 4">
+            </div>
+        </div>
+    </div>
+    
+    <div id="popup" class="popup">
+        <span class="cerrar" onclick="cerrarPopup()"><img src="x.gif"></span>
+        <div id="popup-titulo"></div>
+        <div id="popup-descripcion"></div>
+    </div>
+        </section>
+		
+       <section id="servicios" class="seccion">
+			<div class="titulo-seccion">Nuestros Servicios</div>
+		    <div class="videos-container">
+            <div class="video-controls">
+                <label class="switch">
+                    <input type="radio" name="video" checked onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <span class="slider"></span>
+                </label>
+                <label class="switch">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <span class="slider"></span>
+                </label>
+                <label class="switch">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <span class="slider"></span>
+                </label>
+                <label class="switch">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <span class="slider"></span>
+                </label>
+                <label class="switch">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <span class="slider"></span>
+                </label>
+                <label class="switch">
+                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="video-player">
+                <video id="mainVideo" controls>
+                    <source src="VID_20250116_082948_099.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+        </div>
+        </section>
+          
+        <section id="paquetes" class="seccion">
+			
+			<div class="titulo-seccion">Nuestros Paquetes</div>
+          <div class="page-section active">
+            <div class="card-group">
+                <div class="main-card" onclick="openModal('modal1')"><img src="basic.png" alt="Package 1">
+				<div class="card-content">
+      <h3>Iniciales</h3>
+    </div></div>
+                <div class="main-card" onclick="openModal('modal2')"><img src="standar.png" alt="Package 2">
+    <div class="card-content">
+      <h3>Intermedios</h3>
+    </div></div>
+                <div class="main-card" onclick="openModal('modal3')"><img src="pro.png" alt="Package 3">
+    <div class="card-content">
+      <h3>Avanzados</h3>
+    </div></div>
+            </div>
+            <button class="open-modal-button" onclick="openModal('modal4')">Ver paquetes</button>
+            </div>
+        </section>
+        
+        <div id="modal1" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
+            <div class="modal-card"><h4>Starter Branding Package</h4>
+        <ul>
+          <li>-Logo básico (2 propuestas)</li>
+          <li>-Paleta de colores</li>
+          <li>-Tipografía recomendada</li>
+          <li>-Entrega en formatos digitales básicos</li>
+        </ul><button onclick="sendWhatsApp('Starter Branding Package')" class="buttons">$400,000 COP</button></div>
+                <div class="modal-card"><h4>Fotografía Básica</h4>
+        <ul>
+          <li>-Sesión de 2 horas (en la ubicación del cliente o espacio acordado)</li>
+          <li>-Hasta 10 fotos editadas</li>
+          <li>-Edición básica en Lightroom</li>
+        </ul><button onclick="sendWhatsApp('Fotografía Básica')" class="buttons">$500,000 COP</button></div>
+                <div class="modal-card"><h4>Social Media Starter</h4>
+        <ul>
+          <li>-10 piezas gráficas para redes sociales</li>
+          <li>-Asesoría básica en estrategia de publicación</li>
+          <li>-Configuración inicial de perfiles</li>
+        </ul><button onclick="sendWhatsApp('Social Media Starter')" class="buttons">$600,000 COP</button></div>
+                <div class="modal-card"><h4>Video Mini-Spot</h4>
+        <ul>
+          <li>-Video promocional de 30 segundos</li>
+          <li>-Grabación con equipo portátil en la ubicación del cliente</li>
+          <li>-Edición básica y entrega en calidad HD</li>
+        </ul><button onclick="sendWhatsApp('Video Mini-Spot')" class="buttons">$700,000 COP</button></div>
+                <div class="modal-card"><h4>Mini Campaña Publicitaria</h4>
+        <ul>
+          <li>-5 piezas gráficas (para redes sociales o impresos)</li>
+          <li>-Asesoría en texto publicitario</li>
+          <li>-Plan básico de pautas digitales (sin incluir presupuesto de ads)</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$800,000 COP</button></div>
+                <div class="modal-card"><h4>Diseño para Presentaciones Corporativas</h4>
+        <ul>
+          <li>-Diseño de una presentación profesional de hasta 10 diapositivas</li>
+          <li>-Personalización con identidad de marca</li>
+          <li>-Entrega en PowerPoint y PDF</li>
+        </ul><button onclick="sendWhatsApp('Diseño para Presentaciones Corporativas')" class="buttons">$850,000 COP</button></div>
+        </div>
+    </div>
+    <div id="modal2" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
+            <div class="modal-card"><h4>Starter Branding Package</h4>
+        <ul>
+          <li>-Logo básico (2 propuestas)</li>
+          <li>-Paleta de colores</li>
+          <li>-Tipografía recomendada</li>
+          <li>-Entrega en formatos digitales básicos</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$400,000 COP</button></div>
+                <div class="modal-card"><h4>Fotografía Básica</h4>
+        <ul>
+          <li>-Sesión de 2 horas (en la ubicación del cliente o espacio acordado)</li>
+          <li>-Hasta 10 fotos editadas</li>
+          <li>-Edición básica en Lightroom</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$500,000 COP</button></div>
+                <div class="modal-card"><h4>Social Media Starter</h4>
+        <ul>
+          <li>-10 piezas gráficas para redes sociales</li>
+          <li>-Asesoría básica en estrategia de publicación</li>
+          <li>-Configuración inicial de perfiles</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$600,000 COP</button></div>
+                <div class="modal-card"><h4>Video Mini-Spot</h4>
+        <ul>
+          <li>-Video promocional de 30 segundos</li>
+          <li>-Grabación con equipo portátil en la ubicación del cliente</li>
+          <li>-Edición básica y entrega en calidad HD</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$700,000 COP</button></div>
+                <div class="modal-card"><h4>Mini Campaña Publicitaria</h4>
+        <ul>
+          <li>-5 piezas gráficas (para redes sociales o impresos)</li>
+          <li>-Asesoría en texto publicitario</li>
+          <li>-Plan básico de pautas digitales (sin incluir presupuesto de ads)</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$800,000 COP</button></div>
+                <div class="modal-card"><h4>Diseño para Presentaciones Corporativas</h4>
+        <ul>
+          <li>-Diseño de una presentación profesional de hasta 10 diapositivas</li>
+          <li>-Personalización con identidad de marca</li>
+          <li>-Entrega en PowerPoint y PDF</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$850,000 COP</button></div>
+        </div>
+    </div>
+    <div id="modal3" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
+            <div class="modal-card"><h4>Starter Branding Package</h4>
+        <ul>
+          <li>-Logo básico (2 propuestas)</li>
+          <li>-Paleta de colores</li>
+          <li>-Tipografía recomendada</li>
+          <li>-Entrega en formatos digitales básicos</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$400,000 COP</button></div>
+                <div class="modal-card"><h4>Fotografía Básica</h4>
+        <ul>
+          <li>-Sesión de 2 horas (en la ubicación del cliente o espacio acordado)</li>
+          <li>-Hasta 10 fotos editadas</li>
+          <li>-Edición básica en Lightroom</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$500,000 COP</button></div>
+                <div class="modal-card"><h4>Social Media Starter</h4>
+        <ul>
+          <li>-10 piezas gráficas para redes sociales</li>
+          <li>-Asesoría básica en estrategia de publicación</li>
+          <li>-Configuración inicial de perfiles</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$600,000 COP</button></div>
+                <div class="modal-card"><h4>Video Mini-Spot</h4>
+        <ul>
+          <li>-Video promocional de 30 segundos</li>
+          <li>-Grabación con equipo portátil en la ubicación del cliente</li>
+          <li>-Edición básica y entrega en calidad HD</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$700,000 COP</button></div>
+                <div class="modal-card"><h4>Mini Campaña Publicitaria</h4>
+        <ul>
+          <li>-5 piezas gráficas (para redes sociales o impresos)</li>
+          <li>-Asesoría en texto publicitario</li>
+          <li>-Plan básico de pautas digitales (sin incluir presupuesto de ads)</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$800,000 COP</button></div>
+                <div class="modal-card"><h4>Diseño para Presentaciones Corporativas</h4>
+        <ul>
+          <li>-Diseño de una presentación profesional de hasta 10 diapositivas</li>
+          <li>-Personalización con identidad de marca</li>
+          <li>-Entrega en PowerPoint y PDF</li>
+        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$850,000 COP</button></div>
+        </div>
+		</div>
+    <div id="modal4" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
+                <div class="modal-card2"><h4>Branding y Diseño Gráfico</h4></div>
+                <div class="modal-card1"><h4>Diseño de logo básico (2 propuestas, 1 revisión)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$300,000 COP</button></div>
+                <div class="modal-card1"><h4>Diseño de logo profesional (3 propuestas, 2 revisiones)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
+                <div class="modal-card1"><h4>Paleta de colores y tipografía recomendada</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$200,000 COP</button></div>
+                <div class="modal-card1"><h4>Manual básico de marca</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$700,000 COP</button></div>
+                <div class="modal-card2"><h4>Diseño de Piezas Gráficas para Redes Sociales</h4></div>
+                <div class="modal-card1"><h4>1 pieza gráfica</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$80,000 COP</button></div>
+                <div class="modal-card1"><h4>10 piezas gráficas</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$700,000 COP</button></div>
+                <div class="modal-card1"><h4>Diseño de presentación profesional (hasta 10 diapositivas)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
+                <div class="modal-card1"><h4>Diseño de papelería corporativa (tarjeta de presentación, membrete y sobre)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$450,000 COP</button></div>
+                <div class="modal-card2"><h4>Fotografía</h4></div>
+                <div class="modal-card1"><h4>Sesión fotográfica básica (2 horas) - Hasta 5 fotos editadas</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$350,000 COP</button></div>
+                <div class="modal-card1"><h4>Sesión fotográfica básica (10 fotos editadas)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$500,000 COP</button></div>
+                <div class="modal-card1"><h4>Edición de fotografías básicas (retoque básico por foto)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$50,000 COP</button></div>
+                <div class="modal-card1"><h4>Fotografía de producto (en fondo blanco, por foto)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$100,000 COP</button></div>
+                <div class="modal-card1"><h4>Paquete de 10 fotos de producto</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$800,000 COP</button></div>
+                <div class="modal-card2"><h4>Producción de Video</h4></div>
+                <div class="modal-card1"><h4>Grabación de un video promocional corto (30 segundos)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
+                <div class="modal-card1"><h4>Edición de video promocional básico</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$350,000 COP</button></div>
+                <div class="modal-card1"><h4>Grabación de un video corporativo (1-2 minutos)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$1,000,000 COP</button></div>
+                <div class="modal-card1"><h4>Edición avanzada de video corporativo</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$800,000 COP</button></div>
+                <div class="modal-card1"><h4>Transiciones y color grading (por video)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$150,000 COP</button></div>
+                <div class="modal-card2"><h4>Publicidad y Estrategias Digitales</h4></div>
+                <div class="modal-card1"><h4>Estrategia básica para redes sociales</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$300,000 COP</button></div>
+                <div class="modal-card1"><h4>Creación de calendario de contenido para redes (1 mes)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$400,000 COP</button></div>
+                <div class="modal-card1"><h4>Texto publicitario (copywriting) para anuncios o redes </h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$150,000 COP</button></div>
+                <div class="modal-card1"><h4>Paquete de 5 textos publicitarios</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
+                <div class="modal-card1"><h4>Configuración inicial de perfiles de redes sociales</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$300,000 COP</button></div>
+                <div class="modal-card1"><h4>Asesoría estratégica en marketing digital (1 hora)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$200,000 COP</button></div>
+        </div>
+		</div>
+        
+        <section id="contacto" class="seccion">
+			<div class="titulo-seccion">Contacto</div>
+			<div class="tarjeta0"><br><br>
+
+        <div class="redes">
+            <a href="https://facebook.com/overline" data-user="@overline" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/overline_agencia_grafica?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" data-user="@overline_agencia_grafica" target="_blank"><img src="instagram-icon.png" alt="instagram"></a>
+            <a href="https://www.tiktok.com/@overline.agencia?_t=ZS-8uC3a4JovV2&_r=1" data-user="@overline.agencia" target="_blank"><img src="tiktok-icon.png" alt="tiktok"></a>
+            <a href="www.linkedin.com/in/overline-agencia-gráfica" data-user="@OverLineAgenciaGráfica" target="_blank"><img src="LinkedIn-icon.png" alt="LinkedIn"></a>
+        </div><br>
+
+        <div class="redes">
+            <a href="3108600022" data-user="3018282771" target="_blank"><img src="phone-icon.png" alt="Lllamar"></a>
+            <a href="https://api.whatsapp.com/send/?phone=573018282771" data-user="3018282771" target="_blank"><img src="whatsapp-icon.png" alt="whatsapp"></a>
+            <a href="mailto:overlineagenciagrafica@gmail.com" data-user="overlineagenciagrafica@gmail.com" target="_blank"><img src="email-icon.png" alt="correo"></a>
+        </div><br>
+
+        <form class="contact-form" onsubmit="enviarComentario(event)">
+            <textarea placeholder="Escribe tu mensaje..." rows="4" required></textarea>
+            <button type="submit">Enviar</button><br><br>
+
+        </form>
+				</div>
+        </section>
+    </div>
+    
+    <script>
+        function toggleWhatsApp() {
+            alert('Abriendo WhatsApp');
+        }
+
+        // Función para cambiar de sección
+function cambiarSeccion(id) {
+    document.querySelectorAll('.seccion').forEach(seccion => {
+        seccion.classList.remove('activa');
+    });
+    document.getElementById(id).classList.add('activa');
+}
+
+// Carrusel automático
+let indice = 0;
+function cambiarBanner() {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach(slide => slide.classList.remove('activo'));
+    indice = (indice + 1) % slides.length;
+    slides[indice].classList.add('activo');
+}
+
+// Iniciar el carrusel cada 3 segundos
+setInterval(cambiarBanner, 5000);
+
+		 
+		
+		//clientes
+		  let startX;
+let currentTranslate = 0;
+const wrapper = document.getElementById("clientesWrapper");
+
+// Funcionalidad de deslizamiento táctil
+wrapper.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
+
+wrapper.addEventListener("touchmove", (e) => {
+    let moveX = e.touches[0].clientX - startX;
+    wrapper.style.transform = `translateX(${currentTranslate + moveX}px)`;
+});
+
+wrapper.addEventListener("touchend", (e) => {
+    let moveX = e.changedTouches[0].clientX - startX;
+    let tarjetaWidth = document.querySelector(".tarjeta").offsetWidth + 20;
+    if (moveX < -50) {
+        currentTranslate -= tarjetaWidth;
+    } else if (moveX > 50) {
+        currentTranslate += tarjetaWidth;
+    }
+    wrapper.style.transform = `translateX(${currentTranslate}px)`;
+});
+
+// Funcionalidad de popups
+function mostrarPopup(titulo, descripcion) {
+    document.getElementById("popup-titulo").innerHTML = titulo;
+    document.getElementById("popup-descripcion").innerHTML = descripcion;
+    document.getElementById("popup").classList.add("mostrar");
+}
+
+function cerrarPopup() {
+    document.getElementById("popup").classList.remove("mostrar");
+}
+
+// Funcionalidad de indicadores
+function actualizarIndicadores() {
+    let indicadores = document.getElementById("indicadores");
+    indicadores.innerHTML = "";
+    let tarjetas = document.querySelectorAll(".tarjeta");
+    tarjetas.forEach((_, index) => {
+        let indicador = document.createElement("div");
+        indicador.classList.add("indicador");
+        if (index === 0) indicador.classList.add("activo");
+        indicador.onclick = () => moverCarrusel(index);
+        indicadores.appendChild(indicador);
+    });
+}
+
+function moverCarrusel(index) {
+    let tarjetaWidth = document.querySelector(".tarjeta").offsetWidth + 20;
+    currentTranslate = -index * tarjetaWidth;
+    wrapper.style.transform = `translateX(${currentTranslate}px)`;
+    document.querySelectorAll(".indicador").forEach((el, i) => {
+        el.classList.toggle("activo", i === index);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", actualizarIndicadores);
+
+		
+		//servicios
+		  function cambiarVideo(src, descripcion) {
+            const video = document.getElementById('mainVideo');
+            video.src = src;
+            document.getElementById('videoDescription').textContent = descripcion;
+            video.load();
+        }
+		
+		//paquetes
+		 function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(event) {
+            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-button')){
+                event.target.closest('.modal-overlay').style.display = 'none';
+            }
+        }
+        function switchSection(sectionId) {
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+}
+
+        function sendWhatsApp(packageName) {
+            window.open(`https://wa.me/573018282771/?text=Quiero%20más%20información%20del%20paquete%20${packageName}`, '_blank');
+        }
+        function sendWhatsApp1(packageName) {
+            window.open(`https://wa.me/573018282771/?text=Quiero%20más%20información%20de%20${packageName}`, '_blank');
+        }
+		//redes
+		 function enviarComentario(event) {
+            event.preventDefault();
+            const mensaje = document.querySelector('.contact-form textarea').value;
+            window.location.href = `mailto:overlineagenciagrafica@gmail.com?subject=Mensaje de contacto&body=${encodeURIComponent(mensaje)}`;
+        }
+    </script>
+</body>
+</html>
