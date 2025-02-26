@@ -89,7 +89,7 @@ body {
     position: absolute;
     top: 0;
     left: 100vw;
-    transition: left 0.8s ease-in-out;
+    transition: left 0.5s ease-in-out;
 }
 
 .seccion.activa {
@@ -121,22 +121,22 @@ body {
 }
 
 /* Imágenes por defecto (PC) */
+.slide:nth-child(1) { background-image: url('banner-pc-1.jpg'); }
 .slide:nth-child(2) { background-image: url('banner-pc-2.jpg'); }
 .slide:nth-child(3) { background-image: url('banner-pc-3.jpg'); }
-.slide:nth-child(1) { background-image: url('banner-pc-1.jpg'); }
 
 /* Imágenes para Tablet */
 @media (max-width: 1023px) {
+    .slide:nth-child(1) { background-image: url('banner-tablet-1.jpg'); }
     .slide:nth-child(2) { background-image: url('banner-tablet-2.jpg'); }
     .slide:nth-child(3) { background-image: url('banner-tablet-3.jpg'); }
-    .slide:nth-child(1) { background-image: url('banner-tablet-1.jpg'); }
 }
 
 /* Imágenes para Móvil */
 @media (max-width: 767px) {
+    .slide:nth-child(1) { background-image: url('banner-movil-1.jpg'); }
     .slide:nth-child(2) { background-image: url('banner-movil-2.jpg'); }
     .slide:nth-child(3) { background-image: url('banner-movil-3.jpg'); }
-    .slide:nth-child(1) { background-image: url('banner-movil-1.jpg'); }
 }
 
 	
@@ -535,7 +535,7 @@ body {
   color: #ccdefa;
 }
 		
-		/*redes*/
+		/*redes--------------------------------------------------------------------*/
 		.redes {
 		    display: flex;
             gap: 15px;
@@ -688,31 +688,31 @@ body {
           <div class="clientes-container" id="clientesContainer">
 			  
         <div class="clientes-wrapper" id="clientesWrapper">
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p> <img src=\'c_01.png\'><img src=\'c_02.png\'><img src=\'c_03.png\'><img src=\'necio reel 1.gif\'><img src=\'necio reel 2.gif\'><img src=\'Comp 1.gif\'>')">
                 <img class="fondo" src="cliente1.jpg" alt="Cliente 1">
                 <img class="logo" src="logo1.png" alt="Cliente 1">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-bye.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente2.jpg" alt="Cliente 2">
                 <img class="logo" src="logo2.png" alt="Cliente 2">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-gustavo.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente3.jpg" alt="Cliente 3">
                 <img class="logo" src="logo3.png" alt="Cliente 3">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-overline.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente4.jpg" alt="Cliente 4">
                 <img class="logo" src="logo4.png" alt="Cliente 4">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-odc.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente5.jpg" alt="Cliente 5">
                 <img class="logo" src="logo5.png" alt="Cliente 5">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-sieramont.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente6.jpg" alt="Cliente 6">
                 <img class="logo" src="logo6.png" alt="Cliente 6">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-rebel.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
                 <img class="fondo" src="cliente7.jpg" alt="Cliente 7">
                 <img class="logo" src="logo7.png" alt="Cliente 7">
             </div>
@@ -788,7 +788,7 @@ body {
         
         <div id="modal1" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)">&times;</span>
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
             <div class="modal-card"><h4>Starter Branding Package</h4>
         <ul>
           <li>-Logo básico (2 propuestas)</li>
@@ -830,7 +830,7 @@ body {
     </div>
     <div id="modal2" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)">&times;</span>
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
             <div class="modal-card"><h4>Starter Branding Package</h4>
         <ul>
           <li>-Logo básico (2 propuestas)</li>
@@ -872,7 +872,7 @@ body {
     </div>
     <div id="modal3" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)">&times;</span>
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
             <div class="modal-card"><h4>Starter Branding Package</h4>
         <ul>
           <li>-Logo básico (2 propuestas)</li>
@@ -914,7 +914,7 @@ body {
 		</div>
     <div id="modal4" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)">&times;</span>
+            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
                 <div class="modal-card2"><h4>Branding y Diseño Gráfico</h4></div>
                 <div class="modal-card1"><h4>Diseño de logo básico (2 propuestas, 1 revisión)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$300,000 COP</button></div>
                 <div class="modal-card1"><h4>Diseño de logo profesional (3 propuestas, 2 revisiones)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
