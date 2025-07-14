@@ -7,16 +7,21 @@
     <title>Overline</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+#video-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
 body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-  background-color: rgba(204,222,250,0.90);
-  background-image: url("fondo.gif");
-  background-size: cover; 
-  background-position: center; 
-  background-attachment: fixed; 
-        }
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(204, 222, 250, 0.90); /* Este color se verá encima del video si quieres overlay */
+}
         .menu-flotante {
             position: fixed;
             bottom: 10px;
@@ -131,22 +136,22 @@ body {
 }
 
 /* Imágenes por defecto (PC) */
-.slide:nth-child(1) { background-image: url('banner-pc-01.jpg'); }
-.slide:nth-child(2) { background-image: url('banner-pc-02.jpg'); }
-.slide:nth-child(3) { background-image: url('banner-pc-03.jpg'); }
+.slide:nth-child(1) { background-image: url('banner-pc-01.webp'); }
+.slide:nth-child(2) { background-image: url('banner-pc-02.webp'); }
+.slide:nth-child(3) { background-image: url('banner-pc-03.webp'); }
 
 /* Imágenes para Tablet */
 @media (max-width: 1023px) {
-    .slide:nth-child(1) { background-image: url('banner-tablet-01.jpg'); }
-    .slide:nth-child(2) { background-image: url('banner-tablet-02.jpg'); }
-    .slide:nth-child(3) { background-image: url('banner-tablet-03.jpg'); }
+    .slide:nth-child(1) { background-image: url('banner-tablet-01.webp'); }
+    .slide:nth-child(2) { background-image: url('banner-tablet-02.webp'); }
+    .slide:nth-child(3) { background-image: url('banner-tablet-03.webp'); }
 }
 
 /* Imágenes para Móvil */
 @media (max-width: 767px) {
-    .slide:nth-child(1) { background-image: url('banner-movil-01.jpg'); }
-    .slide:nth-child(2) { background-image: url('banner-movil-02.jpg'); }
-    .slide:nth-child(3) { background-image: url('banner-movil-03.jpg'); }
+    .slide:nth-child(1) { background-image: url('banner-movil-01.webp'); }
+    .slide:nth-child(2) { background-image: url('banner-movil-02.webp'); }
+    .slide:nth-child(3) { background-image: url('banner-movil-03.webp'); }
 }
 
 	
@@ -369,181 +374,144 @@ body {
             transform: translateX(25px);
         }
 		/*paquetes---------------------------------------------------------------*/
-		 .card-group {
-            display: grid;
-            gap: 20px;
-        }
-        .main-card {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            cursor: pointer;
-            animation: zoomEffect 3s infinite;
-        }
-        .main-card img {
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-        }
-        @keyframes zoomEffect {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        @media (min-width: 1024px) {
-            .card-group {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .main-card {
-                aspect-ratio: 9/16;
-            }
-            .main-card:nth-child(1) img { content: url('basic.png'); }
-            .main-card:nth-child(2) img { content: url('standar.png'); }
-            .main-card:nth-child(3) img { content: url('pro.png'); }
-        }
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .card-group {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto auto;
-            }
-            .main-card:nth-child(1), .main-card:nth-child(2) {
-                aspect-ratio: 1/1;
-            }
-            .main-card:nth-child(3) {
-                aspect-ratio: 16/9;
-                grid-column: span 2;
-            }
-            .main-card:nth-child(1) img { content: url('basicc.png'); }
-            .main-card:nth-child(2) img { content: url('standarc.png'); }
-            .main-card:nth-child(3) img { content: url('proh.png'); }
-        }
-        @media (max-width: 767px) {
-            .card-group {
-                grid-template-columns: 1fr;
-            }
-            .main-card {
-            width: 90%;
-            height: 90%;
-                aspect-ratio: 16/7;
-            }
-            .main-card:nth-child(1) img { content: url('basuch.png'); }
-            .main-card:nth-child(2) img { content: url('standarh.png'); }
-            .main-card:nth-child(3) img { content: url('prosh.png'); }
-        }
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-			 z-index: 100;
-        }
-        .modal-content {
-			background: rgba(255, 255, 255, .1);
-			box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-			border-radius: 50px;
-			border: 2px solid rgba(255, 255, 255, 0.5);
-			border-right: 2px solid rgba(255, 255, 255, . 2);
-			border-bottom: 2px solid rgba(255, 255, 255, .2);
-			backdrop-filter: blur(10px);
-			padding: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 90%; 
-			border-radius: 15px; /* Redondeo de esquinas */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-        .modal-card {
-			 background-color: #FFFFFF;
-  margin-bottom: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  border: 2px solid #017096; /* Borde azul */
-            width: 85%;
-            margin: 5px;
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        .modal-card:hover {
-            transform: scale(1.05);
-        }
-        .modal-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        .modal-card1 {
-			 background-color: #FFFFFF;
-  margin-bottom: 0px;
-  padding: 5px;
-  border-radius: 10px;
-  border: 2px solid #017096; /* Borde azul */
-            width: 85%;
-            margin: 5px;
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        .modal-card1:hover {
-            transform: scale(1.05);
-        }
-        .modal-card2 {
-			 background-color: #017096;
-  margin-bottom: 0px;
-  padding: 5px;
-  border-radius: 10px;
-  border: 2px solid #FFFFFF; /* Borde azul */
-            width: 85%;
-            margin: 5px;
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        .modal-card2:hover {
-            transform: scale(1.05);
-        }
-        .modal-card2 h4 {
-			color: #FFFFFF;
-        }
-        .open-modal-button {
-            margin-top: 20px;
-            padding: 02% 20%;
-            background: #017096;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 15px;
-            font-size: 16px;
-        }
-		.buttons {
-            margin-top: 20px;
-            padding: 02% 20%;
-            background: #017096;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 15px;
-            font-size: 16px;
-        }
-		.card-content {
-  position: absolute;
-  bottom: -12px;
-  left: 20px;
-  color: #ccdefa;
+	 .overline-categories-wrapper {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 20px 10px;
+    }
+    .overline-categories {
+      display: inline-flex;
+      gap: 12px;
+    }
+    .overline-category-btn {
+      width: 216px;
+      height: 384px;
+      background-image: url("Contenido-Mensual.webp");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      animation: overline-pulse 2s infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      flex-shrink: 0;
+    }
+		.overline-categories button:nth-child(1) {
+  background-image: url("Contenido-Mensual.webp"); 
 }
+
+.overline-categories button:nth-child(2) {
+  background-image: url("Audiovisual.webp"); 
+}
+
+.overline-categories button:nth-child(3) {
+  background-image: url("Fotografía.webp"); 
+}
+
+.overline-categories button:nth-child(4) {
+  background-image: url("Branding.webp");
+}
+
+.overline-categories button:nth-child(5) {
+  background-image: url("Papelería.webp"); 
+}
+
+.overline-categories button:nth-child(6) {
+  background-image: url("Redes.webp"); 
+}
+
+.overline-categories button:nth-child(7) {
+  background-image: url("Streaming.webp");
+}
+
+.overline-categories button:nth-child(8) {
+  background-image: url("Copy.webp"); 
+}
+
+.overline-categories button:nth-child(9) {
+  background-image: url("Eventos.webp");
+}
+
+.overline-categories button:nth-child(10) {
+  background-image: url("Extras.webp"); 
+}
+    .overline-category-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    @keyframes overline-pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.01); }
+      100% { transform: scale(1); }
+    }
+    .overline-popup {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .overline-popup-content {
+      background-color: #fff;
+      border-radius: 20px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+      width: 100%;
+      max-width: 360px;
+      position: relative;
+    }
+    .overline-popup h3 {
+      color: #0044cc;
+    }
+    .overline-service-item {
+      margin-bottom: 20px;
+      color: #333;
+      background: #f2f2f2;
+      padding: 15px;
+      border-radius: 12px;
+    }
+    .overline-service-item p {
+      margin: 5px 0 10px;
+    }
+    .overline-whatsapp-link {
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .overline-whatsapp-link:hover {
+      background-color: #1ebe5d;
+    }
+    .overline-close-btn {
+      background: #ccc;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
 		
 		/*redes--------------------------------------------------------------------*/
 		.redes {
@@ -646,40 +614,138 @@ body {
   color: #017096;
         }
 		.titulo-seccion {
-    position: absolute;
-    top: 05%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 10px 20px;
-    font-size: 25px;
-    font-weight: bold;
-    color: #017096; 
-    z-index: 10;
-    text-align: center;
-    animation: latido 1.5s infinite ease-in-out;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #017096;
+  z-index: 10;
+  text-align: center;
+  animation: latido 1.5s infinite ease-in-out;
 }
-		@keyframes latido {
-    0% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.1); }
-    100% { transform: translateX(-50%) scale(1); }
+
+@keyframes latido {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.1); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+.blog-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 150px;
+  padding: 0 20px;
+}
+
+.blog-card {
+  width: 300px;
+  cursor: pointer;
+  text-align: center;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.blog-card:hover {
+  transform: scale(1.05);
+}
+.blog-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.blog-card h3 {
+  padding: 10px;
+  color: #017096;
+}
+
+/* --- POPUP ESTILO RETRO --- */
+.popup-retro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.popup-ventana {
+  background: #fce5d4;
+  border: 4px solid #017096;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  position: relative;
+}
+
+.popup-barra-superior {
+  background: #017096;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.popup-botones span {
+  z-index: 200;
+  position: relative;
+  font-size: 18px;
+}
+.popup-cuerpo {
+  padding: 20px;
+  color: #333;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.popup-cuerpo img.popup-img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #017096;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.popup-cuerpo h2 {
+  margin-bottom: 10px;
+  color: #017096;
 }
 
     </style>
 </head>
 <body>
-   
+   <video autoplay muted loop playsinline id="video-fondo">
+  <source src="fondo.webm" type="video/webm">
+  Tu navegador no soporta video HTML5.
+</video>
     <nav class="menu-flotante">
         <a onclick="cambiarSeccion('inicio')" data-title="Inicio"><img src="home.gif" data-hover="home.gif" alt="Inicio" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="home.gif"></a>
         <a onclick="cambiarSeccion('clientes')" data-title="clientes"><img src="client.gif" data-hover="client.gif" alt="clientes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="client.gif"></a>
         <a onclick="cambiarSeccion('servicios')" data-title="servicios"><img src="servi.gif" data-hover="servi.gif" alt="servicios" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="servi.gif"></a>
         <a onclick="cambiarSeccion('paquetes')" data-title="paquetes"><img src="pack.gif" data-hover="pack.gif" alt="paquetes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="pack.gif"></a>
         <a onclick="cambiarSeccion('contacto')" data-title="contacto"><img src="contact.gif" data-hover="contact.gif" alt="contacto" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="contact.gif"></a>
-        <a onclick="cambiarSeccion('contacto')" data-title="contacto"><img src="contact.gif" data-hover="contact.gif" alt="contacto" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="contact.gif"></a>
+        <a onclick="cambiarSeccion('blog')" data-title="blog"><img src="blog.gif" data-hover="blog.gif" alt="blog" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="blog.gif"></a>
     </nav>
     
     <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/3018282771'"><img src="icono wsp.png" alt="WhatsApp"></div>
@@ -699,33 +765,41 @@ body {
           <div class="clientes-container" id="clientesContainer">
 			  
         <div class="clientes-wrapper" id="clientesWrapper">
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p> <img src=\'necio reel 1.gif\'><img src=\'necio reel 2.gif\'><img src=\'Comp 1.gif\'><img src=\'Pocima_01.png\'><img src=\'grito_01.png\'><img src=\'carreta_01.png\'><img src=\'colombia-uruguay.png\'><img src=\'ecuador.png\'><img src=\'completo.png\'>')">
-                <img class="fondo" src="cliente1.jpg" alt="Cliente 1">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'logo-necio.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p> <video src=\'NECIO1.webm\' controls></video><video src=\'NECIO2.webm\' controls></video><video src=\'NECIO3.webm\' controls></video><img src=\'Pocima_01.webp\'><img src=\'grito_01.webp\'><img src=\'carreta_01.webp\'><img src=\'colombia-uruguay.webp\'><img src=\'ecuador.webp\'><img src=\'completo.webp\'>')">
+                <img class="fondo" src="cliente1.webp" alt="Cliente 1">
                 <img class="logo" src="logo1.png" alt="Cliente 1">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-odc.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
-                <img class="fondo" src="cliente5.jpg" alt="Cliente 5">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-odc.png\'>', '<p>Con ODC, Oficina de Diseño y Construcción, se fortaleció la identidad visual de la marca mediante la creación de un sistema gráfico coherente, versátil y profesional. Se desarrollaron piezas de comunicación visual, se definió una línea estética para redes sociales y se diseñaron múltiples recursos de presentación comercial. Además, se dio inicio a la gestión de contenido para plataformas digitales, enfocándose en proyectar los valores de la marca y sus servicios de diseño y construcción de forma clara, atractiva y estratégica.</p><video src=\'odc01.webm\' controls></video><video src=\'odc02.webm\' controls></video><video src=\'odc03.webm\' controls></video><video src=\'odc04.webm\' controls></video><img src=\'odc1.webp\'><img src=\'odc2.webp\'><img src=\'odc3.webp\'><img src=\'odc4.webp\'><img src=\'odc5.webp\'><img src=\'odc6.webp\'>')">
+                <img class="fondo" src="cliente5.webp" alt="Cliente 5">
                 <img class="logo" src="logo5.png" alt="Cliente 5">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-sieramont.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
-                <img class="fondo" src="cliente6.jpg" alt="Cliente 6">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-sieramont.png\'>', '<p>Con Sieramont, condominio campestre ubicado a 10 minutos de Valledupar, construimos una identidad de marca sólida y diferencial desde sus cimientos. Creamos el logotipo y definimos una paleta de colores y tipografías que evocan la naturaleza y el confort campestre. Desarrollamos un manual de identidad visual que incluye aplicaciones en señalética, papelería y merchandising. Para la presencia digital, diseñamos un sitio web responsivo con recorrido virtual en 3D y se implementó una estrategia de contenido en redes sociales, destacando la experiencia de vida al aire libre y las amenidades del condominio. Además, producimos materiales comerciales (renders, folletos y presentaciones dinámicas) orientados a atraer y convertir prospectos de alto valor.</p><video src=\'siera01.webm\' controls></video><video src=\'siera02.webm\' controls></video><video src=\'siera03.webm\' controls></video><img src=\'sm1.webp\'><img src=\'sm3.webp\'><img src=\'sm9.webp\'><img src=\'sm4.webp\'><img src=\'sm8.webp\'><img src=\'sm7.webp\'><img src=\'sm6.webp\'><img src=\'sm2.webp\'><img src=\'sm5.webp\'>')">
+                <img class="fondo" src="cliente6.webp" alt="Cliente 6">
                 <img class="logo" src="logo6.png" alt="Cliente 6">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-gustavo.png\'>', '<p>Con el psiquieatra de la infancia y adolecencia el dr. Gustavo Lara, se creo la marca desde 0 haciendo logo, paleta de colores, estilo para redes y todo el brandingo como tal, iniciando a trabajar su social media con contenido para redes.</p> <img src=\'t1.png\'>')">
-                <img class="fondo" src="cliente3.jpg" alt="Cliente 3">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-gustavo.png\'>', '<p>Con el Dr. Gustavo Lara, especialista en psiquiatría infantil y del adolescente, desarrollamos la marca desde cero. Creamos el logotipo, definimos la paleta de colores, el estilo visual para redes sociales y todo el sistema de identidad visual. A partir de ello, iniciamos la gestión de su presencia en redes sociales mediante una estrategia de contenido alineada con su propuesta de valor y enfoque profesional.</p><video src=\'GUS01.webm\' controls></video><video src=\'GUS02.webm\' controls></video><video src=\'GUS03.webm\' controls></video><video src=\'GUS04.webm\' controls></video><video src=\'GUS05.webm\' controls></video><video src=\'GUS06.webm\' controls></video><img src=\'Gus1.webp\'><img src=\'Gus2.webp\'><img src=\'Gus3.webp\'><img src=\'Gus4.webp\'>')">
+                <img class="fondo" src="cliente3.webp" alt="Cliente 3">
                 <img class="logo" src="logo3.png" alt="Cliente 3">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-rebel.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
-                <img class="fondo" src="cliente7.jpg" alt="Cliente 7">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-rebel.png\'>', '<p>Con Rebel Boys, marca de ropa urbana especializada en camisetas oversize, se desarrolló un reel publicitario dinámico enfocado en destacar sus precios competitivos y estilo streetwear. La pieza fue pensada para redes sociales, con enfoque en ventas mayoristas y al detal, e incluyó modelo, tomas de producto y una narrativa visual alineada con la identidad juvenil y urbana de la marca.</p><video src=\'rebel.webm\' controls></video>')">
+                <img class="fondo" src="cliente7.webp" alt="Cliente 7">
                 <img class="logo" src="logo7.png" alt="Cliente 7">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-bye.png\'>', '<p>Con B&E bandas y esdtructuras se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca.</p> <img src=\'bbb.png\'><img src=\'t1.png\'><img src=\'t2.png\'>')">
-                <img class="fondo" src="cliente2.jpg" alt="Cliente 2">
-                <img class="logo" src="logo2.png" alt="Cliente 2">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-lyg.png\'>', '<p>Con Industria L&G, empresa especializada en diseño y fabricación de carrocerías para camiones, se creó contenido digital estratégico enfocado en redes sociales. Se produjeron reels dinámicos que muestran procesos, productos y beneficios de sus carrocerías, combinando enfoques comerciales, técnicos y de entretenimiento. Además, se diseñaron carruseles informativos y promocionales, alineados con la identidad visual de la marca, con el objetivo de educar al público y potenciar el reconocimiento de la empresa en el sector industrial y de transporte.</p><video src=\'LYG01.webm\' controls></video><video src=\'LYG02.webm\' controls></video><video src=\'LYG03.webm\' controls></video><img src=\'lyg1.webp\'><img src=\'lyg2.webp\'><img src=\'lyg3.webp\'><img src=\'lyg4.webp\'><img src=\'lyg5.webp\'><img src=\'lyg6.webp\'><img src=\'lyg7.webp\'>')">
+                <img class="fondo" src="cliente9.webp" alt="Cliente 4">
+                <img class="logo" src="logo9.png" alt="Cliente 4">
             </div>
-            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-overline.png\'>', '<p>Con el bar necio se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca, buscando asi darle un tono mas formal a la par que serio.</p>')">
-                <img class="fondo" src="cliente4.jpg" alt="Cliente 4">
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-overline.png\'>', '<p>En Overline, desarrollamos nuestra identidad desde cero con el objetivo de proyectar una agencia moderna, versátil y orientada a resultados. Creamos un logotipo distintivo, definimos una paleta de colores funcional y construimos un sistema visual coherente para todas nuestras plataformas. Además, diseñamos una página web interactiva con animaciones, pop-ups, redirección a WhatsApp para todos los servicios, y un menú flotante que facilita la navegación en cualquier dispositivo. Nuestra estrategia de contenido está centrada en mostrar nuestras capacidades en diseño, fotografía, video, campañas digitales y branding, consolidando así nuestra presencia como una agencia integral de comunicación visual.</p><video src=\'over01.webm\' controls></video><video src=\'over02.webm\' controls></video><video src=\'over03.webm\' controls></video><img src=\'ov1.webp\'><img src=\'ov2.webp\'><img src=\'ov3.webp\'><img src=\'ov4.webp\'><img src=\'ov5.webp\'><img src=\'ov6.webp\'><img src=\'ov7.webp\'>')">
+                <img class="fondo" src="cliente4.webp" alt="Cliente 4">
                 <img class="logo" src="logo4.png" alt="Cliente 4">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-jbur.png\'>', '<p>Con JBurguer, marca de hamburguesas artesanales, realizamos una sesión de fotos profesional enfocada en resaltar la calidad visual y apetecible de sus productos, optimizadas para su uso en redes sociales, carta digital y material publicitario. Actualmente, nos encontramos en proceso de rediseño del menú, buscando mejorar la experiencia del cliente, optimizar la lectura y reforzar la identidad visual de la marca a través de un diseño atractivo, funcional y coherente con su estilo urbano y moderno.</p><img src=\'jb1.webp\'><img src=\'jb2.webp\'>')">
+                <img class="fondo" src="cliente8.webp" alt="Cliente 4">
+                <img class="logo" src="logo8.png" alt="Cliente 4">
+            </div>
+            <div class="tarjeta" onclick="mostrarPopup('<img src=\'loguito-bye.png\'>', '<p>Con B&E bandas y esdtructuras se realizo un rebranding, donde se rediseño el logo, se replanteo la paleta de colores y el estilo grafico de la marca.</p> <img src=\'bbb.webp\'><img src=\'t1.webp\'><img src=\'t2.webp\'>')">
+                <img class="fondo" src="cliente2.webp" alt="Cliente 2">
+                <img class="logo" src="logo2.png" alt="Cliente 2">
             </div>
         </div>
     </div>
@@ -742,33 +816,17 @@ body {
 		    <div class="videos-container">
             <div class="video-controls">
                 <label class="switch">
-                    <input type="radio" name="video" checked onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <input type="radio" name="video" checked onclick="cambiarVideo('identidad de marca.webm')">
                     <span class="slider"></span>
                 </label>
                 <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
-                    <span class="slider"></span>
-                </label>
-                <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
-                    <span class="slider"></span>
-                </label>
-                <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
-                    <span class="slider"></span>
-                </label>
-                <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
-                    <span class="slider"></span>
-                </label>
-                <label class="switch">
-                    <input type="radio" name="video" onclick="cambiarVideo('VID_20250116_082948_099.mp4')">
+                    <input type="radio" name="video" onclick="cambiarVideo('produccion de video.webm')">
                     <span class="slider"></span>
                 </label>
             </div>
             <div class="video-player">
                 <video id="mainVideo" controls>
-                    <source src="VID_20250116_082948_099.mp4" type="video/mp4">
+                    <source src="identidad de marca.webm" type="video/mp4">
                     Tu navegador no soporta la etiqueta de video.
                 </video>
             </div>
@@ -778,185 +836,494 @@ body {
         <section id="paquetes" class="seccion">
 			
 			<div class="titulo-seccion">Nuestros Paquetes</div>
-          <div class="page-section active">
-            <div class="card-group">
-                <div class="main-card" onclick="openModal('modal1')"><img src="basic.png" alt="Package 1">
-				<div class="card-content">
-      <h3>Iniciales</h3>
-    </div></div>
-                <div class="main-card" onclick="openModal('modal2')"><img src="standar.png" alt="Package 2">
-    <div class="card-content">
-      <h3>Intermedios</h3>
-    </div></div>
-                <div class="main-card" onclick="openModal('modal3')"><img src="pro.png" alt="Package 3">
-    <div class="card-content">
-      <h3>Avanzados</h3>
-    </div></div>
-            </div>
-            <button class="open-modal-button" onclick="openModal('modal4')">Ver paquetes</button>
-            </div>
-        </section>
-        
-        <div id="modal1" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
-            <div class="modal-card"><h4>Starter Branding Package</h4>
-        <ul>
-          <li>-Logo básico (2 propuestas)</li>
-          <li>-Paleta de colores</li>
-          <li>-Tipografía recomendada</li>
-          <li>-Entrega en formatos digitales básicos</li>
-        </ul><button onclick="sendWhatsApp('Starter Branding Package')" class="buttons">$400,000 COP</button></div>
-                <div class="modal-card"><h4>Fotografía Básica</h4>
-        <ul>
-          <li>-Sesión de 2 horas (en la ubicación del cliente o espacio acordado)</li>
-          <li>-Hasta 10 fotos editadas</li>
-          <li>-Edición básica en Lightroom</li>
-        </ul><button onclick="sendWhatsApp('Fotografía Básica')" class="buttons">$500,000 COP</button></div>
-                <div class="modal-card"><h4>Social Media Starter</h4>
-        <ul>
-          <li>-10 piezas gráficas para redes sociales</li>
-          <li>-Asesoría básica en estrategia de publicación</li>
-          <li>-Configuración inicial de perfiles</li>
-        </ul><button onclick="sendWhatsApp('Social Media Starter')" class="buttons">$600,000 COP</button></div>
-                <div class="modal-card"><h4>Video Mini-Spot</h4>
-        <ul>
-          <li>-Video promocional de 30 segundos</li>
-          <li>-Grabación con equipo portátil en la ubicación del cliente</li>
-          <li>-Edición básica y entrega en calidad HD</li>
-        </ul><button onclick="sendWhatsApp('Video Mini-Spot')" class="buttons">$700,000 COP</button></div>
-                <div class="modal-card"><h4>Mini Campaña Publicitaria</h4>
-        <ul>
-          <li>-5 piezas gráficas (para redes sociales o impresos)</li>
-          <li>-Asesoría en texto publicitario</li>
-          <li>-Plan básico de pautas digitales (sin incluir presupuesto de ads)</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$800,000 COP</button></div>
-                <div class="modal-card"><h4>Diseño para Presentaciones Corporativas</h4>
-        <ul>
-          <li>-Diseño de una presentación profesional de hasta 10 diapositivas</li>
-          <li>-Personalización con identidad de marca</li>
-          <li>-Entrega en PowerPoint y PDF</li>
-        </ul><button onclick="sendWhatsApp('Diseño para Presentaciones Corporativas')" class="buttons">$850,000 COP</button></div>
-        </div>
+			<div class="overline-categories-wrapper">
+    <div class="overline-categories">
+      <button class="overline-category-btn" onclick="openPopup('popup-contenido')">Contenido<br>Mensual</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-audiovisual')">Audiovisual</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-fotografia')">Fotografía</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-branding')">Branding</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-papeleria')">Papelería</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-redes')">Redes Sociales</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-streaming')">Streaming</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-copy')">Copy & Ads</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-eventos')">Eventos</button>
+      <button class="overline-category-btn" onclick="openPopup('popup-extras')">Extras</button>
     </div>
-    <div id="modal2" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
-            <div class="modal-card"><h4>Starter Branding Package</h4>
-        <ul>
-          <li>-Logo básico (2 propuestas)</li>
-          <li>-Paleta de colores</li>
-          <li>-Tipografía recomendada</li>
-          <li>-Entrega en formatos digitales básicos</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$400,000 COP</button></div>
-                <div class="modal-card"><h4>Fotografía Básica</h4>
-        <ul>
-          <li>-Sesión de 2 horas (en la ubicación del cliente o espacio acordado)</li>
-          <li>-Hasta 10 fotos editadas</li>
-          <li>-Edición básica en Lightroom</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$500,000 COP</button></div>
-                <div class="modal-card"><h4>Social Media Starter</h4>
-        <ul>
-          <li>-10 piezas gráficas para redes sociales</li>
-          <li>-Asesoría básica en estrategia de publicación</li>
-          <li>-Configuración inicial de perfiles</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$600,000 COP</button></div>
-                <div class="modal-card"><h4>Video Mini-Spot</h4>
-        <ul>
-          <li>-Video promocional de 30 segundos</li>
-          <li>-Grabación con equipo portátil en la ubicación del cliente</li>
-          <li>-Edición básica y entrega en calidad HD</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$700,000 COP</button></div>
-                <div class="modal-card"><h4>Mini Campaña Publicitaria</h4>
-        <ul>
-          <li>-5 piezas gráficas (para redes sociales o impresos)</li>
-          <li>-Asesoría en texto publicitario</li>
-          <li>-Plan básico de pautas digitales (sin incluir presupuesto de ads)</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$800,000 COP</button></div>
-                <div class="modal-card"><h4>Diseño para Presentaciones Corporativas</h4>
-        <ul>
-          <li>-Diseño de una presentación profesional de hasta 10 diapositivas</li>
-          <li>-Personalización con identidad de marca</li>
-          <li>-Entrega en PowerPoint y PDF</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$850,000 COP</button></div>
-        </div>
+  </div>
+
+  <div id="popup-contenido" class="overline-popup" onclick="outsideClick(event, 'popup-contenido')">
+    <div class="overline-popup-content">
+      <button class="overline-close-btn" onclick="closePopup('popup-contenido')">X</button>
+      <h3>Paquetes de Contenido Mensual</h3>
+      <div class="overline-service-item">
+        <strong>PAQUETE ESENCIAL</strong>
+        <p>-4 Reels (1 por semana)<br>-2 Carruseles (10 slides c/u)<br>-reunión mensual<br>-optimización de copywriting y hashtags.</p>
+        <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20estoy%20interesado%20en%20el%20PAQUETE%20ESENCIAL">Solicitar por WhatsApp</a>
+      </div>
+      <div class="overline-service-item">
+        <strong>PAQUETE CRECIMIENTO</strong>
+        <p>8 Reels<br>-4 Carruseles personalizados<br>-estrategia mensual<br>-reporte básico<br>-optimización visual y textual.</p>
+        <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20más%20info%20sobre%20el%20PAQUETE%20CRECIMIENTO">Solicitar por WhatsApp</a>
+      </div>
+      <div class="overline-service-item">
+        <strong>PAQUETE IMPACTO</strong>
+        <p>12 Reels, 6 Carruseles<br>-plan quincenal de contenido<br>-reel testimonial profesional<br>-reporte mensual detallado.</p>
+        <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20PAQUETE%20IMPACTO">Solicitar por WhatsApp</a>
+      </div>
+      <div class="overline-service-item">
+        <strong>PAQUETE PRO (PERSONALIZADO)</strong>
+        <p>Contenido diario<br>-acompañamiento creativo y guiones<br>-estrategia mensual adaptada a objetivos.</p>
+        <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quisiera%20más%20info%20sobre%20el%20PAQUETE%20PRO%20PERSONALIZADO">Solicitar por WhatsApp</a>
+      </div>
+      <div class="overline-service-item">
+        <strong>PAQUETE VITRINA VISUAL</strong>
+        <p>2 sesiones fotográficas (30 fotos)<br>-3 Reels<br>-3 carruseles<br>-portada de feed<br>-guía de estilo visual.</p>
+        <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20PAQUETE%20VITRINA%20VISUAL">Solicitar por WhatsApp</a>
+      </div>
+      <div class="overline-service-item">
+        <strong>PAQUETE LANZAMIENTO</strong>
+        <p>Reel teaser y lanzamiento<br>-20 fotos<br>-carrusel de valor y CTA<br>-campaña Meta Ads incluida.</p>
+        <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20más%20info%20sobre%20el%20PAQUETE%20LANZAMIENTO">Solicitar por WhatsApp</a>
+      </div>
+      <div class="overline-service-item">
+        <strong>PAQUETE CONSTRUCCIÓN DE PRESENCIA</strong>
+        <p>Logo Pro<br>-3 plantillas<br>-4 reels, 20 fotos<br>-firma de correo<br>-hoja membretada<br>-manual de marca básico.</p>
+        <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Interesado%20en%20PAQUETE%20CONSTRUCCIÓN%20DE%20PRESENCIA">Solicitar por WhatsApp</a>
+      </div>
     </div>
-    <div id="modal3" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
-            <div class="modal-card"><h4>Starter Branding Package</h4>
-        <ul>
-          <li>-Logo básico (2 propuestas)</li>
-          <li>-Paleta de colores</li>
-          <li>-Tipografía recomendada</li>
-          <li>-Entrega en formatos digitales básicos</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$400,000 COP</button></div>
-                <div class="modal-card"><h4>Fotografía Básica</h4>
-        <ul>
-          <li>-Sesión de 2 horas (en la ubicación del cliente o espacio acordado)</li>
-          <li>-Hasta 10 fotos editadas</li>
-          <li>-Edición básica en Lightroom</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$500,000 COP</button></div>
-                <div class="modal-card"><h4>Social Media Starter</h4>
-        <ul>
-          <li>-10 piezas gráficas para redes sociales</li>
-          <li>-Asesoría básica en estrategia de publicación</li>
-          <li>-Configuración inicial de perfiles</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$600,000 COP</button></div>
-                <div class="modal-card"><h4>Video Mini-Spot</h4>
-        <ul>
-          <li>-Video promocional de 30 segundos</li>
-          <li>-Grabación con equipo portátil en la ubicación del cliente</li>
-          <li>-Edición básica y entrega en calidad HD</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$700,000 COP</button></div>
-                <div class="modal-card"><h4>Mini Campaña Publicitaria</h4>
-        <ul>
-          <li>-5 piezas gráficas (para redes sociales o impresos)</li>
-          <li>-Asesoría en texto publicitario</li>
-          <li>-Plan básico de pautas digitales (sin incluir presupuesto de ads)</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$800,000 COP</button></div>
-                <div class="modal-card"><h4>Diseño para Presentaciones Corporativas</h4>
-        <ul>
-          <li>-Diseño de una presentación profesional de hasta 10 diapositivas</li>
-          <li>-Personalización con identidad de marca</li>
-          <li>-Entrega en PowerPoint y PDF</li>
-        </ul><button onclick="sendWhatsApp('Package 1')" class="buttons">$850,000 COP</button></div>
-        </div>
-		</div>
-    <div id="modal4" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal(event)"><img src="x.gif"></span>
-                <div class="modal-card2"><h4>Branding y Diseño Gráfico</h4></div>
-                <div class="modal-card1"><h4>Diseño de logo básico (2 propuestas, 1 revisión)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$300,000 COP</button></div>
-                <div class="modal-card1"><h4>Diseño de logo profesional (3 propuestas, 2 revisiones)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
-                <div class="modal-card1"><h4>Paleta de colores y tipografía recomendada</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$200,000 COP</button></div>
-                <div class="modal-card1"><h4>Manual básico de marca</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$700,000 COP</button></div>
-                <div class="modal-card2"><h4>Diseño de Piezas Gráficas para Redes Sociales</h4></div>
-                <div class="modal-card1"><h4>1 pieza gráfica</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$80,000 COP</button></div>
-                <div class="modal-card1"><h4>10 piezas gráficas</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$700,000 COP</button></div>
-                <div class="modal-card1"><h4>Diseño de presentación profesional (hasta 10 diapositivas)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
-                <div class="modal-card1"><h4>Diseño de papelería corporativa (tarjeta de presentación, membrete y sobre)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$450,000 COP</button></div>
-                <div class="modal-card2"><h4>Fotografía</h4></div>
-                <div class="modal-card1"><h4>Sesión fotográfica básica (2 horas) - Hasta 5 fotos editadas</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$350,000 COP</button></div>
-                <div class="modal-card1"><h4>Sesión fotográfica básica (10 fotos editadas)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$500,000 COP</button></div>
-                <div class="modal-card1"><h4>Edición de fotografías básicas (retoque básico por foto)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$50,000 COP</button></div>
-                <div class="modal-card1"><h4>Fotografía de producto (en fondo blanco, por foto)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$100,000 COP</button></div>
-                <div class="modal-card1"><h4>Paquete de 10 fotos de producto</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$800,000 COP</button></div>
-                <div class="modal-card2"><h4>Producción de Video</h4></div>
-                <div class="modal-card1"><h4>Grabación de un video promocional corto (30 segundos)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
-                <div class="modal-card1"><h4>Edición de video promocional básico</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$350,000 COP</button></div>
-                <div class="modal-card1"><h4>Grabación de un video corporativo (1-2 minutos)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$1,000,000 COP</button></div>
-                <div class="modal-card1"><h4>Edición avanzada de video corporativo</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$800,000 COP</button></div>
-                <div class="modal-card1"><h4>Transiciones y color grading (por video)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$150,000 COP</button></div>
-                <div class="modal-card2"><h4>Publicidad y Estrategias Digitales</h4></div>
-                <div class="modal-card1"><h4>Estrategia básica para redes sociales</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$300,000 COP</button></div>
-                <div class="modal-card1"><h4>Creación de calendario de contenido para redes (1 mes)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$400,000 COP</button></div>
-                <div class="modal-card1"><h4>Texto publicitario (copywriting) para anuncios o redes </h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$150,000 COP</button></div>
-                <div class="modal-card1"><h4>Paquete de 5 textos publicitarios</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$600,000 COP</button></div>
-                <div class="modal-card1"><h4>Configuración inicial de perfiles de redes sociales</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$300,000 COP</button></div>
-                <div class="modal-card1"><h4>Asesoría estratégica en marketing digital (1 hora)</h4><button onclick="sendWhatsApp1('Package 1')" class="buttons">$200,000 COP</button></div>
-        </div>
-		</div>
+  </div>
+  <div id="popup-audiovisual" class="overline-popup" onclick="outsideClick(event, 'popup-audiovisual')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-audiovisual')">X</button>
+    <h3>Producción Audiovisual y Video Marketing</h3>
+
+    <div class="overline-service-item">
+      <strong>REEL PRO</strong>
+      <p>- Video vertical hasta 1 min<br>- Grabación y edición profesional</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Interesado%20en%20REEL%20PRO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>REEL CINE</strong>
+      <p>- Estilo cinematográfico<br>- Guion corto y grabación dirigida<br>- Color grading</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Más%20info%20sobre%20REEL%20CINE">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>SOLO EDÍTALO</strong>
+      <p>- Envíanos tu material<br>- Edición con cortes, música y textos</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20el%20servicio%20SOLO%20EDÍTALO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>FORMATO RÁPIDO</strong>
+      <p>- Video corto hasta 30s<br>- Edición express para tendencias</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Solicito%20FORMATO%20RÁPIDO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>TESTIMONIAL PRO</strong>
+      <p>- Video entrevista<br>- Audio optimizado<br>- Narrativa emocional</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20el%20TESTIMONIAL%20PRO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>REEL EN SERIE (X3)</strong>
+      <p>- 3 Reels secuenciales<br>- Narrativa y visual unificada</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Interesado%20en%20REEL%20EN%20SERIE">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>VIDEO PRODUCTO LIFESTYLE</strong>
+      <p>- Producto en uso real o entorno natural<br>- Video entre 30 y 60s</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Interesado%20en%20VIDEO%20PRODUCTO%20LIFESTYLE">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-fotografia" class="overline-popup" onclick="outsideClick(event, 'popup-fotografia')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-fotografia')">X</button>
+    <h3>Fotografía de Producto y Marca</h3>
+
+    <div class="overline-service-item">
+      <strong>PRODUCTO EXPRESS</strong>
+      <p>- 10 productos<br>- Fondo neutro<br>- 15–20 fotos editadas de alta calidad</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20servicio%20PRODUCTO%20EXPRESS">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>MARCA VISUAL</strong>
+      <p>- Locación + props<br>- Branding visual<br>- 30–40 fotos editadas<br>- Ideal para redes</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20más%20info%20sobre%20el%20servicio%20MARCA%20VISUAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>SESIÓN CREATIVA PRO</strong>
+      <p>- Concepto visual<br>- Dirección de arte<br>- 50 fotos aprox.<br>- Props, locación y edición profesional</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20la%20SESIÓN%20CREATIVA%20PRO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>MINI PRODUCTO (X5)</strong>
+      <p>- Fotografía rápida<br>- Hasta 5 productos<br>- 10–15 fotos editadas</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20el%20servicio%20MINI%20PRODUCTO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>PACK CONTENIDO MENSUAL</strong>
+      <p>- Sesiones para 4 semanas<br>- 50 fotos variadas<br>- 4 videos básicos</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20PACK%20CONTENIDO%20MENSUAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>PACK REBRANDING VISUAL</strong>
+      <p>- Logo Pro<br>- Sesión de marca (40 fotos)<br>- 2 Reels<br>- Portadas visuales<br>- Hoja membretada</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20el%20PACK%20REBRANDING%20VISUAL">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-branding" class="overline-popup" onclick="outsideClick(event, 'popup-branding')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-branding')">X</button>
+    <h3>Branding y Diseño de Identidad Visual</h3>
+
+    <div class="overline-service-item">
+      <strong>LOGO ESENCIAL</strong>
+      <p>- 2 propuestas<br>- Ajustes incluidos<br>- Entrega en PNG, JPG y PDF<br>- Manual básico de color y uso</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20LOGO%20ESENCIAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>LOGO PRO</strong>
+      <p>- 3 propuestas<br>- Entrega en todos los formatos<br>- Manual de marca básico</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20el%20servicio%20LOGO%20PRO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>REDISEÑO DE LOGO</strong>
+      <p>- Modernización de logo existente<br>- Ajustes y variantes<br>- Archivos optimizados</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20REDISEÑO%20DE%20LOGO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>NAMING CREATIVO</strong>
+      <p>- Creación de nombre de marca<br>- Enfoque estratégico<br>- Validación de dominio</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Me%20gustaría%20contratar%20el%20NAMING%20CREATIVO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>MANUAL DE MARCA COMPLETO</strong>
+      <p>- Uso de logo<br>- Tipografías<br>- Paleta de color<br>- Tono y estilo visual<br>- Aplicaciones gráficas</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Deseo%20más%20info%20sobre%20el%20MANUAL%20DE%20MARCA%20COMPLETO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>COMBO MARCA STARTER</strong>
+      <p>- Logo esencial<br>- Papelería básica<br>- Plantilla editable para redes</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20adquirir%20el%20COMBO%20MARCA%20STARTER">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>COMBO MARCA PRO</strong>
+      <p>- Logo Pro<br>- Papelería profesional<br>- 3 plantillas para redes</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Interesado%20en%20el%20COMBO%20MARCA%20PRO">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-papeleria" class="overline-popup" onclick="outsideClick(event, 'popup-papeleria')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-papeleria')">X</button>
+    <h3>Diseño Gráfico y Papelería</h3>
+
+    <div class="overline-service-item">
+      <strong>TARJETA DE PRESENTACIÓN</strong>
+      <p>- Diseño físico y digital<br>- Adaptada a tu identidad visual</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20dise%C3%B1o%20de%20TARJETA%20DE%20PRESENTACI%C3%93N">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>FIRMA HTML PARA CORREO</strong>
+      <p>- Firma profesional clicable<br>- Logo, redes y datos personales</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20una%20FIRMA%20HTML%20PARA%20CORREO%20electr%C3%B3nico">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>HOJA MEMBRETADA + COTIZACIÓN</strong>
+      <p>- Diseño institucional editable<br>- Plantillas profesionales para tus documentos</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Deseo%20la%20HOJA%20MEMBRETADA%20y%20COTIZACI%C3%93N">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>KIT CORPORATIVO PRO</strong>
+      <p>- Tarjeta<br>- Hoja membretada<br>- Firma HTML<br>- Plantilla editable de post o historia</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20el%20KIT%20CORPORATIVO%20PRO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>CERTIFICADO O CONSTANCIA</strong>
+      <p>- Diseño institucional<br>- Formato personalizado con identidad visual</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20el%20dise%C3%B1o%20de%20CERTIFICADO%20O%20CONSTANCIA">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>STICKERS PROMOCIONALES</strong>
+      <p>- Diseño de hasta 3 etiquetas o adhesivos<br>- Estilo acorde a tu branding</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Solicito%20el%20servicio%20de%20STICKERS%20PROMOCIONALES">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>PLANTILLA CANVA EDITABLE</strong>
+      <p>- Plantilla adaptable para post, carrusel o historia<br>- Editable desde Canva</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20una%20PLANTILLA%20CANVA%20EDITABLE">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-redes" class="overline-popup" onclick="outsideClick(event, 'popup-redes')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-redes')">X</button>
+    <h3>Diseño para Redes y Formatos Digitales</h3>
+
+    <div class="overline-service-item">
+      <strong>CARRUSEL 10X</strong>
+      <p>- Carrusel de 10 slides<br>- Diseño atractivo y estratégico</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20un%20CARRUSEL%2010X%20para%20redes">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>POST ÚNICO</strong>
+      <p>- Pieza gráfica para feed o historia</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20un%20POST%20ÚNICO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>MINI PORTADA</strong>
+      <p>- Diseño para reels o videos verticales</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Necesito%20una%20MINI%20PORTADA%20para%20videos">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>MINIATURA IMPACTO</strong>
+      <p>- Diseño tipo YouTube<br>- Enfocado en generar clics</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20una%20MINIATURA%20IMPACTO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>PORTADA PARA CANAL</strong>
+      <p>- Banner para YouTube, Twitch o redes</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Solicito%20una%20PORTADA%20PARA%20CANAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>DISEÑO DE AVATAR</strong>
+      <p>- Imagen de perfil personalizada<br>- Ideal para marcas y creadores</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20un%20DISEÑO%20DE%20AVATAR">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>COLLAGE DIGITAL</strong>
+      <p>- Collage visual con fotos o productos</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20un%20COLLAGE%20DIGITAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>FORMATO ADICIONAL</strong>
+      <p>- Adaptación de una pieza a otro tamaño o red</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quisiera%20un%20FORMATO%20ADICIONAL%20para%20una%20pieza%20gráfica">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-streaming" class="overline-popup" onclick="outsideClick(event, 'popup-streaming')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-streaming')">X</button>
+    <h3>Streaming y Visuales Digitales</h3>
+
+    <div class="overline-service-item">
+      <strong>OVERLAY SUPREME</strong>
+      <p>- Diseño completo para transmisiones<br>- Compatible con OBS y Streamlabs</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20me%20interesa%20el%20OVERLAY%20SUPREME%20para%20streaming">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>INTERMEDIOS PRO</strong>
+      <p>- Pantallas de pausa, inicio o cierre<br>- Diseño alineado a tu identidad visual</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20los%20INTERMEDIOS%20PRO%20para%20mis%20transmisiones">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>KIT FULL STREAM</strong>
+      <p>- Overlay + 3 intermedios<br>- Banner + alertas<br>- Estilo personalizado para tu canal</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20el%20KIT%20FULL%20STREAM">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>ALERT PACK</strong>
+      <p>- Alertas visuales personalizadas<br>- Subs, donaciones, nuevos seguidores, etc.</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20me%20interesa%20el%20ALERT%20PACK%20para%20mi%20stream">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>INTRO LOGO ANIMADA</strong>
+      <p>- Animación profesional de tu logo<br>- Duración: 3–7 segundos<br>- Ideal para intros de video o stream</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20una%20INTRO%20LOGO%20ANIMADA">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-copy" class="overline-popup" onclick="outsideClick(event, 'popup-copy')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-copy')">X</button>
+    <h3>Campañas, Copy y Asesorías</h3>
+
+    <div class="overline-service-item">
+      <strong>ASESORÍA ESTRATÉGICA</strong>
+      <p>- Revisión de estrategia de marca o contenido<br>
+      - Recomendaciones aplicables</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20una%20ASESOR%C3%8DA%20ESTRAT%C3%89GICA">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>GUION PARA REEL O VIDEO</strong>
+      <p>- Script corto con enfoque narrativo y comercial<br>
+      - Ideal para reels o anuncios</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20necesito%20un%20GUION%20PARA%20REEL%20O%20VIDEO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>COPYWRITING PRO</strong>
+      <p>- Textos para redes o publicidad<br>
+      - Adaptados a tono de marca</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20servicio%20de%20COPYWRITING%20PRO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>CAMPAÑA META ADS (1)</strong>
+      <p>- Diseño, segmentación y publicación<br>
+      - No incluye presupuesto de pauta</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20contratar%20una%20CAMPA%C3%91A%20META%20ADS">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>PAUTA MENSUAL</strong>
+      <p>- Administración de campañas<br>
+      - Reportes incluidos<br>
+      - No incluye valor de pauta</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20gesti%C3%B3n%20de%20PAUTA%20MENSUAL">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-eventos" class="overline-popup" onclick="outsideClick(event, 'popup-eventos')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-eventos')">X</button>
+    <h3>Eventos y Coberturas Especiales</h3>
+
+    <div class="overline-service-item">
+      <strong>BODAS - RECUERDO ETERNO</strong>
+      <p>- 20 fotos editadas<br>
+      - Video resumen del evento</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20el%20servicio%20BODAS%20-%20RECUERDO%20ETERNO">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>BODA CLÁSICA</strong>
+      <p>- 40 fotos<br>
+      - Video corto editado</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20me%20interesa%20la%20BODA%20CL%C3%81SICA">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>BODA PREMIUM</strong>
+      <p>- 80 fotos<br>
+      - Video completo de la boda</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20deseo%20más%20info%20de%20la%20BODA%20PREMIUM">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>CELEBRACIONES - MOMENTOS EXPRESS</strong>
+      <p>- 15 fotos<br>
+      - Clips espontáneos del evento</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20me%20interesan%20los%20MOMENTOS%20EXPRESS">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>EVENTO FAMILIAR</strong>
+      <p>- 35 fotos<br>
+      - Video de 1 minuto</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20cotizar%20un%20EVENTO%20FAMILIAR">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>FULL CELEBRACIÓN</strong>
+      <p>- 60 fotos<br>
+      - Video final editado profesionalmente</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20la%20FULL%20CELEBRACI%C3%93N">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>COBERTURA BÁSICA (CORPORATIVOS)</strong>
+      <p>- 25 fotos<br>
+      - Clips sueltos del evento</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20necesito%20la%20COBERTURA%20B%C3%81SICA%20corporativa">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>JORNADA COMPLETA</strong>
+      <p>- 50 fotos<br>
+      - Video resumen del evento</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20me%20interesa%20la%20JORNADA%20COMPLETA%20corporativa">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>EVENTO PREMIUM</strong>
+      <p>- 80 fotos<br>
+      - Video completo con storytelling</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola%2C%20quiero%20el%20EVENTO%20PREMIUM%20para%20empresa">Solicitar</a>
+    </div>
+  </div>
+</div>
+  <div id="popup-extras" class="overline-popup" onclick="outsideClick(event, 'popup-extras')">
+  <div class="overline-popup-content">
+    <button class="overline-close-btn" onclick="closePopup('popup-extras')">X</button>
+    <h3>Extras y Complementos</h3>
+
+    <div class="overline-service-item">
+      <strong>Reel Adicional</strong>
+      <p>- Producción y edición profesional de 1 reel adicional</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quisiera%20adquirir%20un%20REEL%20ADICIONAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>Carrusel Adicional</strong>
+      <p>- Diseño personalizado de carrusel de 10 slides</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20un%20CARRUSEL%20ADICIONAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>Portada Extra</strong>
+      <p>- Diseño de portada visual impactante para feed o reels</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Quiero%20una%20PORTADA%20EXTRA">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>Collage Digital</strong>
+      <p>- Collage visual con productos o imágenes de marca</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Estoy%20interesado%20en%20un%20COLLAGE%20DIGITAL">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>Formato Adicional</strong>
+      <p>- Adaptación de diseño a formato adicional por red social</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola!%20Necesito%20un%20FORMATO%20ADICIONAL%20para%20otra%20red">Solicitar</a>
+    </div>
+
+    <div class="overline-service-item">
+      <strong>Catálogo PDF / Portafolio Digital</strong>
+      <p>- Diseño de catálogo visual en PDF o formato digital personalizado</p>
+      <a class="overline-whatsapp-link" href="https://wa.me/573018282771?text=Hola!%20Quiero%20un%20CAT%C3%81LOGO%20PDF%20o%20PORTAFOLIO%20DIGITAL">Solicitar</a>
+    </div>
+  </div>
+</div>
+
+  
+  </section>
         
         <section id="contacto" class="seccion">
 			<div class="titulo-seccion">Contacto</div>
@@ -982,9 +1349,164 @@ body {
         </form>
 				</div>
         </section>
+        <section id="blog" class="seccion"><!-- Título de la sección -->
+<div class="titulo-seccion">Blog Overline</div>
+
+<!-- Tarjetas de blog -->
+<div class="blog-grid">
+  <div class="blog-card blog-1" onclick="abrirPopup('popup-retro-1')">
+    <img src="blog1.webp" alt="Blog 1">
+    <h3>¿Tu marca necesita un rediseño? 5 señales claras</h3>
+  </div>
+  <div class="blog-card blog-2" onclick="abrirPopup('popup-retro-2')">
+    <img src="blog2.webp" alt="Blog 2">
+    <h3>El poder de un buen branding: más que un logo</h3>
+  </div>
+</div>
+
+<!-- Popup Blog 1 -->
+<div class="popup-retro" id="popup-retro-1">
+  <div class="popup-ventana">
+    <div class="popup-barra-superior">
+  <div class="popup-botones">
+    <span class="minimizar">—</span>
+    <span class="maximizar">□</span>
+    <span class="cerrar" onclick="cerrarPopup('popup-retro-1')">×</span>
+  </div>
+</div>
+    <div class="popup-cuerpo">
+      <img src="blog1.webp" alt="Imagen del blog 1" class="popup-img">
+      <h2>¿Tu marca necesita un rediseño? 5 señales claras</h2>
+      <h1>🎯 ¿Por qué es importante revisar tu imagen de marca?</h1> 
+      <p>Con el tiempo, los negocios evolucionan. Pero muchas veces su identidad visual se queda atrás. Un rediseño estratégico no es un lujo, es una necesidad cuando tu imagen ya no representa quién eres. En Overline te ayudamos a identificar esas señales que indican que llegó la hora de actualizarte.</p>
+      <h1>🚩 1. Tu logo ya no refleja tu negocio</h1> 
+      <p>Tal vez empezaste con un logo sencillo o creado con herramientas genéricas. Hoy tu empresa ha crecido, tiene más experiencia y otros valores. Tu imagen debería comunicar ese avance.</p>
+      <p><b>💬 Un buen rediseño no borra el pasado, lo transforma.</b></p>
+      <h1>👀 2. Tu competencia se ve mejor</h1> 
+      <p>Haz un ejercicio visual: busca a tu competencia en redes o en Google y compárate. ¿Luce más actual, profesional o coherente? Si ellos impactan más visualmente, es probable que estén captando más atención (y ventas).</p>
+      <p><b>📉 Una marca anticuada puede transmitir desconfianza.</b></p>
+      <h1>🎨 3. Tus colores o tipografías se ven desactualizados</h1> 
+      <p>Algunos colores y estilos envejecen mal si no se adaptan. Las tendencias cambian y el diseño también. El objetivo no es ser “moderno”, sino <b>relevante y alineado con tu esencia.</b></p>
+      <p><b>💡 ¿Tu paleta de colores funciona en digital? ¿Tu tipografía es legible en móvil?</b></p>
+      <h1>🧩 4. No hay coherencia entre tus piezas</h1> 
+      <p>Un logo en un estilo, tus redes con otro, tu web con otro más… Si todo parece hecho por diferentes personas o en diferentes épocas, pierdes profesionalismo.</p>
+      <p><b>🧠 La coherencia construye confianza y solidez.</b></p>
+      <h1>📱 5. Tu presencia online no representa tu nivel actual</h1> 
+      <p>Puede que tengas un gran producto o servicio, pero si tu web o redes se ven descuidadas, no reflejan ese valor. Estás dando una imagen que no te representa.</p> 
+      <p><b>💼 Tu identidad visual debe estar a la altura de lo que ofreces.</b></p>
+      <h1>🟣 Conclusión</h1> 
+      <p>Si te sentiste identificado con al menos una de estas señales, es momento de actuar. No esperes a que tu marca se vuelva invisible o irrelevante. En Overline te ayudamos a evolucionar visualmente sin perder tu esencia.</p>
+      <p><a href="https://wa.me/573018282771?text=Hola%2C%20quiero%20más%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer"><b>📩 Escríbenos para una asesoría gratuita y demos el siguiente paso.</b></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Blog 2 -->
+<div class="popup-retro" id="popup-retro-2">
+  <div class="popup-ventana">
+    <div class="popup-barra-superior">
+      <div class="popup-botones">
+        <span class="minimizar">—</span>
+        <span class="maximizar">□</span>
+        <span class="cerrar" onclick="cerrarPopup('popup-retro-2')">×</span>
+      </div>
+    </div>
+    <div class="popup-cuerpo">
+      <img src="blog2.webp" alt="Imagen del blog 2" class="popup-img">
+      <h2>El poder de un buen branding: más que un logo</h2>
+      <h1>🎯 ¿Qué es realmente el branding?</h1> 
+      <p>Mucha gente piensa que branding es solo un logo bonito. Pero el branding es todo aquello que hace que tu marca sea reconocible, coherente y emocionalmente poderosa. En Overline lo decimos claro: <b>el logo es solo</b></p>
+      <h1>💡 1. Un logo no es suficiente</h1> 
+      <p>Tu marca necesita más que una firma visual. Necesita un sistema completo que transmita su personalidad:<br>
+→ Colores<br>
+→ Tipografía<br>
+→ Estilo gráfico<br>
+→ Tono de voz<br>
+→ Lenguaje visual en redes, web y papelería</p>
+      <p><b>🧠 El logo identifica. El branding conecta.</b></p>
+      <h1>🗣️ 2. Identidad visual vs identidad verbal</h1> 
+      <p>¿Tu marca se ve de una manera pero habla de otra? Eso genera ruido.
+Una identidad sólida tiene una voz que acompaña su diseño:<br>
+Cercana o formal<br>
+Divertida o sobria<br>
+Moderna o clásica</p>
+      <p><b>🔁 Diseño y comunicación deben ir de la mano.</b></p>
+      <h1>❤️ 3. Branding emocional: conecta, no solo vendas</h1> 
+      <p>Las marcas más fuertes hacen sentir algo:<br>
+Apple = estatus<br>
+Nike = superación<br>
+Dove = aceptación<br>
+Spotify = expresión</p>
+      <p><b>⚡ El branding genera emoción, no solo reconocimiento.</b></p>
+      <h1>🧱 4. La coherencia es clave</h1> 
+      <p>¿Tu feed de Instagram se parece a tu sitio web? ¿Tus presentaciones siguen la misma línea que tus posts?
+Cuando todo luce y suena igual, generas una imagen profesional.</p>
+      <p><b>📌 La confianza nace de la consistencia.</b></p>
+      <h1>🏆 5. Ejemplos de marcas que hacen branding bien (y quizá no lo sabías)</h1> 
+      <p><b>Mailchimp:</b></p>
+      <p>estilo divertido, amigable y con una voz informal.</p>
+      <p><b>Spotify:</b></p>
+      <p>versátil pero siempre reconocible.</p>
+      <p><b>Overline:</b></p>
+      <p>(sí, nosotros 👀) cuidamos cada detalle para conectar contigo.</p>
+      <p><b>🚀 Conclusión</b></p>
+      <p>Si tu marca solo tiene un logo, pero no cuenta una historia, no transmite una emoción ni tiene coherencia… no estás construyendo branding, estás improvisando.</p>
+      <p>👉 En Overline te ayudamos a construir <b>una marca con intención y alma.</b></p>
+      <p><a href="https://wa.me/573018282771?text=Hola%2C%20quiero%20más%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer"><b>📩 ¿Listo para transformar tu marca? Escríbenos hoy.</b></a></p>
+    </div>
+  </div>
+</div>
+<!-- Popup Blog 3 -->
+<div class="popup-retro" id="popup-retro-3">
+  <div class="popup-ventana">
+    <div class="popup-barra-superior">
+      <div class="popup-botones">
+        <span class="minimizar">—</span>
+        <span class="maximizar">□</span>
+        <span class="cerrar" onclick="cerrarPopup('popup-retro-3')">×</span>
+      </div>
+    </div>
+    <div class="popup-cuerpo">
+      <img src="blog2.jpg" alt="Imagen del blog 2" class="popup-img">
+      <h2>El poder de un buen branding: más que un logo</h2>
+      <h1></h1> 
+      <p></p>
+      <h1></h1> 
+      <p></p>
+      <p><b></b></p>
+      <h1></h1> 
+      <p></p>
+      <p><b></b></p>
+      <h1></h1> 
+      <p></p>
+      <p><b></b></p>
+      <h1></h1> 
+      <p></p>
+      <p><b></b></p>
+      <h1></h1> 
+      <p></p>
+      <p><a href="https://wa.me/573018282771?text=Hola%2C%20quiero%20más%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer"><b></b></a></p>
+  </div>
+</div>
+</div>
+</section>
     </div>
     
     <script>
+		document.querySelectorAll('.popup-retro').forEach(popup => {
+  popup.addEventListener('click', function(e) {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+});
+		function abrirPopup(id) {
+  document.getElementById(id).style.display = 'flex';
+}
+		function cerrarPopup(id) {
+  const popup = document.getElementById(id);
+  if (popup) popup.style.display = 'none';
+}
         function toggleWhatsApp() {
             alert('Abriendo WhatsApp');
         }
@@ -1083,27 +1605,35 @@ document.addEventListener("DOMContentLoaded", actualizarIndicadores);
         }
 		
 		//paquetes
-		 function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-        function closeModal(event) {
-            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-button')){
-                event.target.closest('.modal-overlay').style.display = 'none';
-            }
-        }
-        function switchSection(sectionId) {
-    document.querySelectorAll('.page-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.getElementById(sectionId).classList.add('active');
-}
+		  function openPopup(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.display = 'flex';
+        document.addEventListener('keydown', escClose);
+      }
+    }
 
-        function sendWhatsApp(packageName) {
-            window.open(`https://wa.me/573018282771/?text=Quiero%20más%20información%20del%20paquete%20${packageName}`, '_blank');
-        }
-        function sendWhatsApp1(packageName) {
-            window.open(`https://wa.me/573018282771/?text=Quiero%20más%20información%20de%20${packageName}`, '_blank');
-        }
+    function closePopup(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.display = 'none';
+        document.removeEventListener('keydown', escClose);
+      }
+    }
+
+    function escClose(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.overline-popup').forEach(p => p.style.display = 'none');
+        document.removeEventListener('keydown', escClose);
+      }
+    }
+
+    function outsideClick(e, id) {
+      const popupContent = document.querySelector(`#${id} .overline-popup-content`);
+      if (!popupContent.contains(e.target)) {
+        closePopup(id);
+      }
+    }
 		//redes
 		 function enviarComentario(event) {
             event.preventDefault();
