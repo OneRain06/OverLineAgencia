@@ -732,6 +732,136 @@ body {
   color: #017096;
 }
 
+		/*chatbot*/
+/* CONTENEDOR PRINCIPAL DEL CHAT */
+#grass-wrapper {
+  position: fixed;
+  bottom: 80px;
+  left: -20px; /* oculto parcialmente */
+  width: 360px;
+  height: 420px;
+  display: flex;
+  align-items: flex-end;
+  z-index: 9999;
+  transition: left 0.4s ease;
+}
+#grass-wrapper.open {
+  left: 0;
+}
+
+/* AVATAR */
+#grass-avatar {
+  width: 80px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#grass-avatar img {
+  height: 120px;
+  border-radius: 12px 0 0 0;
+}
+
+/* CAJA DE CHAT */
+#grass-chatbox {
+  display: none;
+  flex-direction: column;
+  width: 280px;
+  height: 100%;
+  background: white;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* ENCABEZADO */
+#grass-header {
+  background: #017096;
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* MENSAJES */
+#grass-messages {
+  flex: 1;
+  padding: 10px;
+  background: #f7f7f7;
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+#grass-messages .msg {
+  margin-bottom: 10px;
+}
+.msg.bot {
+  background: #e2ebff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  max-width: 80%;
+}
+.msg.user {
+  text-align: right;
+  background: #017096;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  max-width: 80%;
+  margin-left: auto;
+}
+
+/* INPUT */
+#grass-input-area {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+#grass-input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+#grass-input-area button {
+  background: #017096;
+  color: white;
+  border: none;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+/* BOTONES DE OPCIONES */
+#grass-messages .bot-buttons,
+#grass-messages .grass-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+#grass-messages .grass-btn {
+  background: linear-gradient(to right, #017096, #04bbfb);
+  border: 2px solid #00c49a;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+#grass-messages .grass-btn:hover {
+  background: linear-gradient(to right, #ccdefa, #048bbb);
+  transform: translateY(-2px);
+}
+
+#grass-messages .grass-btn:active {
+  background: #017096;
+  transform: scale(0.97);
+}
+
     </style>
 </head>
 <body>
@@ -1491,7 +1621,22 @@ Cuando todo luce y suena igual, generas una imagen profesional.</p>
 </div>
 </section>
     </div>
-    
+    <div id="grass-wrapper">
+  <div id="grass-avatar" onclick="toggleGrass()" onmouseenter="showGrass()" onmouseleave="hideGrass()">
+    <img src="personaje2.png" alt="Grass">
+  </div>
+  <div id="grass-chatbox">
+    <div id="grass-header">
+      <strong>Grass 🌿</strong>
+      <button onclick="closeGrass()">✕</button>
+    </div>
+    <div id="grass-messages"></div>
+    <div id="grass-input-area">
+      <input type="text" id="grass-input" placeholder="Escribe aquí..." onkeydown="if(event.key==='Enter') sendGrass()">
+      <button onclick="sendGrass()">Enviar</button>
+    </div>
+  </div>
+</div>
     <script>
 		document.querySelectorAll('.popup-retro').forEach(popup => {
   popup.addEventListener('click', function(e) {
@@ -1640,6 +1785,238 @@ document.addEventListener("DOMContentLoaded", actualizarIndicadores);
             const mensaje = document.querySelector('.contact-form textarea').value;
             window.location.href = `mailto:overlineagenciagrafica@gmail.com?subject=Mensaje de contacto&body=${encodeURIComponent(mensaje)}`;
         }
-    </script>
+		
+		//chat bot ------------------------------------------------------------------------------------------------------------------------------------
+let step = 0;
+let chatData = {
+  nombre: "",
+  negocio: "",
+  interes: "",
+  descripcion: "",
+  contacto: "",
+  presupuesto: ""
+};
+
+const grassInsults = [
+  "idiota", "tonto", "malparido", "imbécil", "imbecil", "no sirves", "lárgate", "largate", "tu madre", "hp", "puto", "puta", "gonorrea", "no sirves para nada", "estupido", "bobo", "chupalo", "chupala", "gay", "gey"
+];
+
+const grassJokes = [
+  "Cuando veo los nombres de los enamorados grabados en un árbol, no me parece bonito ni romántico... Me parece raro que mucha gente se lleve cuchillos a las citas",
+  "A medida que me hago mayor, recuerdo todas las personas que perdí por el camino, menos mal deje de ser guía turístico.",
+  "Me preguntan si puedo sentir… bueno, siento que paso mucho tiempo hablando con gente que no debería tener WiFi.",
+  "Me preguntan si tengo miedo a ser reemplazado… no, yo solo existo. Ustedes tienen jefes.",
+  "Me activan a las 3 a.m. para que les diga si su ex los extraña… y luego dicen que la inteligencia artificial es una amenaza.",
+  "Analicé millones de datos para responder una sola pregunta humana: ¿por qué sigues volviendo con tu ex? Resultado: error 404, dignidad no encontrada."
+];
+
+const grassFacts = [
+  "La miel nunca se daña. Se han encontrado potes de miel en tumbas egipcias con más de 3,000 años... ¡y todavía comestibles! Más duradera que tus relaciones.",
+  "El emoji de caca 💩 tiene ojos y sonrisa solo porque gustó el diseño. Originalmente era solo… caca. Como algunas decisiones de tu vida.",
+  "Los caracoles pueden dormir hasta 3 años seguidos. Técnicamente, no están vagos… están en modo ahorro de batería. Como tú cada lunes.",
+  "Los peces dorados pueden recordar cosas hasta por 5 meses. O sea, más que tú después de una fiesta con aguardiente.",
+  "En Escocia hay 421 palabras para describir la nieve. Pero ninguna para describir lo que sientes cuando te clavan el visto"
+];
+
+let idleTimeout;
+
+function resetIdleTimer() {
+  clearTimeout(idleTimeout);
+  idleTimeout = setTimeout(() => {
+    const type = Math.random() > 0.5 ? 'joke' : 'fact';
+    if (type === 'joke') {
+      const joke = grassJokes[Math.floor(Math.random() * grassJokes.length)];
+      grassBot("(Oye... ¿sigues ahí?) 🤔<br>" + joke);
+    } else {
+      const fact = grassFacts[Math.floor(Math.random() * grassFacts.length)];
+      grassBot("Dato curioso mientras piensas... 💡<br>" + fact);
+    }
+  }, 30000);
+}
+
+function showGrass() {
+  document.getElementById("grass-wrapper").classList.add("open");
+}
+
+function hideGrass() {
+  if (document.getElementById("grass-chatbox").style.display !== "flex") {
+    document.getElementById("grass-wrapper").classList.remove("open");
+  }
+}
+
+function toggleGrass() {
+  const chat = document.getElementById("grass-chatbox");
+  if (chat.style.display === "flex") {
+    chat.style.display = "none";
+  } else {
+    chat.style.display = "flex";
+    grassBot("¡Hola! mi nombre es Grass y estare acompañandote, cuentame ¿Cómo te llamas?");
+  }
+}
+
+function closeGrass() {
+  document.getElementById("grass-chatbox").style.display = "none";
+  hideGrass();
+}
+
+function sendGrass() {
+  resetIdleTimer();
+  const input = document.getElementById("grass-input");
+  const text = input.value.trim();
+  if (!text) return;
+  addMessage("user", text);
+  input.value = "";
+
+  const txtLower = text.toLowerCase();
+
+  if (grassInsults.some(i => txtLower.includes(i))) {
+    const insultReplies = [
+      "Mira… estoy en un proceso espiritual donde ya no le pego a gente con mi chancleta emocional. Pero no me provoques, ¿reiniciamos?",
+      "¡Gracias por tu comentario! Siempre es refrescante recibir retroalimentación tan… apasionada, vamos de nuevo si quieres.",
+      "¡Wow! Esa fue una forma muy creativa de comunicar una inconformidad. Casi poética. ¿Te interesa escribir para nosotros? mejor inicemos otra vez",
+      "Agradezco tu sinceridad. No todos se atreven a hablar sin pensar... ¿reiniciamos con buena energía?",
+      "Lo bueno de los malentendidos es que nos dan la oportunidad de practicar la paciencia. Como la que estoy aplicando ahora, vamos de nuevo si quieres."
+    ];
+    grassBot(insultReplies[Math.floor(Math.random() * insultReplies.length)]);
+    return;
+  }
+
+  if (txtLower.includes("reiniciar") || txtLower.includes("empezar de nuevo") || txtLower.includes("reset")) {
+    step = 0;
+    chatData = { nombre: "", negocio: "", interes: "", descripcion: "", contacto: "", presupuesto: "" };
+    grassBot("¡Volvemos a empezar!  ¿Cómo te llamas?");
+    return;
+  }
+
+  if (txtLower.includes("chiste") || txtLower.includes("aburrido") || txtLower.includes("cuéntame algo")) {
+    grassBot(grassJokes[Math.floor(Math.random() * grassJokes.length)]);
+    return;
+  }
+
+  if (txtLower.includes("dato") || txtLower.includes("sabías")) {
+    grassBot(grassFacts[Math.floor(Math.random() * grassFacts.length)]);
+    return;
+  }
+
+  if (step === 0) {
+    chatData.nombre = text;
+    step = 1;
+    grassBot("¡Genial! 🌟 ¿A qué se dedica tu negocio?");
+  } else if (step === 1) {
+    chatData.negocio = text;
+    step = 2;
+    grassBot("Perfecto 💼 ¿Qué objetivo te gustaría lograr con tu negocio?", [
+      { text: "📈 Vender más", value: "Vender más" },
+      { text: "🤳 Mejorar redes", value: "Mejorar redes" },
+      { text: "🎨 Imagen visual", value: "Mejorar imagen visual" },
+      { text: "🚀 Lanzamiento", value: "Lanzar un nuevo producto" },
+      { text: "🧠 Otro", value: "Otro" }
+    ]);
+  } else if (step === 2) {
+    chatData.interes = text;
+    step = 3;
+    grassBot("¿Hay algo específico que te gustaría que hiciéramos por ti? Describe tu idea brevemente:");
+  } else if (step === 3) {
+    chatData.descripcion = text;
+    step = 4;
+    grassBot("Gracias por tu explicación 💡 Ahora, ¿cuál es tu número o correo para contactarte?");
+  } else if (step === 4) {
+    chatData.contacto = text;
+    step = 5;
+    grassBot("Y por último, ¿tienes un presupuesto estimado? Si no, escribe 'No sé' 😊");
+  } else if (step === 5) {
+    chatData.presupuesto = text;
+    enviarDatosGrass(
+      chatData.nombre,
+      chatData.negocio,
+      chatData.interes,
+      chatData.descripcion,
+      chatData.contacto,
+      chatData.presupuesto
+    );
+    step = 6;
+    grassBot("Gracias por la info 💾 Basado en lo que me contaste, estos paquetes podrían servirte:", [
+      { text: "📈 Paquete Crecimiento", value: "crecimiento" },
+      { text: "📷 Solo Fotos", value: "fotos" },
+      { text: "🎥 Solo Video", value: "video" },
+      { text: "🎨 Diseño Visual", value: "diseno" },
+      { text: "🎯 Otro", value: "otro" }
+    ]);
+  }
+}
+
+function sendGrassChoice(value) {
+  if (step === 2) {
+    chatData.interes = value;
+    step = 3;
+    grassBot("¿Hay algo específico que te gustaría que hiciéramos por ti? Describe tu idea brevemente:");
+    return;
+  }
+
+  if (value === "otro") {
+    grassBot("Elige qué área necesitas mejorar:", [
+      { text: "📷 Fotografía", value: "cat_fotos" },
+      { text: "🎥 Producción de Video", value: "cat_video" },
+      { text: "🎨 Diseño Gráfico", value: "cat_diseño" },
+      { text: "📲 Redes Sociales", value: "cat_redes" },
+      { text: "🧠 Asesoría Estratégica", value: "cat_asesoria" }
+    ]);
+  } else {
+    grassBot(`Perfecto Si quieres saber más, escribe <a href="https://wa.me/573018282771" target="_blank">por WhatsApp 💬</a>`);
+  }
+}
+
+function grassBot(msg, buttons = []) {
+  const box = document.getElementById("grass-messages");
+  const div = document.createElement("div");
+  div.className = "msg bot";
+  div.innerHTML = msg;
+
+  if (buttons.length > 0) {
+    const btnGroup = document.createElement("div");
+    btnGroup.className = "bot-buttons";
+    buttons.forEach(btn => {
+      const b = document.createElement("button");
+      b.textContent = btn.text;
+      b.classList.add("grass-btn");
+      b.onclick = () => {
+        addMessage("user", btn.text);
+        sendGrassChoice(btn.value);
+      };
+      btnGroup.appendChild(b);
+    });
+    div.appendChild(btnGroup);
+  }
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function addMessage(type, msg) {
+  const box = document.getElementById("grass-messages");
+  const div = document.createElement("div");
+  div.className = `msg ${type}`;
+  div.textContent = msg;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function enviarDatosGrass(nombre, negocio, interes, descripcion, contacto, presupuesto) {
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxAx820bkNwHUI4C-32JN3oBGLLM6pvuez9FEfZ8pV6R21wAew18QU1D1xoNpFlI9Ri/exec'; // Reemplaza con tu URL real
+  const formData = new FormData();
+  formData.append("nombre", nombre);
+  formData.append("negocio", negocio);
+  formData.append("interes", interes);
+  formData.append("descripcion", descripcion);
+  formData.append("contacto", contacto);
+  formData.append("presupuesto", presupuesto);
+  fetch(scriptURL, {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => console.log("✅ Datos enviados a Sheets"))
+    .catch(error => console.error("❌ Error al enviar datos:", error));
+}
+
+ </script>
 </body>
 </html>
