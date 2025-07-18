@@ -7,6 +7,12 @@
     <title>Overline</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+    :root {
+      --color-principal: #017096;
+      --color-acento: #04BBFB;
+      --color-boton: #048BBB;
+      --color-boton-hover: #CCDEFA;
+    }
 #video-fondo {
   position: fixed;
   top: 0;
@@ -77,14 +83,6 @@ body {
         @keyframes zoomEffect{
             0% { transform: scale(1); }}
 		
-        .whatsapp-btn img {
-            width: 80px;
-            height: auto;
-        }
-        .whatsapp-btn:hover {
-            right: 20px;
-            transform: scale(1.2);
-        }
         .contenedor {
             width: 100vw;
             height: 100vh;
@@ -733,138 +731,190 @@ body {
 }
 
 		/*chatbot*/
-/* CONTENEDOR PRINCIPAL DEL CHAT */
-#grass-wrapper {
-  position: fixed;
-  bottom: 80px;
-  left: -20px; /* oculto parcialmente */
-  width: 360px;
-  height: 420px;
-  display: flex;
-  align-items: flex-end;
-  z-index: 9999;
-  transition: left 0.4s ease;
-}
-#grass-wrapper.open {
-  left: 0;
-}
+.chatbot-toggle {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background-color: var(--color-principal);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
 
-/* AVATAR */
-#grass-avatar {
-  width: 80px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-#grass-avatar img {
-  height: 120px;
-  border-radius: 12px 0 0 0;
-}
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,0,0,0.2); }
+      70% { box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+    }
 
-/* CAJA DE CHAT */
-#grass-chatbox {
-  display: none;
-  flex-direction: column;
-  width: 280px;
-  height: 100%;
-  background: white;
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
+    .chatbot-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 95%;
+      max-width: 400px;
+      max-height: 90vh;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      animation: slideUp 0.4s ease forwards;
+    }
 
-/* ENCABEZADO */
-#grass-header {
-  background: #017096;
-  color: white;
-  padding: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
-/* MENSAJES */
-#grass-messages {
-  flex: 1;
-  padding: 10px;
-  background: #f7f7f7;
-  overflow-y: auto;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-}
-#grass-messages .msg {
-  margin-bottom: 10px;
-}
-.msg.bot {
-  background: #e2ebff;
-  padding: 8px 12px;
-  border-radius: 12px;
-  max-width: 80%;
-}
-.msg.user {
-  text-align: right;
-  background: #017096;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 12px;
-  max-width: 80%;
-  margin-left: auto;
-}
+    .chatbot-header {
+      background-color: var(--color-principal);
+      color: white;
+      padding: 1rem;
+      font-weight: bold;
+    }
 
-/* INPUT */
-#grass-input-area {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-#grass-input {
-  flex: 1;
-  border: none;
-  padding: 10px;
-  outline: none;
-}
-#grass-input-area button {
-  background: #017096;
-  color: white;
-  border: none;
-  padding: 0 15px;
-  cursor: pointer;
-}
+    .chatbot-body {
+      padding: 1rem;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-/* BOTONES DE OPCIONES */
-#grass-messages .bot-buttons,
-#grass-messages .grass-btn-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
+    .chatbot-footer {
+      padding: 0.5rem 1rem;
+      border-top: 1px solid #ddd;
+    }
 
-#grass-messages .grass-btn {
-  background: linear-gradient(to right, #017096, #04bbfb);
-  border: 2px solid #00c49a;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  white-space: nowrap;
-}
+    .bot-msg, .user-msg {
+      max-width: 80%;
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      animation: fadeIn 0.3s ease;
+    }
 
-#grass-messages .grass-btn:hover {
-  background: linear-gradient(to right, #ccdefa, #048bbb);
-  transform: translateY(-2px);
-}
+    .bot-msg { background-color: #f4f4f4; align-self: flex-start; }
+    .user-msg { background-color: var(--color-acento); color: white; align-self: flex-end; }
 
-#grass-messages .grass-btn:active {
-  background: #017096;
-  transform: scale(0.97);
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
+    .chat-input {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 100px;
+      right: 90px;
+      background-color: var(--color-acento);
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .chatbot-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .chatbot-option {
+      padding: 10px 16px;
+      background-color: var(--color-boton);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .chatbot-option:hover {
+      background-color: var(--color-boton-hover);
+      transform: translateY(-2px);
+    }
+
+    .chatbot-option:active {
+      transform: scale(0.96);
+    }
+
+    /* Indicador de escritura */
+    .typing-indicator {
+      display: inline-block;
+      width: 50px;
+      height: 20px;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .typing-indicator span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 2px;
+      background-color: #ccc;
+      border-radius: 50%;
+      animation: typing 1s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing {
+      0%, 80%, 100% { transform: scale(0.8); opacity: 0.6; }
+      40% { transform: scale(1); opacity: 1; }
+    }
     </style>
 </head>
 <body>
+	 <!-- chatbot---------------------------------------------------------------------->
+	<div>
+  <div class="chatbot-toggle" onclick="toggleChatbot()">💬</div>
+
+  <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-header">Asistente Overline</div>
+    <div class="chatbot-body" id="chat-body"></div>
+    <div class="chatbot-footer" style="display: flex; gap: 6px; align-items: center;">
+  <div style="flex: 1; display: flex; align-items: center; background: #f1f1f1; border-radius: 8px; overflow: hidden;">
+    <input type="text" id="chat-input" class="chat-input" placeholder="Escribe tu respuesta..." onkeydown="handleInput(event)" style="flex: 1; border: none; padding: 0.7rem; font-size: 1rem; background: transparent; outline: none;">
+    <button onclick="enviarMensaje()" style="background: var(--color-acento); color: white; border: none; padding: 0.7rem 1rem; cursor: pointer;">Enviar</button>
+  </div>
+
+  <!-- Botón Reiniciar -->
+  <button onclick="reiniciarChat()" style="background: #ddd; border: none; border-radius: 8px; padding: 0.7rem 1rem; cursor: pointer;">🔄</button>
+
+  <!-- Botón WhatsApp -->
+  <button onclick="enviarWhatsApp()" style="background: #25D366; color: white; border: none; border-radius: 8px; padding: 0.7rem 1rem; cursor: pointer;">📱</button>
+</div>
+
+  </div>
+
+  <div class="notification" id="notification">¡Datos enviados correctamente! ✅</div>
+</div>
    <video autoplay muted loop playsinline id="video-fondo">
   <source src="fondo.webm" type="video/webm">
   Tu navegador no soporta video HTML5.
@@ -877,8 +927,6 @@ body {
         <a onclick="cambiarSeccion('contacto')" data-title="contacto"><img src="contact.gif" data-hover="contact.gif" alt="contacto" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="contact.gif"></a>
         <a onclick="cambiarSeccion('blog')" data-title="blog"><img src="blog.gif" data-hover="blog.gif" alt="blog" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="blog.gif"></a>
     </nav>
-    
-    <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/3018282771'"><img src="icono wsp.png" alt="WhatsApp"></div>
     
     <div class="contenedor">
         <section id="inicio" class="seccion activa">
@@ -1479,7 +1527,7 @@ body {
         </form>
 				</div>
         </section>
-        <section id="blog" class="seccion"><!-- Título de la sección -->
+        <section id="blog" class="seccion">
 <div class="titulo-seccion">Blog Overline</div>
 
 <!-- Tarjetas de blog -->
@@ -1621,22 +1669,7 @@ Cuando todo luce y suena igual, generas una imagen profesional.</p>
 </div>
 </section>
     </div>
-    <div id="grass-wrapper">
-  <div id="grass-avatar" onclick="toggleGrass()" onmouseenter="showGrass()" onmouseleave="hideGrass()">
-    <img src="personaje2.png" alt="Grass">
-  </div>
-  <div id="grass-chatbox">
-    <div id="grass-header">
-      <strong>Grass 🌿</strong>
-      <button onclick="closeGrass()">✕</button>
-    </div>
-    <div id="grass-messages"></div>
-    <div id="grass-input-area">
-      <input type="text" id="grass-input" placeholder="Escribe aquí..." onkeydown="if(event.key==='Enter') sendGrass()">
-      <button onclick="sendGrass()">Enviar</button>
-    </div>
-  </div>
-</div>
+   
     <script>
 		document.querySelectorAll('.popup-retro').forEach(popup => {
   popup.addEventListener('click', function(e) {
@@ -1785,238 +1818,206 @@ document.addEventListener("DOMContentLoaded", actualizarIndicadores);
             const mensaje = document.querySelector('.contact-form textarea').value;
             window.location.href = `mailto:overlineagenciagrafica@gmail.com?subject=Mensaje de contacto&body=${encodeURIComponent(mensaje)}`;
         }
-		
-		//chat bot ------------------------------------------------------------------------------------------------------------------------------------
+		//chatbot---------------------------------------------------------------------------------------------------------------------------------
+		let chatbotOpen = false;
 let step = 0;
 let chatData = {
   nombre: "",
   negocio: "",
-  interes: "",
-  descripcion: "",
+  tipoEmpresa: "",
+  direccion: "",
+  presupuesto: "",
+  objetivo: "",
+  servicios: [],
+  paquete: "",
   contacto: "",
-  presupuesto: ""
+  comentario: ""
 };
 
-const grassInsults = [
-  "idiota", "tonto", "malparido", "imbécil", "imbecil", "no sirves", "lárgate", "largate", "tu madre", "hp", "puto", "puta", "gonorrea", "no sirves para nada", "estupido", "bobo", "chupalo", "chupala", "gay", "gey"
-];
+function toggleChatbot() {
+  chatbotOpen = !chatbotOpen;
+  document.getElementById("chatbot").style.display = chatbotOpen ? 'flex' : 'none';
+}
 
-const grassJokes = [
-  "Cuando veo los nombres de los enamorados grabados en un árbol, no me parece bonito ni romántico... Me parece raro que mucha gente se lleve cuchillos a las citas",
-  "A medida que me hago mayor, recuerdo todas las personas que perdí por el camino, menos mal deje de ser guía turístico.",
-  "Me preguntan si puedo sentir… bueno, siento que paso mucho tiempo hablando con gente que no debería tener WiFi.",
-  "Me preguntan si tengo miedo a ser reemplazado… no, yo solo existo. Ustedes tienen jefes.",
-  "Me activan a las 3 a.m. para que les diga si su ex los extraña… y luego dicen que la inteligencia artificial es una amenaza.",
-  "Analicé millones de datos para responder una sola pregunta humana: ¿por qué sigues volviendo con tu ex? Resultado: error 404, dignidad no encontrada."
-];
+function showNotification(msg) {
+  const n = document.getElementById("notification");
+  n.textContent = msg;
+  n.style.display = 'block';
+  setTimeout(() => n.style.display = 'none', 3000);
+}
 
-const grassFacts = [
-  "La miel nunca se daña. Se han encontrado potes de miel en tumbas egipcias con más de 3,000 años... ¡y todavía comestibles! Más duradera que tus relaciones.",
-  "El emoji de caca 💩 tiene ojos y sonrisa solo porque gustó el diseño. Originalmente era solo… caca. Como algunas decisiones de tu vida.",
-  "Los caracoles pueden dormir hasta 3 años seguidos. Técnicamente, no están vagos… están en modo ahorro de batería. Como tú cada lunes.",
-  "Los peces dorados pueden recordar cosas hasta por 5 meses. O sea, más que tú después de una fiesta con aguardiente.",
-  "En Escocia hay 421 palabras para describir la nieve. Pero ninguna para describir lo que sientes cuando te clavan el visto"
-];
+function showTypingIndicator(callback) {
+  const chat = document.getElementById("chat-body");
+  const typing = document.createElement("div");
+  typing.className = "bot-msg typing-indicator";
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chat.appendChild(typing);
+  chat.scrollTop = chat.scrollHeight;
 
-let idleTimeout;
+  const audio = document.getElementById("typing-audio");
+  if (audio) audio.play();
 
-function resetIdleTimer() {
-  clearTimeout(idleTimeout);
-  idleTimeout = setTimeout(() => {
-    const type = Math.random() > 0.5 ? 'joke' : 'fact';
-    if (type === 'joke') {
-      const joke = grassJokes[Math.floor(Math.random() * grassJokes.length)];
-      grassBot("(Oye... ¿sigues ahí?) 🤔<br>" + joke);
-    } else {
-      const fact = grassFacts[Math.floor(Math.random() * grassFacts.length)];
-      grassBot("Dato curioso mientras piensas... 💡<br>" + fact);
+  setTimeout(() => {
+    typing.remove();
+    callback();
+  }, 900 + Math.random() * 600);
+}
+
+function appendMessage(sender, text) {
+  const chat = document.getElementById("chat-body");
+  const div = document.createElement("div");
+  div.className = sender === "bot" ? "bot-msg" : "user-msg";
+  div.textContent = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function handleInput(event) {
+  if (event.key === "Enter") {
+    const input = document.getElementById("chat-input");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    appendMessage("user", msg);
+    input.value = "";
+
+    if (step === 0) {
+      chatData.nombre = msg;
+      showTypingIndicator(() => appendMessage("bot", `¡Genial, ${chatData.nombre}! ¿Cómo se llama tu negocio o a qué te dedicas?`));
+    } else if (step === 1) {
+      chatData.negocio = msg;
+      showTypingIndicator(() => appendMessage("bot", `¿Cómo clasificarías tu empresa?`));
+      showOptions(["Grande", "Mediana", "Pequeña", "Emprendedor"], "tipoEmpresa");
+      return;
+    } else if (step === 3) {
+      chatData.direccion = msg;
+      showTypingIndicator(() => appendMessage("bot", `¿Cuál es tu presupuesto estimado? 💰`));
+    } else if (step === 4) {
+      chatData.presupuesto = msg;
+      showTypingIndicator(() => appendMessage("bot", `¿Cuál es tu objetivo principal con este servicio?`));
+      showOptions(["Ventas", "Reconocimiento", "Seguidores", "Alcance", "Leads", "Otro"], "objetivo");
+      return;
+    } else if (step === 6) {
+      showTypingIndicator(() => appendMessage("bot", `¿Qué paquete te interesa?`));
+      showOptions(["Starter", "Pro", "Full Creativo", "Otro"], "paquete");
+      return;
+    } else if (step === 8) {
+      chatData.contacto = msg;
+      showTypingIndicator(() => appendMessage("bot", `¿Hay algo más que quieras comentarnos?`));
+    } else if (step === 9) {
+      chatData.comentario = msg;
+      showTypingIndicator(() => appendMessage("bot", `¡Gracias, ${chatData.nombre}! Nos contactaremos pronto. 🙌`));
+      showNotification("Datos enviados correctamente ✅");
+      fetch("https://script.google.com/macros/s/AKfycbyrTOtUM9rAyb8HGW4rhaGeAEr3Tv7swh8bScjQNb3Lpip_L-5QjwcaCLcjaONj6qsC/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(chatData)
+      });
     }
-  }, 30000);
-}
 
-function showGrass() {
-  document.getElementById("grass-wrapper").classList.add("open");
-}
-
-function hideGrass() {
-  if (document.getElementById("grass-chatbox").style.display !== "flex") {
-    document.getElementById("grass-wrapper").classList.remove("open");
+    step++;
   }
 }
-
-function toggleGrass() {
-  const chat = document.getElementById("grass-chatbox");
-  if (chat.style.display === "flex") {
-    chat.style.display = "none";
-  } else {
-    chat.style.display = "flex";
-    grassBot("¡Hola! mi nombre es Grass y estare acompañandote, cuentame ¿Cómo te llamas?");
-  }
+function enviarMensaje() {
+  const input = document.getElementById("chat-input");
+  const event = new KeyboardEvent("keydown", { key: "Enter" });
+  input.dispatchEvent(event);
 }
 
-function closeGrass() {
-  document.getElementById("grass-chatbox").style.display = "none";
-  hideGrass();
+function showOptions(options, key) {
+  const container = document.createElement("div");
+  container.className = "chatbot-options";
+
+  const isMultiSelect = key === "servicios";
+  const selected = new Set();
+
+  options.forEach(option => {
+    const btn = document.createElement("button");
+    btn.className = "chatbot-option";
+    btn.textContent = option;
+
+    btn.onclick = () => {
+      if (isMultiSelect) {
+        btn.classList.toggle("selected");
+        if (selected.has(option)) selected.delete(option);
+        else selected.add(option);
+      } else {
+        chatData[key] = option;
+        appendMessage("user", option);
+        container.remove();
+
+        if (key === "tipoEmpresa") {
+          step = 3;
+          showTypingIndicator(() => appendMessage("bot", `¿Dónde estás ubicado? 🌍`));
+        } else if (key === "objetivo") {
+          step = 6;
+          showTypingIndicator(() => appendMessage("bot", `Selecciona uno o varios servicios que te interesen:`));
+          showOptions(["Fotografía", "Video", "Diseño", "Reels", "Publicidad", "Redes Sociales"], "servicios");
+        } else if (key === "paquete") {
+          step = 8;
+          showTypingIndicator(() => appendMessage("bot", `¿Cuál es tu WhatsApp, correo o medio de contacto?`));
+        }
+
+        document.getElementById("chat-body").scrollTop = document.getElementById("chat-body").scrollHeight;
+      }
+    };
+
+    container.appendChild(btn);
+  });
+
+  if (isMultiSelect) {
+    const continuar = document.createElement("button");
+    continuar.className = "chatbot-option";
+    continuar.style.backgroundColor = "#28a745";
+    continuar.textContent = "Listo ✅";
+    continuar.onclick = () => {
+      if (selected.size > 0) {
+        chatData[key] = Array.from(selected);
+        appendMessage("user", chatData[key].join(", "));
+        container.remove();
+        step = 7;
+        showTypingIndicator(() => appendMessage("bot", `¿Qué paquete te interesa?`));
+        showOptions(["Starter", "Pro", "Full Creativo", "Otro"], "paquete");
+      }
+    };
+    container.appendChild(continuar);
+  }
+
+  document.getElementById("chat-body").appendChild(container);
+  document.getElementById("chat-body").scrollTop = document.getElementById("chat-body").scrollHeight;
 }
 
-function sendGrass() {
-  resetIdleTimer();
-  const input = document.getElementById("grass-input");
-  const text = input.value.trim();
-  if (!text) return;
-  addMessage("user", text);
-  input.value = "";
+window.onload = () => {
+  showTypingIndicator(() => appendMessage("bot", "¡Hey! 👀 Bienvenido a Overline, donde le damos flow a tu marca. ¿Me regalas tu nombre para empezar? 😎"));
+};
 
-  const txtLower = text.toLowerCase();
+// ✅ NUEVAS FUNCIONES AGREGADAS
 
-  if (grassInsults.some(i => txtLower.includes(i))) {
-    const insultReplies = [
-      "Mira… estoy en un proceso espiritual donde ya no le pego a gente con mi chancleta emocional. Pero no me provoques, ¿reiniciamos?",
-      "¡Gracias por tu comentario! Siempre es refrescante recibir retroalimentación tan… apasionada, vamos de nuevo si quieres.",
-      "¡Wow! Esa fue una forma muy creativa de comunicar una inconformidad. Casi poética. ¿Te interesa escribir para nosotros? mejor inicemos otra vez",
-      "Agradezco tu sinceridad. No todos se atreven a hablar sin pensar... ¿reiniciamos con buena energía?",
-      "Lo bueno de los malentendidos es que nos dan la oportunidad de practicar la paciencia. Como la que estoy aplicando ahora, vamos de nuevo si quieres."
-    ];
-    grassBot(insultReplies[Math.floor(Math.random() * insultReplies.length)]);
-    return;
-  }
-
-  if (txtLower.includes("reiniciar") || txtLower.includes("empezar de nuevo") || txtLower.includes("reset")) {
-    step = 0;
-    chatData = { nombre: "", negocio: "", interes: "", descripcion: "", contacto: "", presupuesto: "" };
-    grassBot("¡Volvemos a empezar!  ¿Cómo te llamas?");
-    return;
-  }
-
-  if (txtLower.includes("chiste") || txtLower.includes("aburrido") || txtLower.includes("cuéntame algo")) {
-    grassBot(grassJokes[Math.floor(Math.random() * grassJokes.length)]);
-    return;
-  }
-
-  if (txtLower.includes("dato") || txtLower.includes("sabías")) {
-    grassBot(grassFacts[Math.floor(Math.random() * grassFacts.length)]);
-    return;
-  }
-
-  if (step === 0) {
-    chatData.nombre = text;
-    step = 1;
-    grassBot("¡Genial! 🌟 ¿A qué se dedica tu negocio?");
-  } else if (step === 1) {
-    chatData.negocio = text;
-    step = 2;
-    grassBot("Perfecto 💼 ¿Qué objetivo te gustaría lograr con tu negocio?", [
-      { text: "📈 Vender más", value: "Vender más" },
-      { text: "🤳 Mejorar redes", value: "Mejorar redes" },
-      { text: "🎨 Imagen visual", value: "Mejorar imagen visual" },
-      { text: "🚀 Lanzamiento", value: "Lanzar un nuevo producto" },
-      { text: "🧠 Otro", value: "Otro" }
-    ]);
-  } else if (step === 2) {
-    chatData.interes = text;
-    step = 3;
-    grassBot("¿Hay algo específico que te gustaría que hiciéramos por ti? Describe tu idea brevemente:");
-  } else if (step === 3) {
-    chatData.descripcion = text;
-    step = 4;
-    grassBot("Gracias por tu explicación 💡 Ahora, ¿cuál es tu número o correo para contactarte?");
-  } else if (step === 4) {
-    chatData.contacto = text;
-    step = 5;
-    grassBot("Y por último, ¿tienes un presupuesto estimado? Si no, escribe 'No sé' 😊");
-  } else if (step === 5) {
-    chatData.presupuesto = text;
-    enviarDatosGrass(
-      chatData.nombre,
-      chatData.negocio,
-      chatData.interes,
-      chatData.descripcion,
-      chatData.contacto,
-      chatData.presupuesto
-    );
-    step = 6;
-    grassBot("Gracias por la info 💾 Basado en lo que me contaste, estos paquetes podrían servirte:", [
-      { text: "📈 Paquete Crecimiento", value: "crecimiento" },
-      { text: "📷 Solo Fotos", value: "fotos" },
-      { text: "🎥 Solo Video", value: "video" },
-      { text: "🎨 Diseño Visual", value: "diseno" },
-      { text: "🎯 Otro", value: "otro" }
-    ]);
-  }
+function reiniciarChat() {
+  document.getElementById("chat-body").innerHTML = "";
+  document.getElementById("chat-input").value = "";
+  step = 0;
+  chatData = {
+    nombre: "",
+    negocio: "",
+    tipoEmpresa: "",
+    direccion: "",
+    presupuesto: "",
+    objetivo: "",
+    servicios: [],
+    paquete: "",
+    contacto: "",
+    comentario: ""
+  };
+  showTypingIndicator(() => appendMessage("bot", "¡Hola de nuevo! ¿Me regalas tu nombre para empezar? 😎"));
 }
 
-function sendGrassChoice(value) {
-  if (step === 2) {
-    chatData.interes = value;
-    step = 3;
-    grassBot("¿Hay algo específico que te gustaría que hiciéramos por ti? Describe tu idea brevemente:");
-    return;
-  }
-
-  if (value === "otro") {
-    grassBot("Elige qué área necesitas mejorar:", [
-      { text: "📷 Fotografía", value: "cat_fotos" },
-      { text: "🎥 Producción de Video", value: "cat_video" },
-      { text: "🎨 Diseño Gráfico", value: "cat_diseño" },
-      { text: "📲 Redes Sociales", value: "cat_redes" },
-      { text: "🧠 Asesoría Estratégica", value: "cat_asesoria" }
-    ]);
-  } else {
-    grassBot(`Perfecto Si quieres saber más, escribe <a href="https://wa.me/573018282771" target="_blank">por WhatsApp 💬</a>`);
-  }
+function enviarWhatsApp() {
+  const mensaje = encodeURIComponent(
+    `Hola, soy ${chatData.nombre}. Me gustaría hablar con alguien de Overline sobre un servicio.`
+  );
+  window.open(`https://wa.me/573018282771?text=${mensaje}`, '_blank');
 }
-
-function grassBot(msg, buttons = []) {
-  const box = document.getElementById("grass-messages");
-  const div = document.createElement("div");
-  div.className = "msg bot";
-  div.innerHTML = msg;
-
-  if (buttons.length > 0) {
-    const btnGroup = document.createElement("div");
-    btnGroup.className = "bot-buttons";
-    buttons.forEach(btn => {
-      const b = document.createElement("button");
-      b.textContent = btn.text;
-      b.classList.add("grass-btn");
-      b.onclick = () => {
-        addMessage("user", btn.text);
-        sendGrassChoice(btn.value);
-      };
-      btnGroup.appendChild(b);
-    });
-    div.appendChild(btnGroup);
-  }
-  box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
-}
-
-function addMessage(type, msg) {
-  const box = document.getElementById("grass-messages");
-  const div = document.createElement("div");
-  div.className = `msg ${type}`;
-  div.textContent = msg;
-  box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
-}
-
-function enviarDatosGrass(nombre, negocio, interes, descripcion, contacto, presupuesto) {
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxAx820bkNwHUI4C-32JN3oBGLLM6pvuez9FEfZ8pV6R21wAew18QU1D1xoNpFlI9Ri/exec'; // Reemplaza con tu URL real
-  const formData = new FormData();
-  formData.append("nombre", nombre);
-  formData.append("negocio", negocio);
-  formData.append("interes", interes);
-  formData.append("descripcion", descripcion);
-  formData.append("contacto", contacto);
-  formData.append("presupuesto", presupuesto);
-  fetch(scriptURL, {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => console.log("✅ Datos enviados a Sheets"))
-    .catch(error => console.error("❌ Error al enviar datos:", error));
-}
-
  </script>
 </body>
 </html>
