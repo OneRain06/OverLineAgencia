@@ -1920,8 +1920,21 @@ function handleInput(event) {
         method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(chatData)
-      });
-    }
+})
+.then(response => {
+  if (response.ok) {
+    showNotification("✅ ¡Datos enviados correctamente!");
+    appendMessage("bot", "¡Gracias por compartir tu información! Te contactaremos pronto. 🙌");
+  } else {
+    showNotification("⚠️ Hubo un problema al enviar tus datos.");
+    appendMessage("bot", "Ups... algo salió mal al guardar tus datos. Intenta nuevamente más tarde.");
+  }
+})
+.catch(error => {
+  showNotification("❌ Error de red o servidor.");
+  appendMessage("bot", "No pudimos enviar tu información. Revisa tu conexión o intenta más tarde.");
+  console.error("Error en el envío:", error);
+});
 
     step++;	
   }
