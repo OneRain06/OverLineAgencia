@@ -1827,7 +1827,7 @@ document.addEventListener("DOMContentLoaded", actualizarIndicadores);
             window.location.href = `mailto:overlineagenciagrafica@gmail.com?subject=Mensaje de contacto&body=${encodeURIComponent(mensaje)}`;
         }
 		//chatbot---------------------------------------------------------------------------------------------------------------------------------
-		let chatbotOpen = false;
+			let chatbotOpen = false;
 let step = 0;
 let chatData = {
   nombre: "",
@@ -1937,25 +1937,26 @@ function handleInput(event) {
       );
 
       // ENVÍO DE DATOS AL GOOGLE APPS SCRIPT
-      fetch("https://script.google.com/macros/s/AKfycbwcUwFu1iMR4URLccyc4z6HX30ZFoCBrut1i_nMcsXoeUSlyKxcCutNFcoXg0E0RJgQ/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxqZBrmia9RsH-PfoSLKLfBmJfzQVEyffBQ2qSOTt7NhZE96Hb2zZ_rvJpEVouBPjwx/exec", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(chatData)
-      })
-      .then(response => {
-        if (response.ok) {
-          showNotification("✅ ¡Datos enviados correctamente!");
-          appendMessage("bot", "Perfecto, tu información fue registrada. ¡Nos contactaremos pronto! 🙌");
-        } else {
-          showNotification("⚠️ Hubo un problema al enviar los datos.");
-          appendMessage("bot", "Ups... ocurrió un error al guardar los datos. Intenta más tarde.");
-        }
-      })
-      .catch(error => {
-        showNotification("❌ Error de red o servidor.");
-        appendMessage("bot", "No pudimos enviar tus datos. Revisa tu conexión o contacta directamente.");
-        console.error("Error al enviar:", error);
-      });
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(chatData)
+})
+.then(response => {
+  if (response.ok) {
+    showNotification("✅ ¡Datos enviados correctamente!");
+    appendMessage("bot", "Perfecto, tu información fue registrada. ¡Nos contactaremos pronto! 🙌");
+    setTimeout(() => toggleChatbot(), 2000); // Oculta el chatbot luego de 2 segundos
+  } else {
+    showNotification("⚠️ Hubo un problema al enviar los datos.");
+    appendMessage("bot", "Ups... ocurrió un error al guardar los datos. Intenta más tarde.");
+  }
+})
+.catch(error => {
+  showNotification("❌ Error de red o servidor.");
+  appendMessage("bot", "No pudimos enviar tus datos. Revisa tu conexión o contacta directamente.");
+  console.error("Error al enviar:", error);
+});
     }
 
     step++;
