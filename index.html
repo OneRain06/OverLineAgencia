@@ -1916,10 +1916,10 @@ function handleInput(event) {
       chatData.comentario = msg;
       showTypingIndicator(() => appendMessage("bot", `¡Gracias, ${chatData.nombre}! Nos contactaremos pronto. 🙌`));
       showNotification("Datos enviados correctamente ✅");
-      fetch("https://script.google.com/macros/s/AKfycbyrTOtUM9rAyb8HGW4rhaGeAEr3Tv7swh8bScjQNb3Lpip_L-5QjwcaCLcjaONj6qsC/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbwAxdpqwrcws6vDSRS-h5tS6WYj5sgVjDlpqyZD8f-8wL2NLdkMPRt11sNN8v_X55Ai/exec", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(chatData)
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(chatData)
       });
     }
 
