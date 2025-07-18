@@ -1848,10 +1848,16 @@ function toggleChatbot() {
 }
 
 function showNotification(msg) {
-  const n = document.getElementById("notification");
-  n.textContent = msg;
-  n.style.display = 'block';
-  setTimeout(() => n.style.display = 'none', 3000);
+  let notification = document.getElementById("notification");
+  if (!notification) {
+    notification = document.createElement("div");
+    notification.id = "notification";
+    notification.className = "notification";
+    document.body.appendChild(notification);
+  }
+  notification.textContent = msg;
+  notification.style.display = 'block';
+  setTimeout(() => (notification.style.display = 'none'), 3000);
 }
 
 function showTypingIndicator(callback) {
@@ -1891,54 +1897,71 @@ function handleInput(event) {
 
     if (step === 0) {
       chatData.nombre = msg;
-      showTypingIndicator(() => appendMessage("bot", `¡Genial, ${chatData.nombre}! ¿Cómo se llama tu negocio o a qué te dedicas?`));
+      showTypingIndicator(() =>
+        appendMessage("bot", `¡Genial, ${chatData.nombre}! ¿Cómo se llama tu negocio o a qué te dedicas?`)
+      );
     } else if (step === 1) {
       chatData.negocio = msg;
-      showTypingIndicator(() => appendMessage("bot", `¿Cómo clasificarías tu empresa?`));
+      showTypingIndicator(() =>
+        appendMessage("bot", `¿Cómo clasificarías tu empresa?`)
+      );
       showOptions(["Grande", "Mediana", "Pequeña", "Emprendedor"], "tipoEmpresa");
       return;
     } else if (step === 3) {
       chatData.direccion = msg;
-      showTypingIndicator(() => appendMessage("bot", `¿Cuál es tu presupuesto estimado? 💰`));
+      showTypingIndicator(() =>
+        appendMessage("bot", `¿Cuál es tu presupuesto estimado? 💰`)
+      );
     } else if (step === 4) {
       chatData.presupuesto = msg;
-      showTypingIndicator(() => appendMessage("bot", `¿Cuál es tu objetivo principal con este servicio?`));
+      showTypingIndicator(() =>
+        appendMessage("bot", `¿Cuál es tu objetivo principal con este servicio?`)
+      );
       showOptions(["Ventas", "Reconocimiento", "Seguidores", "Alcance", "Leads", "Otro"], "objetivo");
       return;
     } else if (step === 6) {
-      showTypingIndicator(() => appendMessage("bot", `¿Qué paquete te interesa?`));
+      showTypingIndicator(() =>
+        appendMessage("bot", `¿Qué paquete te interesa?`)
+      );
       showOptions(["Starter", "Pro", "Full Creativo", "Otro"], "paquete");
       return;
     } else if (step === 8) {
       chatData.contacto = msg;
-      showTypingIndicator(() => appendMessage("bot", `¿Hay algo más que quieras comentarnos?`));
+      showTypingIndicator(() =>
+        appendMessage("bot", `¿Hay algo más que quieras comentarnos?`)
+      );
     } else if (step === 9) {
       chatData.comentario = msg;
-      showTypingIndicator(() => appendMessage("bot", `¡Gracias, ${chatData.nombre}! Nos contactaremos pronto. 🙌`));
-      showNotification("Datos enviados correctamente ✅");
+      showTypingIndicator(() =>
+        appendMessage("bot", `¡Gracias, ${chatData.nombre}! Estamos enviando tus datos... 📤`)
+      );
+
+      // ENVÍO DE DATOS AL GOOGLE APPS SCRIPT
       fetch("https://script.google.com/macros/s/AKfycbwcUwFu1iMR4URLccyc4z6HX30ZFoCBrut1i_nMcsXoeUSlyKxcCutNFcoXg0E0RJgQ/exec", {
         method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(chatData)
-})
-.then(response => {
-  if (response.ok) {
-    showNotification("✅ ¡Datos enviados correctamente!");
-    appendMessage("bot", "¡Gracias por compartir tu información! Te contactaremos pronto. 🙌");
-  } else {
-    showNotification("⚠️ Hubo un problema al enviar tus datos.");
-    appendMessage("bot", "Ups... algo salió mal al guardar tus datos. Intenta nuevamente más tarde.");
-  }
-})
-.catch(error => {
-  showNotification("❌ Error de red o servidor.");
-  appendMessage("bot", "No pudimos enviar tu información. Revisa tu conexión o intenta más tarde.");
-  console.error("Error en el envío:", error);
-});
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(chatData)
+      })
+      .then(response => {
+        if (response.ok) {
+          showNotification("✅ ¡Datos enviados correctamente!");
+          appendMessage("bot", "Perfecto, tu información fue registrada. ¡Nos contactaremos pronto! 🙌");
+        } else {
+          showNotification("⚠️ Hubo un problema al enviar los datos.");
+          appendMessage("bot", "Ups... ocurrió un error al guardar los datos. Intenta más tarde.");
+        }
+      })
+      .catch(error => {
+        showNotification("❌ Error de red o servidor.");
+        appendMessage("bot", "No pudimos enviar tus datos. Revisa tu conexión o contacta directamente.");
+        console.error("Error al enviar:", error);
+      });
+    }
 
-    step++;	
+    step++;
   }
 }
+
 function enviarMensaje() {
   const input = document.getElementById("chat-input");
   const event = new KeyboardEvent("keydown", { key: "Enter" });
@@ -1969,14 +1992,20 @@ function showOptions(options, key) {
 
         if (key === "tipoEmpresa") {
           step = 3;
-          showTypingIndicator(() => appendMessage("bot", `¿Dónde estás ubicado? 🌍`));
+          showTypingIndicator(() =>
+            appendMessage("bot", `¿Dónde estás ubicado? 🌍`)
+          );
         } else if (key === "objetivo") {
           step = 6;
-          showTypingIndicator(() => appendMessage("bot", `Selecciona uno o varios servicios que te interesen:`));
+          showTypingIndicator(() =>
+            appendMessage("bot", `Selecciona uno o varios servicios que te interesen:`)
+          );
           showOptions(["Fotografía", "Video", "Diseño", "Reels", "Publicidad", "Redes Sociales"], "servicios");
         } else if (key === "paquete") {
           step = 8;
-          showTypingIndicator(() => appendMessage("bot", `¿Cuál es tu WhatsApp, correo o medio de contacto?`));
+          showTypingIndicator(() =>
+            appendMessage("bot", `¿Cuál es tu WhatsApp, correo o medio de contacto?`)
+          );
         }
 
         document.getElementById("chat-body").scrollTop = document.getElementById("chat-body").scrollHeight;
@@ -1997,7 +2026,9 @@ function showOptions(options, key) {
         appendMessage("user", chatData[key].join(", "));
         container.remove();
         step = 7;
-        showTypingIndicator(() => appendMessage("bot", `¿Qué paquete te interesa?`));
+        showTypingIndicator(() =>
+          appendMessage("bot", `¿Qué paquete te interesa?`)
+        );
         showOptions(["Starter", "Pro", "Full Creativo", "Otro"], "paquete");
       }
     };
@@ -2009,10 +2040,10 @@ function showOptions(options, key) {
 }
 
 window.onload = () => {
-  showTypingIndicator(() => appendMessage("bot", "¡Hey! 👀 Bienvenido a Overline, donde le damos flow a tu marca. ¿Me regalas tu nombre para empezar? 😎"));
+  showTypingIndicator(() =>
+    appendMessage("bot", "¡Hey! 👀 Bienvenido a Overline, donde le damos flow a tu marca. ¿Me regalas tu nombre para empezar? 😎")
+  );
 };
-
-// ✅ NUEVAS FUNCIONES AGREGADAS
 
 function reiniciarChat() {
   document.getElementById("chat-body").innerHTML = "";
@@ -2030,7 +2061,9 @@ function reiniciarChat() {
     contacto: "",
     comentario: ""
   };
-  showTypingIndicator(() => appendMessage("bot", "¡Hola de nuevo! ¿Me regalas tu nombre para empezar? 😎"));
+  showTypingIndicator(() =>
+    appendMessage("bot", "¡Hola de nuevo! ¿Me regalas tu nombre para empezar? 😎")
+  );
 }
 
 function enviarWhatsApp() {
