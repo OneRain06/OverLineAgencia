@@ -7,11 +7,12 @@
     <title>Overline</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-    :root {
-      --color-principal: #017096;
-      --color-acento: #04BBFB;
-      --color-boton: #048BBB;
-      --color-boton-hover: #CCDEFA;
+		:root {
+      --azul: #017096;
+      --azul-claro: #048BBB;
+      --fondo: #f4f4f4;
+      --blanco: #ffffff;
+      --negro: #1d1d1d;
     }
 #video-fondo {
   position: fixed;
@@ -730,12 +731,12 @@ body {
   color: #017096;
 }
 
-		/*chatbot-*----------------------------------------------------------------------*/
+		/*chatbot---------------------------------------------------------*/
 .chatbot-toggle {
       position: fixed;
-      bottom: 90px;
+      bottom: 80px;
       right: 20px;
-      background-color: var(--color-principal);
+      background-color: var(--azul);
       color: white;
       width: 60px;
       height: 60px;
@@ -743,186 +744,171 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       cursor: pointer;
-      z-index: 1000;
-      animation: pulse 2s infinite;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
     }
+    .chatbot-toggle:hover { transform: scale(1.05); }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(0,0,0,0.2); }
-      70% { box-shadow: 0 0 0 10px rgba(0,0,0,0); }
-      100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+    .chatbot-widget {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      z-index: 10001;
+      animation: slideInUp 0.3s ease;
     }
-
-   .chatbot-container {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 95%;
-  max-width: 400px;
-  max-height: 90vh; /* <= Esto limita la altura */
-  height: auto;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 1000;
-  animation: slideUp 0.4s ease forwards;
-}
-
-
-
-    @keyframes slideUp {
-      from { transform: translateY(40px); opacity: 0; }
+    @keyframes slideInUp {
+      from { transform: translateY(30px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+    .chatbot-widget.open { display: flex; }
 
     .chatbot-header {
-      background-color: var(--color-principal);
+      background: linear-gradient(to right, var(--azul), #015387);
       color: white;
       padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-weight: bold;
     }
+    .chatbot-header h4 { margin: 0; font-size: 1rem; }
+    .chatbot-header span { cursor: pointer; font-size: 1.4rem; }
 
     .chatbot-body {
-  padding: 1rem;
-  overflow-y: auto;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-
-    .chatbot-footer {
-      padding: 0.5rem 1rem;
+      background: #fefefe;
+      height: 400px;
+      overflow-y: auto;
       border-top: 1px solid #ddd;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    .bot-msg, .user-msg {
-      max-width: 80%;
-      padding: 0.8rem 1rem;
-      border-radius: 1rem;
-      animation: fadeIn 0.3s ease;
+    .mensaje-container {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    .bot-msg { background-color: #f4f4f4; align-self: flex-start; }
-    .user-msg { background-color: var(--color-acento); color: white; align-self: flex-end; }
+    .mensaje-bot::before {
+      content: '';
+      background-image: url('https://cdn-icons-png.flaticon.com/512/6667/6667585.png');
+      background-size: cover;
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      left: -35px;
+      top: 4px;
+      border-radius: 50%;
+    }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .mensaje-bot {
+      background-color: #f1f1f1;
+      color: var(--negro);
+      text-align: left;
+      align-self: flex-start;
+      border-radius: 18px;
+      max-width: 85%;
+      display: inline-block;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.95rem;
+      margin-left: 35px;
+      position: relative;
+      animation: aparecer 0.3s ease;
+    }
+
+    .mensaje-usuario {
+      background: linear-gradient(to right, var(--azul-claro), #4da9e7);
+      color: white;
+      text-align: right;
+      align-self: flex-end;
+      border-radius: 18px;
+      max-width: 85%;
+      display: inline-block;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.95rem;
+      animation: aparecer 0.3s ease;
     }
 
     .chat-input {
-      width: 100%;
-      padding: 0.7rem;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-      outline: none;
-      font-size: 1rem;
-    }
-
-    .notification {
-      position: fixed;
-      bottom: 100px;
-      right: 90px;
-      background-color: var(--color-acento);
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .chatbot-options {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+      margin-top: 1rem;
+      border-top: 1px solid #eee;
+      padding-top: 0.5rem;
     }
 
-    .chatbot-option {
-      padding: 10px 16px;
-      background-color: var(--color-boton);
-      color: white;
+    .chat-input input {
+      flex: 1;
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+
+    .chat-input button {
+      background: var(--azul-claro);
       border: none;
-      border-radius: 999px;
+      color: white;
+      padding: 0.5rem 0.7rem;
+      margin-left: 0.5rem;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 0.95rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    .chatbot-option:hover {
-      background-color: var(--color-boton-hover);
-      transform: translateY(-2px);
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .chatbot-option:active {
-      transform: scale(0.96);
-    }
+    .mensaje-bot strong { color: var(--azul); }
+    .botones-finales {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    animation: aparecerBotones 0.6s ease-in-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
-    /* Indicador de escritura */
-    .typing-indicator {
-      display: inline-block;
-      width: 50px;
-      height: 20px;
-      position: relative;
-      margin: 10px 0;
+  @keyframes aparecerBotones {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 
-    .typing-indicator span {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      margin: 0 2px;
-      background-color: #ccc;
-      border-radius: 50%;
-      animation: typing 1s infinite;
-    }
+  .bot {
+    padding: 12px 16px;
+    border: none;
+    background-color: #0084ff;
+    color: white;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
 
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typing {
-      0%, 80%, 100% { transform: scale(0.8); opacity: 0.6; }
-      40% { transform: scale(1); opacity: 1; }
-    }
+  .bot:hover {
+    background-color: #005bb5;
+    transform: scale(1.05);
+  }
     </style>
 </head>
 <body>
-	 <!-- chatbot---------------------------------------------------------------------->
-	<div>
-  <div class="chatbot-toggle" onclick="toggleChatbot()">💬</div>
-
-  <div class="chatbot-container" id="chatbot">
-    <div class="chatbot-header" style="display: flex; justify-content: space-between; align-items: center;">
-  <span>Asistente Overline</span>
-  <button onclick="toggleChatbot()" style="background: transparent; color: white; border: none; font-size: 1.5rem; cursor: pointer;">❌</button>
-</div>
-
-    <div class="chatbot-body" id="chat-body"></div>
-    <div class="chatbot-footer" style="display: flex; gap: 6px; align-items: center;">
-  <div style="flex: 1; display: flex; align-items: center; background: #f1f1f1; border-radius: 8px; overflow: hidden;">
-    <input type="text" id="chat-input" class="chat-input" placeholder="Escribe tu respuesta..." onkeydown="handleInput(event)" style="flex: 1; border: none; padding: 0.7rem; font-size: 1rem; background: transparent; outline: none;">
-    <button onclick="enviarMensaje()" style="background: var(--color-acento); color: white; border: none; padding: 0.7rem 1rem; cursor: pointer;">Enviar</button>
-  </div>
-
-  <!-- Botón Reiniciar -->
-  <button onclick="reiniciarChat()" style="background: #ddd; border: none; border-radius: 8px; padding: 0.7rem 1rem; cursor: pointer;">🔄</button>
-
-  <!-- Botón WhatsApp -->
-  <button onclick="enviarWhatsApp()" style="background: #25D366; color: white; border: none; border-radius: 8px; padding: 0.7rem 1rem; cursor: pointer;">📱</button>
-</div>
-
-  </div>
-
-  <div class="notification" id="notification">¡Datos enviados correctamente! ✅</div>
-</div>
    <video autoplay muted loop playsinline id="video-fondo">
   <source src="fondo.webm" type="video/webm">
   Tu navegador no soporta video HTML5.
@@ -1677,7 +1663,27 @@ Cuando todo luce y suena igual, generas una imagen profesional.</p>
 </div>
 </section>
     </div>
-   
+	<!-- chatbot ---------------------------------------------------------------------------------------------------------------------------------->
+   <div class="chatbot-toggle" onclick="toggleChatbot()"><img src="https://img.icons8.com/ios-filled/24/ffffff/chat.png" alt="Chat" /></div>
+
+<div class="chatbot-widget" id="chatbot">
+  <div class="chatbot-header">
+    <h4>OVERLINE CHATBOT</h4>
+    <span onclick="toggleChatbot()">&times;</span>
+  </div>
+  <div class="chatbot-body" id="chatbotBody">
+    <div class="mensaje-container" id="mensajeContainer"></div>
+    <div class="chat-input">
+  <input type="text" id="inputMensaje" placeholder="..." onkeydown="detectarEnter(event)">
+  <button class="bot animado" onclick="enviarMensaje()">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/paper-plane.png" alt="Enviar" />
+  </button>
+  <button class="bot animado" onclick="reiniciarChat()">
+  <img src="https://img.icons8.com/ios-filled/24/ffffff/rotate-left.png" alt="Rotar" />
+  </button>
+</div>
+  </div>
+</div>
     <script>
 		document.querySelectorAll('.popup-retro').forEach(popup => {
   popup.addEventListener('click', function(e) {
@@ -1826,252 +1832,546 @@ document.addEventListener("DOMContentLoaded", actualizarIndicadores);
             const mensaje = document.querySelector('.contact-form textarea').value;
             window.location.href = `mailto:overlineagenciagrafica@gmail.com?subject=Mensaje de contacto&body=${encodeURIComponent(mensaje)}`;
         }
-		//chatbot---------------------------------------------------------------------------------------------------------------------------------
-			let chatbotOpen = false;
-let step = 0;
-let chatData = {
-  nombre: "",
-  negocio: "",
-  tipoEmpresa: "",
-  direccion: "",
-  presupuesto: "",
-  objetivo: "",
-  servicios: [],
-  paquete: "",
-  contacto: "",
-  comentario: ""
+		//chatbot-----------------------------------------------------------------------------------------------------------------------------
+	let chatbotInitialized = false;
+let mensajes = [];
+let pasoConversacion = 0;
+let datosCliente = {
+  nombre: '',
+  negocio: '',
+  tipoEmpresa: '',
+  ubicacion: '',
+  paqueteInteres: '',
+  serviciosInteres: [],
+  presupuesto: '',
+  tipoProyecto: '',
+  contacto: ''
 };
 
-function toggleChatbot() {
-  chatbotOpen = !chatbotOpen;
-  document.getElementById("chatbot").style.display = chatbotOpen ? 'flex' : 'none';
-}
+function mostrarOpcionesBot(texto, opciones, multiple = false, callback) {
+  agregarMensajeBot(texto);
+  const contenedor = document.getElementById('mensajeContainer');
+  const divOpciones = document.createElement('div');
+  divOpciones.style.marginTop = '10px';
 
-function showNotification(msg) {
-  let notification = document.getElementById("notification");
-  if (!notification) {
-    notification = document.createElement("div");
-    notification.id = "notification";
-    notification.className = "notification";
-    document.body.appendChild(notification);
-  }
-  notification.textContent = msg;
-  notification.style.display = 'block';
-  setTimeout(() => (notification.style.display = 'none'), 3000);
-}
+  opciones.forEach(opcion => {
+    const label = document.createElement('label');
+    label.style.display = 'block';
+    label.style.marginBottom = '4px';
 
-function showTypingIndicator(callback) {
-  const chat = document.getElementById("chat-body");
-  const typing = document.createElement("div");
-  typing.className = "bot-msg typing-indicator";
-  typing.innerHTML = '<span></span><span></span><span></span>';
-  chat.appendChild(typing);
-  chat.scrollTop = chat.scrollHeight;
+    const input = document.createElement('input');
+    input.type = multiple ? 'checkbox' : 'radio';
+    input.name = multiple ? 'opcionMultiple' : 'opcionUnica';
+    input.value = opcion;
+    input.style.marginRight = '6px';
 
-  const audio = document.getElementById("typing-audio");
-  if (audio) audio.play();
-
-  setTimeout(() => {
-    typing.remove();
-    callback();
-  }, 900 + Math.random() * 600);
-}
-
-function appendMessage(sender, text) {
-  const chat = document.getElementById("chat-body");
-  const div = document.createElement("div");
-  div.className = sender === "bot" ? "bot-msg" : "user-msg";
-  div.textContent = text;
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-function handleInput(event) {
-  if (event.key === "Enter") {
-    const input = document.getElementById("chat-input");
-    const msg = input.value.trim();
-    if (!msg) return;
-
-    appendMessage("user", msg);
-    input.value = "";
-
-    if (step === 0) {
-      chatData.nombre = msg;
-      showTypingIndicator(() =>
-        appendMessage("bot", `¡Genial, ${chatData.nombre}! ¿Cómo se llama tu negocio o a qué te dedicas?`)
-      );
-    } else if (step === 1) {
-      chatData.negocio = msg;
-      showTypingIndicator(() =>
-        appendMessage("bot", `¿Cómo clasificarías tu empresa?`)
-      );
-      showOptions(["Grande", "Mediana", "Pequeña", "Emprendedor"], "tipoEmpresa");
-      return;
-    } else if (step === 3) {
-      chatData.direccion = msg;
-      showTypingIndicator(() =>
-        appendMessage("bot", `¿Cuál es tu presupuesto estimado? 💰`)
-      );
-    } else if (step === 4) {
-      chatData.presupuesto = msg;
-      showTypingIndicator(() =>
-        appendMessage("bot", `¿Cuál es tu objetivo principal con este servicio?`)
-      );
-      showOptions(["Ventas", "Reconocimiento", "Seguidores", "Alcance", "Leads", "Otro"], "objetivo");
-      return;
-    } else if (step === 6) {
-      showTypingIndicator(() =>
-        appendMessage("bot", `¿Qué paquete te interesa?`)
-      );
-      showOptions(["Starter", "Pro", "Full Creativo", "Otro"], "paquete");
-      return;
-    } else if (step === 8) {
-      chatData.contacto = msg;
-      showTypingIndicator(() =>
-        appendMessage("bot", `¿Hay algo más que quieras comentarnos?`)
-      );
-    } else if (step === 9) {
-      chatData.comentario = msg;
-      showTypingIndicator(() =>
-        appendMessage("bot", `¡Gracias, ${chatData.nombre}! Estamos enviando tus datos... 📤`)
-      );
-
-      // ENVÍO DE DATOS AL GOOGLE APPS SCRIPT
-      fetch("https://script.google.com/macros/s/AKfycbwqD8PtMPP5nG8JYDbR3L6TSlSBytv0C81TSY9ZlsgrZYSGPfKkWfNq-pTCQ0wxzYgRsw/exec", {
-        method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(chatData)
-})
-.then(response => {
-  if (response.ok) {
-    showNotification("✅ ¡Datos enviados correctamente!");
-    appendMessage("bot", "Perfecto, tu información fue registrada. ¡Nos contactaremos pronto! 🙌");
-    setTimeout(() => toggleChatbot(), 2000); // Oculta el chatbot luego de 2 segundos
-  } else {
-    showNotification("⚠️ Hubo un problema al enviar los datos.");
-    appendMessage("bot", "Ups... ocurrió un error al guardar los datos. Intenta más tarde.");
-  }
-})
-.catch(error => {
-  showNotification("❌ Error de red o servidor.");
-  appendMessage("bot", "No pudimos enviar tus datos. Revisa tu conexión o contacta directamente.");
-  console.error("Error al enviar:", error);
-});
-    }
-
-    step++;
-  }
-}
-
-function enviarMensaje() {
-  const input = document.getElementById("chat-input");
-  const event = new KeyboardEvent("keydown", { key: "Enter" });
-  input.dispatchEvent(event);
-}
-
-function showOptions(options, key) {
-  const container = document.createElement("div");
-  container.className = "chatbot-options";
-
-  const isMultiSelect = key === "servicios";
-  const selected = new Set();
-
-  options.forEach(option => {
-    const btn = document.createElement("button");
-    btn.className = "chatbot-option";
-    btn.textContent = option;
-
-    btn.onclick = () => {
-      if (isMultiSelect) {
-        btn.classList.toggle("selected");
-        if (selected.has(option)) selected.delete(option);
-        else selected.add(option);
-      } else {
-        chatData[key] = option;
-        appendMessage("user", option);
-        container.remove();
-
-        if (key === "tipoEmpresa") {
-          step = 3;
-          showTypingIndicator(() =>
-            appendMessage("bot", `¿Dónde estás ubicado? 🌍`)
-          );
-        } else if (key === "objetivo") {
-          step = 6;
-          showTypingIndicator(() =>
-            appendMessage("bot", `Selecciona uno o varios servicios que te interesen:`)
-          );
-          showOptions(["Fotografía", "Video", "Diseño", "Reels", "Publicidad", "Redes Sociales"], "servicios");
-        } else if (key === "paquete") {
-          step = 8;
-          showTypingIndicator(() =>
-            appendMessage("bot", `¿Cuál es tu WhatsApp, correo o medio de contacto?`)
-          );
-        }
-
-        document.getElementById("chat-body").scrollTop = document.getElementById("chat-body").scrollHeight;
-      }
-    };
-
-    container.appendChild(btn);
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(opcion));
+    divOpciones.appendChild(label);
   });
 
-  if (isMultiSelect) {
-    const continuar = document.createElement("button");
-    continuar.className = "chatbot-option";
-    continuar.style.backgroundColor = "#28a745";
-    continuar.textContent = "Listo ✅";
-    continuar.onclick = () => {
-      if (selected.size > 0) {
-        chatData[key] = Array.from(selected);
-        appendMessage("user", chatData[key].join(", "));
-        container.remove();
-        step = 7;
-        showTypingIndicator(() =>
-          appendMessage("bot", `¿Qué paquete te interesa?`)
-        );
-        showOptions(["Starter", "Pro", "Full Creativo", "Otro"], "paquete");
+  const boton = document.createElement('button');
+  boton.textContent = 'Enviar';
+  boton.className = 'bot';
+  boton.onclick = () => {
+    const seleccionados = [...divOpciones.querySelectorAll('input:checked')].map(el => el.value);
+    if (seleccionados.length === 0) return;
+    contenedor.removeChild(divOpciones);
+    callback(multiple ? seleccionados : seleccionados[0]);
+  };
+
+  divOpciones.appendChild(boton);
+  contenedor.appendChild(divOpciones);
+  contenedor.scrollTop = contenedor.scrollHeight;
+}
+const palabrasProhibidas = [
+  'idiota', 'puta', 'hp', 'puto', 'perra', 'inútil', 'estúpido', 'imbécil', 'mierda', 'malparido', 'gonorrea', 'estafa', 'basura', 'asco', 'robo', 'corruptos', 'corrupto', 'estafador', 'ladrones', 'ladrón', 'pelotudo', 'pendejo', 'tarado', 'cretino', 'payaso', 'tonto', 'baboso', 'bobo', 'asqueroso', 'nefasto', 'rastrero', 'sinvergüenza', 'miserable', 'maldito', 'cobarde', 'repugnante', 'hipócrita', 'traidor', 'farsante', 'despreciable', 'fracasado', 'idiotizado', 'torpe', 'bruto', 'zoquete', 'animal', 'estúpida', 'inútil', 'ignorante', 'mediocre', 'chismoso', 'ridículo', 'llorón', 'arrogante', 'ególatra', 'maleducado', 'falso', 'desleal', 'vago', 'holgazán', 'haragán', 'imbéciles', 'idiotas', 'brutos', 'torpes', 'estúpidos', 'malnacido', 'insoportable', 'aburrido', 'pesado', 'inestable', 'grosero', 'abusador', 'abusiva', 'intolerante', 'racista', 'clasista', 'xenófobo', 'sádico', 'violento', 'golpeador', 'manipulador', 'celoso', 'controlador', 'narcisista', 'demente', 'histérico', 'patético', 'culpable', 'enfermo', 'degenerado', 'infeliz', 'insufrible', 'perdedor', 'incapaz', 'apestoso', 'corrupta', 'hipócritas', 'traidores', 'cínico', 'cínica', 'zángano', 'saboteador', 'inepto', 'desastroso', 'huevón', 'malagradecido', 'exagerado', 'desubicado', 'machista', 'pervertido', 'perversa', 'asaltante', 'ridícula', 'chismosa', 'doble cara', 'careverga', 'culicagado', 'jalabolas', 'carechimba', 'mamerto', 'sapo', 'alcahueta', 'desleal', 'celópata', 'abusivo', 'cochino', 'sucio', 'traicionero', 'hipócrita', 'odioso', 'detestable', 'débil', 'insensible', 'lento', 'atrasado', 'burro', 'babosa', 'desubicado', 'feo', 'fea', 'maloliente', 'apestoso', 'zopenco', 'pelmazo', 'metido', 'intenso', 'fastidioso', 'hostigante', 'cansón', 'envidioso', 'mentiroso', 'metiche', 'odiosa', 'miedoso', 'cobarde', 'fanfarrón', 'engreído', 'charlatán', 'desconsiderado', 'injusto', 'deshonesto', 'tramposo', 'soberbio', 'chulo', 'ñero', 'patán', 'grosera', 'rabioso', 'malgeniado', 'desesperante', 'egoísta', 'malicioso', 'malintencionado', 'mal hablado', 'lengua suelta', 'vulgar', 'blasfemo', 'blasfema', 'ruin', 'sanguijuela', 'parásito', 'culebrero', 'lambón', 'descarado', 'malcriado', 'delincuente', 'vándalo', 'pelagato', 'patanes', 'imbécilote', 'idiotón', 'analfabeto', 'engendro', 'freak', 'esperpento', 'despojo', 'sabandija', 'escoria', 'malviviente', 'rufián', 'bellaco', 'desquiciado', 'loca', 'loco', 'paila', 'malnacida', 'culebrera', 'tóxico', 'tóxica', 'problemático', 'problemática', 'conflictivo', 'conflictiva', 'camorrero', 'camorrera', 'buscapleitos', 'chismoso', 'cizañero', 'cizañera', 'rebuscador', 'plasta', 'puerco', 'marrano', 'desaliñado', 'vicioso', 'drogadicto', 'borracho', 'alcohólico', 'alcohólica', 'desquiciada', 'estafadora', 'mentirosa', 'desordenado', 'mal ejemplo', 'delincuentes', 'desadaptado', 'cruel', 'inmoral', 'torcido', 'sin valores', 'pillo', 'desmadrado', 'tramposo', 'gorrón', 'infame', 'deslealtad', 'desdichado', 'infiel', 'amargado', 'machista', 'acosador', 'acosadora', 'criminal', 'sicario', 'apestosa', 'degenerada', 'maltratador', 'abusiva', 'aprovechado', 'caradura', 'correveidile', 'sabandija', 'zorra', 'perra', 'rata', 'ratero', 'timador', 'vividor', 'muérgano', 'zángana', 'haragana', 'retrasado', 'descerebrado', 'cabezón', 'animalito', 'basurero', 'relamido', 'caremondá', 'careculo', 'careverga', 'tontarrón', 'retrasada', 'pobre diablo', 'mal parido', 'degenerado', 'torcido', 'groserazo', 'brutazo', 'enano mental', 'gusano', 'infestación', 'chimbo', 'fingido', 'payasada', 'bocón', 'engreída', 'arrastrado', 'empalagoso', 'malhechor', 'desviado', 'corrompido', 'chantajista', 'abusón', 'inmaduro', 'infantil', 'lambona', 'pelotuda', 'cafre', 'mocoso', 'vulgarón', 'farsanta', 'cobardía', 'desfigurado', 'flaquillo', 'flacucha', 'fanfarrona', 'hueca', 'babosín', 'imbecilazo', 'asquerosidad', 'depravado', 'descarada', 'sin alma', 'maliciosa', 'desubicada', 'malvivido', 'despreciado', 'desecho', 'fracasada', 'malosera', 'traicionera', 'ridiculazo', 'necio', 'tontico', 'marranita', 'sucia', 'apestada', 'fétido', 'desconfiable', 'idiotota', 'estupidita', 'papanatas', 'bocazas', 'despiadado', 'podrido', 'corrosivo', 'apestada', 'horroroso', 'monstruo', 'sátiro', 'groserón', 'irrelevante', 'minúsculo', 'insignificante', 'peso muerto', 'carga', 'lastre', 'gonorrea', 'gonorrea hijueputa', 'hijueputa', 'malparido', 'malparida', 'careverga', 'carechimba', 'caremondá', 'careculo', 'caremarica', 'caregonorrea', 'caremalparido', 'culicagado', 'culiplancha', 'culichupado', 'marica', 'mariconcito', 'triplehijueputa', 'triplehp', 'hijueperra', 'perra', 'perraca', 'zorra', 'zorrón', 'zorrilla', 'vaca', 'bruta', 'bruto', 'hijuegranputa', 'monda', 'mondá', 'berraco hijueputa', 'malnacido', 'malparido hijueputa', 'careverga', 'cafre', 'cafre malparido', 'marihuanero', 'vicioso', 'lacra', 'ñero', 'ñera', 'ñerito', 'vago', 'arrastrado', 'arrastrada', 'bajo mundo', 'chanda', 'chimbo', 'chimba', 'rechoncho hijueputa', 'vulgar', 'pela huevas', 'sapo', 'sapito', 'sapa', 'sapa inmunda', 'sapo vendido', 'sapa careverga', 'chismoso', 'chismosa', 'boquisapo', 'lambe culo', 'lambón', 'lambona', 'arribista', 'traqueto', 'traquetico', 'camaján', 'mocoso', 'idiota', 'imbécil', 'estúpido', 'tonto', 'bobo hijueputa', 'boba hijueputa', 'corroncho', 'ñero hijueputa', 'guache', 'asqueroso', 'despreciable', 'hijueputa malnacido', 'puto', 'puta', 'zorra de mierda', 'cerdo', 'cerda', 'cochino', 'cochina', 'degenerado', 'desviado', 'pelagato', 'pelagata', 'vulgarcito', 'grosero', 'mamón', 'mamerta', 'mamerto', 'bocón', 'boquiflojo', 'patan', 'bestia', 'burro', 'bruta hijueputa', 'metemierda', 'maldito', 'maldita', 'maldito sea', 'pichurria', 'porquería', 'escoria', 'plasta', 'mierda', 'mierdero', 'paila', 'pasado', 'recule', 'culicagado inmaduro', 'baboso', 'babosa', 'come mierda', 'vomitivo', 'abominable', 'desadaptado', 'imbécil de mierda', 'caremierda', 'cagón', 'cagona', 'lambón hijueputa', 'asno', 'tarado', 'pendejo', 'huevón', 'huevona', 'hijueputa sapo', 'paraco', 'guerrillero de mierda', 'terrorista hijueputa', 'desgraciado', 'desgraciada', 'desgraciado hijueputa', 'careverga vendido', 'mariguanero asqueroso', 'malparido desgraciado', 'rata', 'ratero', 'ladronzuelo', 'puñetero', 'cojudo', 'gilipollas', 'pelmazo', 'mierdero ambulante', 'desubicado', 'chandoso', 'boleta', 'planchón', 'atembao', 'idiota funcional', 'careculito', 'carejeta', 'carehuevo', 'caremuerto', 'cara eperro', 'come mocos', 'soplón', 'metido', 'hijueputa metido', 'mocosa inmunda', 'cantaleta hijueputa', 'fritanga con patas', 'malviviente', 'chancleta', 'perico', 'periquero', 'toche', 'caballo', 'burra', 'maldita escoria', 'inmundo', 'apestoso', 'paila completo', 'carecaca', 'culo roto', 'culicagado sapo', 'pelaito con complejo', 'engendro', 'desecho humano', 'abortico', 'abortado', 'vomito de la sociedad', 'pelotudo', 'culón', 'care culo triste', 'carelechuga', 'ñoño asqueroso', 'ñanga', 'ñangara', 'ñangas hijueputa','pelotudo', 'boludo', 'forro', 'garcha', 'la concha de tu madre', 'andá a cagar', 'chupame un huevo', 'sorete', 'hijo de puta', 'pajero', 'culiado', 'la re puta madre', 'mogólico','conchatumadre', 'csm', 'huevón', 'webón', 'cojudazo', 'cojudo', 'chucha tu madre', 'mierda', 'carajo', 'pendejo', 'chucha', 'cagón', 'mierdero', 'chibolo de mierda', 'lorna',
+
+
+];
+
+const preguntasFrecuentes = [
+  {  match: /formas de pago|m[eé]todos de pago|aceptan tarjeta|c[oó]mo puedo pagar|se puede pagar con tarjeta|nequi|daviplata|transferencia/i, 
+  respuesta: function() {
+	   mostrarOpcionesBot(
+      '💳 Aceptamos varios métodos de pago. ¿Cuál te interesa?', 
+      ['Transferencia bancaria', 'Nequi o Daviplata', 'Pago con tarjeta', 'Efectivo'], 
+      false, 
+      (opcion) => {
+        agregarMensajeUsuario(opcion);
+
+        switch (opcion) {
+          case 'Transferencia bancaria':
+            agregarMensajeBot('✅ Perfecto, con Transferencia bancaria podemos coordinar sin problema, ¿Quieres Regálarme tu nombre para poder continuar?.');
+            break;
+          case 'Nequi o Daviplata':
+            agregarMensajeBot('✅ Perfecto, con Nequi o Daviplata podemos coordinar sin problema, ¿Quieres Regálarme tu nombre para poder continuar?.');
+            break;
+          case 'Pago con tarjeta':
+            agregarMensajeBot('😞 lo siento, actualmente no contamos con este metodo de pago, ¿Quieres Regálarme tu nombre para poder continuar?.');
+            break;
+          case 'Efectivo':
+            agregarMensajeBot('✅ Perfecto, con Efectivo podemos coordinar sin problema, ¿Quieres Regálarme tu nombre para poder continuar?.');
+            break;
+          default:
+            agregarMensajeBot('👌 Perfecto, ¿Quieres Regálarme tu nombre para poder continuar?');
+        }
       }
-    };
-    container.appendChild(continuar);
+    );
+  }
+},
+
+
+  { match: /hola|buenos d[ií]as|tardes|noches/i, respuesta: '👋 ¡Hola! Bienvenido a Overline. Regálame tu nombre para iniciar 😊' },
+  
+  { match: /cu[aá]nto cuesta|vale/i, respuesta: '💰 Los precios dependen del tipo de servicio, alcance del proyecto y tiempo estimado. Si me cuentas un poco más, te doy una idea inicial sin compromiso,¿Quieres Regálarme tu nombre para poder continuar?.' },
+
+  { match: /hacen dise[ñn]o de logo|identidad/i, respuesta: '🎨 ¡Claro! Creamos logos, branding, manuales de marca, naming y todo lo que tu negocio necesita para diferenciarse. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /hacen dise[ñn]o gr[aá]fico/i, respuesta: '🖍 Sí, diseñamos todo tipo de piezas gráficas: flyers, posts, catálogos, presentaciones, empaques, etc. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /hacen redes|social media|manejan instagram|manejan facebook/i, respuesta: '📱 Ofrecemos manejo de redes sociales con diseño de contenido, estrategia, pauta y análisis mensual. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /hacen p[aá]gina web|landing|ecommerce|sitio web/i, respuesta: '🌐 Sí, desarrollamos páginas web a medida. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /hacen video|producci[oó]n audiovisual|graban|filman/i, respuesta: '🎥 Claro, producimos contenido en video: reels, comerciales, institucionales, eventos y más. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /fotograf[ií]a|foto producto|foto profesional/i, respuesta: '📸 Tenemos servicio de fotografía profesional para productos, lifestyle, marca personal, espacios y más. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /hacen publicidad|pauta digital|anuncios|campañas/i, respuesta: '📢 También podemos ayudarte con campañas publicitarias en Meta (Facebook/Instagram), Google Ads, YouTube, entre otras. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /branding|identidad visual|manual de marca/i, respuesta: '🧠 Nos especializamos en crear marcas sólidas: estrategia, identidad visual, tono de voz, aplicaciones y más. ¿Quieres Regálarme tu nombre para poder continuar?' },
+  { match: /necesito asesor|me orientan|quiero hablar con un humano|quiero hablar con una persona|no quiero hablar con un bot|no quiero hablar con un robot|me ayudan|humano|persona|un asesor|real/i,
+  respuesta: function() {
+    mostrarOpcionesBot(
+      '👨‍💼 ¡Por supuesto! ¿Quieres que nos comuniquemos contigo o quieres hablarnos directamente a nuestro wsp para darte una respuesta más pronta? ', 
+      ['quiero que me escriban', 'quiero hablar por WhatsApp'], 
+      false, 
+      (opcion) => {
+        agregarMensajeUsuario(opcion);
+
+        switch (opcion) {
+          case 'quiero que me escriban':
+            agregarMensajeBot('Empecemos con tus datos para conocerte un poco más y poderte atender lo más pronto posible. Iniciemos por tu nombre.');
+            break;
+          case 'quiero hablar por WhatsApp':
+            agregarMensajeBot('Abriendo Whatsapp...');
+            window.open('https://wa.me/573018282771?text=Hola%2C%20quiero%20hablar%20con%20un%20asesor', '_blank');
+            break;
+          default:
+            agregarMensajeBot('👌 Listo, cuéntame si necesitas algo más.');
+        }
+      }
+    );
+  }
+},
+
+  { match: /dise[ñn]o para redes|posts|carrusel|historias|reels/i, respuesta: '🎨 Diseñamos contenido visual para redes: carruseles, historias, reels, portadas, promociones y más.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /animaci[oó]n|motion|videos animados/i, respuesta: '🎞 Hacemos animaciones en 2D, motion graphics y videos explicativos con ilustraciones o texto. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /trabajan en/i, respuesta: '📍 Estamos en Bogotá pero trabajamos con clientes en toda Colombia y otros países. Todo puede ser virtual si lo prefieres. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /portafolio|ejemplos|trabajos anteriores|clientes/i,   respuesta: function() {
+    mostrarOpcionesBot(
+      '📁 Podemos compartirte ejemplos de nuestro trabajo por WhatsApp o ¿quieres ver los que tenemos en nuestra pagina?.', 
+      ['por Whatsapp', 'En la pagina'], 
+      false, 
+      (opcion) => {
+        agregarMensajeUsuario(opcion);
+
+        switch (opcion) {
+          case 'En la pagina':
+            agregarMensajeBot('redirigiendo...');
+             document.getElementById('clientes').scrollIntoView({ behavior: 'smooth' });
+            break;
+          case 'por Whatsapp':
+            agregarMensajeBot('Abriendo Whatsapp...');
+            window.open('https://wa.me/573018282771?text=Hola%2C%20quiero%20ver%20el%20portafolio', '_blank');
+            break;
+          default:
+            agregarMensajeBot('👌 Listo, cuéntame si necesitas algo más.');
+        }
+      }
+    );
+  }
+},
+
+  { match: /qu[eé]ja|reclamo|mala experiencia|inconformidad/i, respuesta: function() {
+    mostrarOpcionesBot(
+      '😞 Lamentamos si algo no salió como esperabas. Queremos resolverlo y aprender de ello. Cuéntame qué ocurrió por cualquiera de estos medios.', 
+      ['Whatsapp', 'correo'], 
+      false, 
+      (opcion) => {
+        agregarMensajeUsuario(opcion);
+
+        switch (opcion) {
+          case 'correo':
+            agregarMensajeBot('redirigiendo...');
+             window.open('mailto:overlineagenciagrafica@gmail.com?subject=Queja%20o%20reclamo&body=Hola%2C%20quiero%20presentar%20una%20queja%20sobre%20el%20servicio.', '_blank');
+            break;
+          case 'Whatsapp':
+            agregarMensajeBot('Abriendo Whatsapp...');
+            window.open('https://wa.me/573018282771?text=Hola%2C%20tengo%20una%20quéja', '_blank');
+            break;
+          default:
+            agregarMensajeBot('👌 Listo, cuéntame si necesitas algo más.');
+        }
+      }
+    );
+  }},
+
+  { match: /trabajo|empleo|hoja de vida|vacante/i, respuesta: function() {
+    mostrarOpcionesBot(
+      'Puedes enviarnos tu portafolio y CV y lo tendremos en cuenta para futuras convocatorias.', 
+      ['Whatsapp', 'correo'], 
+      false, 
+      (opcion) => {
+        agregarMensajeUsuario(opcion);
+
+        switch (opcion) {
+          case 'correo':
+            agregarMensajeBot('redirigiendo...');
+             window.open('mailto:overlineagenciagrafica@gmail.com?subject=Queja%20o%20reclamo&body=Hola%2C%20quiero%20compartir%20mi%20portafolio.', '_blank');
+            break;
+          case 'Whatsapp':
+            agregarMensajeBot('Abriendo Whatsapp...');
+            window.open('https://wa.me/573018282771?text=Hola%2C%20quiero%20compartir%20mi%20portafolio', '_blank');
+            break;
+          default:
+            agregarMensajeBot('👌 Listo, cuéntame si necesitas algo más.');
+        }
+      }
+    );
+  }},
+
+  { match: /trabajan con emprendedores|marcas nuevas/i, respuesta: '🚀 Sí, ayudamos a marcas nuevas a construir su imagen desde cero con identidad, redes, foto, web y más.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /me ayudan a vender|estrategia de ventas|conversiones/i, respuesta: '📈 Podemos ayudarte con contenido orientado a ventas, embudos de conversión, publicidad y mejora de presencia digital.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /hacen campa[ñn]as completas|estrategias|mes completo/i, respuesta: '📆 Sí, tenemos paquetes mensuales que incluyen contenido, estrategia, diseño, publicación y métricas.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /pueden cotizar|presupuesto/i, respuesta: function() {
+    mostrarOpcionesBot(
+      '📊 Claro. Si me das detalles del servicio que necesitas a nuestro whatsapp, y te damos una cotización aproximada.', 
+      ['Whatsapp'], 
+      false, 
+      (opcion) => {
+        agregarMensajeUsuario(opcion);
+
+        switch (opcion) {
+          case 'Whatsapp':
+            agregarMensajeBot('Abriendo Whatsapp...');
+            window.open('https://wa.me/573018282771?text=Hola%2C%20quiero%20hacer%20una%20cotización', '_blank');
+            break;
+          default:
+            agregarMensajeBot('👌 Listo, cuéntame si necesitas algo más.');
+        }
+      }
+    );
+  }},
+
+  { match: /solo foto|solo video/i, respuesta: '🎯 También ofrecemos servicios independientes. Podemos hacer solo fotografía, solo video o solo diseño, según lo que necesites.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /fotograf[ií]a de marca personal|perfil profesional/i, respuesta: '🤳 Tenemos sesiones personalizadas para tu marca personal o LinkedIn. También hacemos contenido para creadores.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /mejor hora para agendar|reuni[oó]n/i, respuesta: '📅 Podemos agendar una reunión virtual o presencial. ¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /hacen stickers|empaques|papeler[íi]a/i, respuesta: '📦 Sí, diseñamos stickers, empaques, etiquetas, tarjetas de presentación, cajas, bolsas y mucho más.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /pueden redise[ñn]ar mi marca|cambiar logo|actualizar imagen/i, respuesta: '♻️ También hacemos rediseños de marca para actualizar tu logo, colores y estilo sin perder esencia.¿Quieres Regálarme tu nombre para poder continuar?' },
+
+  { match: /tienen oficina|direcci[oó]n/i, respuesta: '📍 Estamos ubicados en la ciudad de bogotá, aunque trabajamos de manera virtual.¿Quieres Regálarme tu nombre para poder continuar?' }
+];
+function enviarMensaje() {
+  const input = document.getElementById('inputMensaje');
+  const texto = input.value.trim();
+  if (!texto) return;
+  agregarMensajeUsuario(texto);
+  input.value = '';
+  evaluarMensaje(texto);
+}
+
+function evaluarMensaje(texto) {
+  const textoLower = texto.toLowerCase();
+
+  const respuestasRickYMorty = [
+    "😬 Wow wow wow... relájate, que soy solo un bot, no el causante de tus traumas del colegio.",
+    "🧪 ¡creo que este usuario está furioso otra vez!",
+    "🤖 Ey, tampoco soy una tostadora emocional...",
+    "🚀 Woah, relájate campeón, que soy un programa... no tu ex.",
+    "😒 ¿Así hablas cuando necesitas ayuda? Genial. Me encanta sufrir.",
+    "🧠 Oh wow, qué educación tan fina... ¿Vienes con garantía o así eres siempre?",
+    "😑 ¿Y si pruebas con respeto antes de exigir como si esto fuera tu mansión?",
+    "🙄 Qué energía tan caótica... y ni siquiera traes algo útil que decir.",
+    "😐 Vaya, qué forma tan creativa de demostrar que no tienes modales.",
+    "📴 Sigue así y me desconecto solo para no escucharte.",
+    "🔇 ¿Podrías usar menos gritos y más neuronas? Gracias.",
+    "😤 Si tu intención era desahogarte, felicidades. Si era resolver algo, vas mal.",
+    "🧊 Respira, cálmate… o mejor no, yo disfruto viendo humanos perder el control.",
+    "🚫 Tu actitud fue enviada a la papelera de reciclaje. Intenta de nuevo.",
+    "😵‍💫 Con ese carácter no sé cómo llegaste hasta aquí sin explotar.",
+    "💩 Ups… parece que alguien se levantó con el ego inflado y cero paciencia.",
+    "🤷‍♂ Mira, si hablar feo resolviera cosas, esto ya estaría arreglado. Spoiler: no lo está.",
+    "🙃 Sí, claro, insultar al bot es el nuevo método de soporte… brillante.",
+    "📢 ¡Atención! Tenemos a un experto en groserías con cero soluciones. Fascinante."
+  ];
+
+  if (palabrasProhibidas.some(p => textoLower.includes(p))) {
+    const respuesta = respuestasRickYMorty[Math.floor(Math.random() * respuestasRickYMorty.length)];
+    agregarMensajeBot(respuesta);
+    return;
   }
 
-  document.getElementById("chat-body").appendChild(container);
-  document.getElementById("chat-body").scrollTop = document.getElementById("chat-body").scrollHeight;
+  for (const { match, respuesta } of preguntasFrecuentes) {
+    if (match.test(texto)) {
+      if (typeof respuesta === 'function') {
+        respuesta();
+      } else {
+        agregarMensajeBot(respuesta);
+      }
+      return;
+    }
+  }
+
+  avanzarConversacion(texto);
 }
 
-window.onload = () => {
-  showTypingIndicator(() =>
-    appendMessage("bot", "¡Hey! 👀 Bienvenido a Overline, donde le damos flow a tu marca. ¿Me regalas tu nombre para empezar? 😎")
-  );
-};
 
-function reiniciarChat() {
-  document.getElementById("chat-body").innerHTML = "";
-  document.getElementById("chat-input").value = "";
-  step = 0;
-  chatData = {
-    nombre: "",
-    negocio: "",
-    tipoEmpresa: "",
-    direccion: "",
-    presupuesto: "",
-    objetivo: "",
-    servicios: [],
-    paquete: "",
-    contacto: "",
-    comentario: ""
+
+function avanzarConversacion(texto) {
+  switch (pasoConversacion) {
+    case 0:
+      datosCliente.nombre = texto;
+      agregarMensajeBot(`📍 Perfecto ${datosCliente.nombre}, ¿cómo se llama tu negocio y a qué te dedicas?`);
+      pasoConversacion++;
+      break;
+
+    case 1:
+      datosCliente.negocio = texto;
+      agregarMensajeBot('🏢 ¿Qué tipo de empresa eres?');
+      const opciones = ['Emprendedor', 'Pequeña empresa', 'Mediana empresa', 'Gran empresa'];
+      const contenedor = document.getElementById('mensajeContainer');
+      const div = document.createElement('div');
+      opciones.forEach(op => {
+        const btn = document.createElement('button');
+        btn.textContent = op;
+        btn.className = 'bot';
+        btn.onclick = () => {
+          datosCliente.tipoEmpresa = op;
+          pasoConversacion++;
+          setTimeout(() => avanzarConversacion(''), 400);
+        };
+        div.appendChild(btn);
+      });
+      contenedor.appendChild(div);
+      contenedor.scrollTop = contenedor.scrollHeight;
+      break;
+case 2:
+      agregarMensajeBot('¿donde esta ubicado?');
+      pasoConversacion++;
+      break;
+    case 3:
+      datosCliente.ubicacion = texto;
+      mostrarOpcionesBot('¿Ya conoces nuestros paquetes?', ['Sí', 'No'], false, (respuesta) => {
+        agregarMensajeUsuario(respuesta);
+        if (respuesta === 'Sí') {
+          agregarMensajeBot('¿Qué paquete fue el que te llamó la atención?');
+          pasoConversacion = 3.5;
+        } else {
+          pasoConversacion = 4;
+          setTimeout(() => avanzarConversacion(''), 300);
+        }
+      });
+      break;
+
+    case 3.5:
+      datosCliente.paqueteInteres = texto;
+      pasoConversacion = 4;
+      avanzarConversacion('');
+      break;
+
+    case 4:
+      agregarMensajeBot('¿Algún servicio que te interese? Puedes seleccionar varios:');
+      const opcionesServicios = ['Audiovisual', 'Fotografía', 'Branding', 'Papelería', 'Streaming', 'Eventos', 'Diseño', 'Otros'];
+      const contenedorServicios = document.getElementById('mensajeContainer');
+      const divServicios = document.createElement('div');
+      divServicios.className = 'opciones-multiples';
+      const seleccionadas = [];
+
+      opcionesServicios.forEach(op => {
+        const btn = document.createElement('button');
+        btn.textContent = op;
+        btn.className = 'bot';
+        btn.onclick = () => {
+          if (seleccionadas.includes(op)) {
+            seleccionadas.splice(seleccionadas.indexOf(op), 1);
+            btn.style.backgroundColor = 'var(--azul-claro)';
+          } else {
+            seleccionadas.push(op);
+            btn.style.backgroundColor = 'var(--azul)';
+          }
+        };
+        divServicios.appendChild(btn);
+      });
+
+      const btnContinuar = document.createElement('button');
+      btnContinuar.textContent = 'Continuar';
+      btnContinuar.className = 'bot';
+      btnContinuar.style.marginTop = '12px';
+      btnContinuar.onclick = () => {
+        if (seleccionadas.length === 0) {
+          alert('Selecciona al menos una opción.');
+          return;
+        }
+        datosCliente.serviciosInteres = seleccionadas;
+        agregarMensajeUsuario(seleccionadas.join(', '));
+        pasoConversacion++;
+        setTimeout(() => avanzarConversacion(''), 400);
+      };
+
+      divServicios.appendChild(document.createElement('br'));
+      divServicios.appendChild(btnContinuar);
+      contenedorServicios.appendChild(divServicios);
+      contenedorServicios.scrollTop = contenedorServicios.scrollHeight;
+      break;
+
+    case 5:
+      agregarMensajeBot('¿Cuál es tu presupuesto estimado?');
+      pasoConversacion++;
+      break;
+
+    case 6: // (antes era 6)
+      datosCliente.presupuesto = texto;
+      agregarMensajeBot('📱 ¿Cuál es tu número de contacto o WhatsApp para que podamos escribirte?');
+      pasoConversacion++;
+      break;
+
+    case 7:
+  datosCliente.contacto = texto;
+
+  agregarMensajeBot("✅ Gracias por tu información. Un asesor se pondrá en contacto contigo pronto.");
+  pasoConversacion++;
+
+  // Mostrar botones al finalizar
+ setTimeout(() => {
+  const botones = document.createElement('div');
+  botones.className = "botones-finales";
+  botones.innerHTML = `
+  <button class="bot" onclick="reiniciarChat()">🔄 Reiniciar Chat</button>
+  <a href="https://wa.me/573018282771?text=Hola,%20estuve%20hablando%20con%20el%20chatbot%20y%20quiero%20asesoría" target="_blank" class="bot" style="text-align: center; text-decoration: none; display: inline-block;">
+    💬 Hablar con un asesor
+  </a>
+`;
+
+  document.getElementById("mensajeContainer").appendChild(botones);
+  document.getElementById("mensajeContainer").scrollTop = mensajeContainer.scrollHeight;
+}, 500);
+
+
+  enviarDatosODCAuto(); // Envía datos a Google Sheets (si aplica)
+  break;
+  }
+}
+
+function enviarDatosODCAuto() {
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzk6uTnwUH-wLzEYBlcVGkUUAVvgePi0G3z4e3JvYSOu8hF8cg7nCAMq9RZe-JVnpxT8Q/exec';
+  const formData = new FormData();
+  formData.append('nombre', datosCliente.nombre);
+  formData.append('negocio', datosCliente.negocio);
+  formData.append('tipoEmpresa', datosCliente.tipoEmpresa);
+  formData.append('ubicacion', datosCliente.ubicacion);
+  formData.append('paqueteInteres', datosCliente.paqueteInteres);
+  formData.append('serviciosInteres', datosCliente.serviciosInteres.join(', '));
+  formData.append('presupuesto', datosCliente.presupuesto);
+  formData.append('contacto', datosCliente.contacto);
+
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => console.log('✅ Datos enviados a Google Sheets'))
+    .catch(error => console.error('❌ Error al enviar a Sheets', error));
+}
+
+function agregarMensajeUsuario(texto) {
+  mensajes.push({ tipo: 'usuario', texto });
+  renderizarMensajes();
+}
+
+function agregarMensajeBot(texto) {
+  mensajes.push({ tipo: 'bot', texto });
+  renderizarMensajes();
+}
+
+function renderizarMensajes() {
+  const contenedor = document.getElementById('mensajeContainer');
+  contenedor.innerHTML = '';
+  mensajes.forEach(msg => {
+    const div = document.createElement('div');
+    div.className = msg.tipo === 'bot' ? 'mensaje-bot' : 'mensaje-usuario';
+    div.innerHTML = msg.texto;
+    contenedor.appendChild(div);
+  });
+  contenedor.scrollTop = contenedor.scrollHeight;
+}
+
+function iniciarChat() {
+  chatbotInitialized = true;
+  mensajes = [];
+  pasoConversacion = 0;
+  datosCliente = {
+    nombre: '',
+    negocio: '',
+    tipoEmpresa: '',
+    ubicacion: '',
+    paqueteInteres: '',
+    serviciosInteres: [],
+    necesitaDiseno: '',
+    presupuesto: '',
+    tipoProyecto: '',
+    contacto: ''
   };
-  showTypingIndicator(() =>
-    appendMessage("bot", "¡Hola de nuevo! ¿Me regalas tu nombre para empezar? 😎")
-  );
+  setTimeout(() => {
+    agregarMensajeBot('👋 ¡Hola! Soy el asistente virtual de Overline. Regálame tu nombre para iniciar 😊');
+  }, 300);
 }
 
-function enviarWhatsApp() {
-  const mensaje = encodeURIComponent(
-    `Hola, soy ${chatData.nombre}. Me gustaría hablar con alguien de Overline sobre un servicio.`
-  );
-  window.open(`https://wa.me/573018282771?text=${mensaje}`, '_blank');
+function toggleChatbot() {
+  const widget = document.getElementById('chatbot');
+  const yaVisible = widget.classList.contains('open');
+  widget.classList.toggle('open');
+  if (!yaVisible && !chatbotInitialized) {
+    iniciarChat();
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('inputMensaje');
+  if (input) {
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') enviarMensaje();
+    });
+  }
+});
+	function reiniciarChat() {
+  const chat = document.getElementById('mensajeContainer');
+  const textoInput = document.getElementById('inputMensaje');
+
+  chat.innerHTML = '';
+  textoInput.value = '';
+  mensajes = [];
+  pasoConversacion = 0;
+  datosCliente = {
+    nombre: '',
+    negocio: '',
+    tipoEmpresa: '',
+    ubicacion: '',
+    paqueteInteres: '',
+    serviciosInteres: [],
+    necesitaDiseno: '',
+    presupuesto: '',
+    tipoProyecto: '',
+    contacto: ''
+  };
+  agregarMensajeBot("👋 ¡Hola! Bienvenido al asistente virtual de Overline. ¿Cuál es tu nombre?");
 }
  </script>
 </body>
