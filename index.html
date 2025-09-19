@@ -926,8 +926,14 @@ body {
 .lista-terminos-overline {
   list-style: none;
   padding: 0;
+  margin: 0;
+
+  /* 🔹 Scroll adaptable */
+  max-height: 50vh;   
+  overflow-y: auto;   /* activa scroll si se llena */
 }
 
+/* Estilo de cada ítem */
 .lista-terminos-overline li {
   background: #fff;
   margin: 10px 0;
@@ -940,11 +946,25 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+/* Hover */
 .lista-terminos-overline li:hover {
   background: #017096;
   color: #fff;
   transform: scale(1.03);
 }
+
+/* 🔹 Opcional: scrollbar personalizado */
+.lista-terminos-overline::-webkit-scrollbar {
+  width: 8px;
+}
+.lista-terminos-overline::-webkit-scrollbar-thumb {
+  background: #017096;
+  border-radius: 10px;
+}
+.lista-terminos-overline::-webkit-scrollbar-track {
+  background: #eaeaea;
+}
+
 
 .popup-overline {
   display: none;
