@@ -906,6 +906,83 @@ body {
     background-color: #005bb5;
     transform: scale(1.05);
   }
+		/*-------term-----------*/
+.seccion-terminos-overline {
+  padding: 40px;
+  background: #f7f7f7;
+  border-radius: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.titulo-terminos-overline {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #017096;
+  margin-bottom: 20px;
+}
+
+.lista-terminos-overline {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-terminos-overline li {
+  background: #fff;
+  margin: 10px 0;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.lista-terminos-overline li:hover {
+  background: #017096;
+  color: #fff;
+  transform: scale(1.03);
+}
+
+.popup-overline {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-contenido-overline {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.cerrar-popup-overline {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.cerrar-popup-overline:hover {
+  color: red;
+}
+
     </style>
 </head>
 <body>
@@ -920,6 +997,7 @@ body {
         <a onclick="cambiarSeccion('paquetes')" data-title="paquetes"><img src="pack.gif" data-hover="pack.gif" alt="paquetes" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="pack.gif"></a>
         <a onclick="cambiarSeccion('contacto')" data-title="contacto"><img src="contact.gif" data-hover="contact.gif" alt="contacto" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="contact.gif"></a>
         <a onclick="cambiarSeccion('blog')" data-title="blog"><img src="blog.gif" data-hover="blog.gif" alt="blog" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="blog.gif"></a>
+        <a onclick="cambiarSeccion('terminos')" data-title="terminos"><img src="terminos.gif" data-hover="terminos.gif" alt="terminos" onmouseover="this.src=this.getAttribute('data-hover')" onmouseout="terminos.gif"></a>
     </nav>
     
     <div class="contenedor">
@@ -1662,7 +1740,91 @@ Cuando todo luce y suena igual, generas una imagen profesional.</p>
 </div>
 </div>
 </section>
+<section id="terminos" class="seccion"><!-- TÍTULO DE SECCIÓN -->
+<div class="titulo-seccion">Términos y Condiciones</div>
+
+<!-- Sección Términos y Condiciones -->
+<div class="seccion-terminos-overline">
+
+  <!-- Lista de ítems -->
+  <ul class="lista-terminos-overline">
+    <li onclick="abrirPopupOverline('popup-identificacion-overline')">📑 Identificación y definiciones</li>
+    <li onclick="abrirPopupOverline('popup-alcance-overline')">🎨 Alcance de servicios y entregables</li>
+    <li onclick="abrirPopupOverline('popup-precios-overline')">💰 Precios, impuestos y facturación</li>
+    <li onclick="abrirPopupOverline('popup-tiempos-overline')">⏱️ Tiempos, aprobaciones y gestión de proyectos</li>
+    <li onclick="abrirPopupOverline('popup-propiedad-overline')">📢 Propiedad intelectual y licencias</li>
+    <li onclick="abrirPopupOverline('popup-confidencialidad-overline')">🔒 Confidencialidad y protección de datos</li>
+    <li onclick="abrirPopupOverline('popup-costos-overline')">🎬 Costos externos y logística de producción</li>
+    <li onclick="abrirPopupOverline('popup-cancelaciones-overline')">🚫 Cancelaciones, reprogramaciones y terminación</li>
+    <li onclick="abrirPopupOverline('popup-garantias-overline')">✅ Garantías, limitación de responsabilidad e indemnidad</li>
+    <li onclick="abrirPopupOverline('popup-jurisdiccion-overline')">⚖️ Jurisdicción, disputas y disposiciones finales</li>
+    <li onclick="abrirPopupOverline('popup-anexo-overline')">📂 Anexo opcional para planes mensuales</li>
+  </ul>
+</div>
+
+<!-- ===== POPUPS ===== -->
+<div id="popup-identificacion-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-identificacion-overline')">&times;</span>
+    <h3>📑 Identificación y definiciones</h3>
+    <p><b>Razón social:</b> OVERLINE AGENCIA S.A.S</p>
+    <p><b>Contacto oficial:</b> overlineagenciagrafica@gmail.com 3018282771</p>
+    <p><b>Cliente:</b> Persona natural o jurídica que contrata los servicios.</p>
+    <p><b>Proyecto:</b> Conjunto de actividades, entregables y tiempos definidos en la cotización/orden de servicio.</p>
+    <p><b>Entregables:</b> Piezas finales acordadas (archivos, videos, diseños, lineamientos).</p>
+    <p><b>Aprobación por escrito:</b> Confirmación vía correo u otro canal acordado.</p>
+  </div>
+</div>
+
+<div id="popup-alcance-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-alcance-overline')">&times;</span>
+    <h3>🎨 Alcance de servicios y entregables</h3> <p><b>Portafolio de servicios:</b> Diseño gráfico, branding, publicidad digital, gestión de campañas, producción audiovisual, consultoría y contenidos.</p> <p><b>Contrato por proyecto/plan:</b> Cada servicio se documenta en cotización con alcance, entregables, tiempos y precio.</p> <p><b>Exclusiones:</b> Todo lo no descrito en la cotización se considera fuera de alcance y se cotiza aparte.</p> <p><b>Revisiones incluidas:</b> Hasta tres (3) rondas de edición por pieza o video, alineadas al alcance inicial.</p> <p><b>Cambios adicionales:</b> Se cotizan y afectan tiempos de entrega.</p> <p><b>Formatos de entrega:</b> Según lo pactado (resolución, orientación, duración, archivos fuente si aplica).</p> <p><b>Accesos y membresías (si aplica):</b> El acceso a plataformas, carpetas o paneles se habilita únicamente durante el período contratado y puede suspenderse por falta de pago.</p>
+  </div>
+</div>
+
+<!-- Repite la misma estructura para los demás popups -->
+<div id="popup-precios-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-precios-overline')">&times;</span>
+	  <h3>💰 Precios, impuestos y facturación</h3> <p><b>Moneda:</b> Valores expresados en pesos colombianos (COP), salvo pacto diferente.</p> <p><b>IVA:</b> Servicios gravados con 19% de IVA cuando aplique.</p> <p><b>Facturación electrónica:</b> Se emite según la normatividad vigente.</p> <p><b>Anticipo y saldo:</b> Modalidad estándar <b>50% anticipo</b> para inicio y <b>50% contra entrega</b> del material final.</p> <p><b>Retenciones:</b> El cliente debe informar y soportar por escrito retención en la fuente y reteICA si aplica, con su RUT y certificaciones.</p> <p><b>Vigencia de cotización:</b> 30 días calendario desde su emisión.</p> <p><b>Reajustes:</b> Cambios de alcance, urgencias o requerimientos extra pueden modificar precio y cronograma previa aprobación escrita.</p></div></div>
+
+<div id="popup-tiempos-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-tiempos-overline')">&times;</span>
+	  <h3>⏱️ Tiempos, aprobaciones y gestión de proyectos</h3> <p><b>Inicio del proyecto:</b> Se agenda tras recepción del anticipo y de los insumos necesarios.</p> <p><b>Entrega inicial audiovisual:</b> Entre 5 y 7 días hábiles posterior a la grabación, según complejidad.</p> <p><b>Rondas de ajustes:</b> Nuevas versiones en 2 a 4 días hábiles tras recibir feedback consolidado.</p> <p><b>Ventana de comentarios:</b> El cliente dispone de 15 días calendario tras cada entrega para solicitar cambios.</p> <p><b>Aprobación tácita:</b> La ausencia de respuesta dentro del plazo se entenderá como aprobación.</p> <p><b>Retrasos por insumos:</b> Tiempos pausados si faltan contenidos, logos, guiones, permisos, pagos o aprobaciones del cliente.</p> <p><b>Urgencias:</b> Servicios exprés tienen recargo y dependen de disponibilidad.</p></div></div>
+
+<div id="popup-propiedad-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-propiedad-overline')">&times;</span><h3>📢 Propiedad intelectual y licencias</h3> <p><b>Derechos de autor:</b> La agencia conserva derechos morales y patrimoniales sobre las obras, salvo cesión explícita por contrato.</p> <p><b>Licencia al cliente:</b> Se otorga licencia de uso comercial y promocional sobre los entregables finales pagados.</p> <p><b>Archivos editables:</b> No se incluyen por defecto; se cotizan aparte si se requieren.</p> <p><b>Portafolio de la agencia:</b> La agencia puede mostrar piezas y fragmentos con fines promocionales, salvo acuerdo de confidencialidad.</p> <p><b>Materiales de terceros:</b> Fonts, música, stock o plugins con licencias de pago se cotizan y documentan.</p></div></div>
+
+<div id="popup-confidencialidad-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-confidencialidad-overline')">&times;</span><h3>🔒 Confidencialidad y protección de datos</h3> <p><b>Información reservada:</b> La agencia mantiene confidencialidad sobre datos, estrategias y material sensible.</p> <p><b>Datos personales:</b> Se tratan conforme a la normativa colombiana.</p> <p><b>Acuerdos adicionales:</b> Se pueden firmar NDA cuando el proyecto lo requiera.</p></div></div>
+
+<div id="popup-costos-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-costos-overline')">&times;</span><h3>🎬 Costos externos y logística de producción</h3> <p><b>Gastos no incluidos:</b> Locaciones, permisos, viáticos, transporte, alimentación, talento, maquillaje, props, alquiler de equipos, música/licencias pagas.</p> <p><b>Aprobación previa:</b> Todo costo externo se informa y aprueba por escrito antes de su ejecución.</p> <p><b>Condiciones de rodaje:</b> El cliente gestiona accesos y autorizaciones en locaciones propias o de terceros, salvo que contrate producción integral.</p> <p><b>Seguridad y permisos:</b> El cliente declara contar con derechos/permiso sobre marcas, personas, espacios y contenidos suministrados.</p></div></div>
+
+<div id="popup-cancelaciones-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-cancelaciones-overline')">&times;</span><h3>🚫 Cancelaciones, reprogramaciones y terminación</h3> <p><b>Cancelación por el cliente:</b> El anticipo cubre planificación y trabajo ejecutado.</p> <p><b>Cancelaciones con menos de 48h:</b> Pueden generar cargos por logística y proveedores.</p> <p><b>Reprogramación:</b> Sujeta a disponibilidad y puede implicar costos adicionales.</p> <p><b>Incumplimiento de pago:</b> La agencia puede suspender trabajos, accesos y entregas hasta regularizar.</p> <p><b>Fuerza mayor:</b> Permite reprogramación sin penalidad.</p> <p><b>Cierre del proyecto:</b> Finaliza con la entrega del material aprobado y el pago total.</p></div></div>
+
+<div id="popup-garantias-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-garantias-overline')">&times;</span><h3>✅ Garantías, limitación de responsabilidad e indemnidad</h3> <p><b>Garantía técnica:</b> Corrección sin costo de errores atribuibles a producción/edición durante 15 días tras la entrega final.</p> <p><b>Desempeño de campañas:</b> No se garantizan resultados específicos (ventas, leads, posicionamiento).</p> <p><b>Hosting y terceros:</b> La agencia no responde por caídas o configuraciones externas.</p> <p><b>Límite de responsabilidad:</b> Hasta el monto efectivamente pagado por el proyecto.</p> <p><b>Indemnidad:</b> El cliente mantendrá indemne a la agencia por reclamos derivados de materiales o permisos suministrados por él.</p></div></div>
+
+<div id="popup-jurisdiccion-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-jurisdiccion-overline')">&times;</span><h3>⚖️ Jurisdicción, disputas y disposiciones finales</h3> <p><b>Ley aplicable:</b> Legislación colombiana.</p> <p><b>Domicilio:</b> Bogotá D.C., salvo acuerdo diferente.</p> <p><b>Resolución de conflictos:</b> Primero negociación de buena fe; luego conciliación y, en última instancia, jurisdicción ordinaria.</p> <p><b>Modificación de términos:</b> La agencia puede actualizar estos términos; la versión vigente estará publicada en la web.</p> <p><b>Divisibilidad:</b> Si alguna cláusula es inválida, las restantes permanecen vigentes.</p> <p><b>Prioridad documental:</b> Prevalece lo pactado en la cotización/orden de servicio y su anexo técnico.</p></div></div>
+
+<div id="popup-anexo-overline" class="popup-overline">
+  <div class="popup-contenido-overline">
+    <span class="cerrar-popup-overline" onclick="cerrarPopupOverline('popup-anexo-overline')">&times;</span><h3>📂 Anexo opcional para planes mensuales y acceso a plataformas</h3> <p><b>Acceso condicionado al pago:</b> El acceso se habilita durante el período pagado y se suspende automáticamente ante mora.</p> <p><b>Renovaciones:</b> Pueden ser automáticas o manuales según el plan.</p> <p><b>Uso permitido:</b> Prohibido compartir accesos o redistribuir contenidos a terceros.</p> <p><b>Soporte:</b> Incluye soporte técnico razonable durante el período activo; requerimientos extra se cotizan.</p></div></div>
+
+        </section>
     </div>
+	
 	<!-- chatbot ---------------------------------------------------------------------------------------------------------------------------------->
    <div class="chatbot-toggle" onclick="toggleChatbot()"><img src="https://img.icons8.com/ios-filled/24/ffffff/chat.png" alt="Chat" /></div>
 
@@ -1684,6 +1846,7 @@ Cuando todo luce y suena igual, generas una imagen profesional.</p>
 </div>
   </div>
 </div>
+
     <script>
 		document.querySelectorAll('.popup-retro').forEach(popup => {
   popup.addEventListener('click', function(e) {
@@ -2373,6 +2536,38 @@ window.addEventListener('DOMContentLoaded', () => {
   };
   agregarMensajeBot("👋 ¡Hola! Bienvenido al asistente virtual de Overline. ¿Cuál es tu nombre?");
 }
+		
+		
+		
+		//-------------------------------------------------------------------------------------------------------
+function abrirPopupOverline(id) {
+  document.getElementById(id).style.display = "flex";
+}
+
+function cerrarPopupOverline(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+// Cerrar con clic fuera
+window.addEventListener("click", function(e) {
+  document.querySelectorAll(".popup-overline").forEach(popup => {
+    if (e.target === popup) {
+      popup.style.display = "none";
+    }
+  });
+});
+
+// Cerrar con ESC
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".popup-overline").forEach(popup => {
+      popup.style.display = "none";
+    });
+  }
+});
+
+
+
  </script>
 </body>
 </html>
